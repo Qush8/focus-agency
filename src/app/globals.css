@@ -1,26 +1,120 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/satoshi/Satoshi-Light.woff2') format('woff2'),
+       url('/fonts/satoshi/Satoshi-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/satoshi/Satoshi-Regular.woff2') format('woff2'),
+       url('/fonts/satoshi/Satoshi-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/satoshi/Satoshi-Medium.woff2') format('woff2'),
+       url('/fonts/satoshi/Satoshi-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/satoshi/Satoshi-Bold.woff2') format('woff2'),
+       url('/fonts/satoshi/Satoshi-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/satoshi/Satoshi-Black.woff2') format('woff2'),
+       url('/fonts/satoshi/Satoshi-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a{
+  text-decoration: none;
+}
+.text-12 {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 100%;
+  font: bold;
+  letter-spacing: 0%;
+  
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Satoshi', sans-serif;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+main {
+  max-width: 1920px;
+  margin-left: auto;
+  margin-right: auto;
+  /* width: 100%; */
+}
+footer {
+  max-width: 1920px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+nav {
+  max-width: 1920px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-right: 135px;
+  padding-left: 135px;
+  
+}
+
+nav > div:first-child {
+  flex: 0 0 auto;
+}
+
+nav > div:nth-child(2) {
+  flex: 1;
+  justify-content: end;
+  padding-right: 250px;
+}
+
+nav > div:nth-child(2) a {
+  margin-right: 71px;
+}
+
+nav > div:nth-child(2) a:last-child {
+  margin-right: 0;
+}
+
+nav > div:last-child {
+  flex: 0 0 auto;
+  justify-content: flex-end;
+}
+
+nav > div:last-child a:first-child {
+  margin-right: 51px;
 }
