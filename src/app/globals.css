@@ -121,13 +121,15 @@ nav > div:last-child a:first-child {
 
 .section-hero {
   padding-left: 135px;
-  padding-top: 138px;
+  padding-top: 250px;
+  padding-right: 135px;
+  
 }
 
 .section-hero > h2 {
   font-size: 48px;
   font-weight: 300;
-  line-height: 100%;
+  line-height: 100px; 
   letter-spacing: 0%;
   margin-bottom: 0;
   color: #FFFFFF;
@@ -136,7 +138,7 @@ nav > div:last-child a:first-child {
 .section-hero > h1 {
   font-size: 96px;
   font-weight: 300;
-  line-height: 100%;
+  line-height: 100px; 
   letter-spacing: 0%;
   margin-top: 0;
   color: rgba(255, 255, 255, 0.92);
@@ -145,4 +147,19 @@ nav > div:last-child a:first-child {
 .section-hero > h1 > span {
   font-weight: 900;
   color: #FFFFFF;
+}
+
+.gradient-border {
+  border: 1px solid transparent;
+  background: 
+    linear-gradient(#000, #000) padding-box,
+    linear-gradient(to right, #464646, #F43E46, #464646) border-box;
+}
+
+.filter-red {
+  filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2768%) hue-rotate(338deg) brightness(99%) contrast(92%);
+}
+
+.social-icon-wrapper:hover img {
+  filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2768%) hue-rotate(338deg) brightness(99%) contrast(92%);
 }
