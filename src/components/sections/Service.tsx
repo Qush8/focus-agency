@@ -27,7 +27,7 @@ const ServiceItem: React.FC<ServiceItemProps> = ({ title, subtitle, description 
                     src="/icons/arrow.svg" 
                     alt="" 
                     className='w-[18px] h-[24px] mt-[13px]'
-                    animate={{ rotate: isOpen ? 180 : 0 }}
+                    animate={{ rotate: isOpen ? 45 : 0 }}
                     transition={{ duration: 0.3 }}
                 />
             </div>
@@ -80,7 +80,7 @@ const rightSideServices = [
 
 export const Service = () => {
     return (
-        <section id="services" className="section-service w-full px-6 flex h-auto flex justify-between">
+        <section id="services" className="section-service w-full flex h-auto flex justify-between">
             <div className="w-[100%]">
                 <div className='w-[100%] flex justify-start mb-[50px]'>
                     <h2 className="text-[96px] font-bold text-[#000000BD]">

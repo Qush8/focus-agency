@@ -88,8 +88,8 @@ nav {
   max-width: 1920px;
   margin-left: auto;
   margin-right: auto;
-  padding-right: 135px;
-  padding-left: 135px;
+  padding-right: 110px;
+  padding-left: 110px;
   background-color: rgba(255, 255, 255, 0);
   
 }
@@ -122,9 +122,9 @@ nav > div:last-child a:first-child {
 }
 
 .section-hero {
-  padding-left: 135px;
+  padding-left: 110px;
   padding-top: 250px;
-  padding-right: 135px;
+  padding-right: 110px;
   
 }
 
@@ -166,13 +166,19 @@ nav > div:last-child a:first-child {
     linear-gradient(to right, #464646, #F43E46, #464646) border-box;
 }
 
-.section-service {
+.section-service,
+.section-about {
   min-height: 100vh;
   height: auto;
   padding-top: 80px;
-  padding-left: 100px;
-  padding-right: 100px;
+  padding-left: 110px;
+  padding-right: 110px;
   padding-bottom: 80px;
+}
+
+.section-about {
+  padding-bottom: 90px!important;
+  padding-top: 90px!important;
 }
 
 #services h3 {
@@ -182,4 +188,16 @@ nav > div:last-child a:first-child {
   line-height: 91px;
   letter-spacing: 0%;
   color: rgba(0, 0, 0, 0.82);
+}
+
+.section-about > h2 {
+  font-size: 96px;
+  font-weight: 700;
+  line-height: 91px;
+  letter-spacing: 0%;
+  color: #FFFFFFF0;
+}
+
+.right-side-about > div:last-child {
+  border-bottom: none !important;
 }
