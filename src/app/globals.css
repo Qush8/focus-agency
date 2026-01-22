@@ -118,3 +118,31 @@ nav > div:last-child {
 nav > div:last-child a:first-child {
   margin-right: 51px;
 }
+
+.section-hero {
+  padding-left: 135px;
+  padding-top: 138px;
+}
+
+.section-hero > h2 {
+  font-size: 48px;
+  font-weight: 300;
+  line-height: 100%;
+  letter-spacing: 0%;
+  margin-bottom: 0;
+  color: #FFFFFF;
+}
+
+.section-hero > h1 {
+  font-size: 96px;
+  font-weight: 300;
+  line-height: 100%;
+  letter-spacing: 0%;
+  margin-top: 0;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.section-hero > h1 > span {
+  font-weight: 900;
+  color: #FFFFFF;
+}

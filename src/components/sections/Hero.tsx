@@ -2,29 +2,24 @@ import React from 'react';
 
 export const Hero = () => {
   return (
-    <section className="w-full py-32 px-6 flex flex-col  bg-[black] h-[3840px]">
-      <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight text-[white] ">
-        <div>
-          Increase your sales and
-        </div>
-        <div>
-          brand awareness with
-        </div>
-        <div>
-        the <span className="text-[white]">FocusAgency</span> team
-        </div> 
+    <section className="section-hero w-full flex flex-col items-start bg-[black] min-h-screen">
+      <h2 className="text-[white]">
+        Increase your sales
+      </h2>
+      <h1 className="text-[white]">
+        <div>Increase your sales and</div>
+        <div>brand awareness with</div>
+        <div>the <span className="font-[700]">FocusAgency</span> team</div>
       </h1>
-      <div>
-        <button>
-           schedule a meeting
+      <div className="mt-8">
+        <button className="bg-[white] text-[black] px-6 py-3 rounded-lg font-medium">
+          schedule a meeting
         </button>
       </div>
-     
-      <div className='icons flex justify-between border border-[white]  w-[400px] h-[30px]'>
-        <div className='left-side-icons w-[40%] border border-[white]'></div>
-        <div className='right-side-icons w-[40%] border border-[white]'></div>
+      <div className='icons flex justify-between w-[400px] h-[30px] mt-8'>
+        <div className='left-side-icons w-[40%]'></div>
+        <div className='right-side-icons w-[40%]'></div>
       </div>
-      
     </section>
   );
 };
