@@ -4,7 +4,7 @@ import "../../app/globals.css";
 export const Navbar = () => {
   return (
     <div className="fixed top-0 left-0 w-full z-50 flex justify-center">
-      <nav className="bg-[black] h-[125px] w-full max-w-[1920px] flex justify-between items-center">
+      <nav className=" h-[125px] w-full max-w-[1920px] flex justify-between items-center">
         <div className="h-full text-xl font-bold text-[white] flex items-center">
           <img 
             src="/images/focus_agency_logo.svg" 

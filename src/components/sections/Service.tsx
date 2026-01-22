@@ -3,7 +3,7 @@ import '../../app/globals.css';
 
 export const Service = () => {
     return (
-        <section id="services" className="w-full py-32 px-6 flex  items-center justify-center text-center bg-[blue] h-[300px] flex justify-between">
+        <section id="services" className="section-service w-full  py-32 px-6 flex  items-center justify-center text-center bg-[blue] h-[300px] flex justify-between">
             <div className="border border-[white] w-[50%]">
                 <div>
                     <h2 className="text-[black]">
