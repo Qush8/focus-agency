@@ -3,10 +3,10 @@ import '../../app/globals.css';
 
 export const Service = () => {
     return (
-        <section id="services" className="section-service w-full  py-32 px-6 flex  items-center justify-center text-center bg-[blue] h-[300px] flex justify-between">
-            <div className="border border-[white] w-[50%]">
-                <div>
-                    <h2 className="text-[black]">
+        <section id="services" className="section-service w-full  py-32 px-6 flex    h-[300px] flex justify-between">
+            <div className="border border-[white] w-[100%]">
+                <div className='w-[100%] border border-[orange] flex justify-start'>
+                    <h2 className="text-[black] text-[96px] text-[bold] text-[#000000BD]">
                         <div>
                             We offer full digital
                         </div>
@@ -15,71 +15,66 @@ export const Service = () => {
                         </div>
                     </h2>
                 </div>
-                <div>
-                    <h2>
-                        <div>
-                            Social Media Marketing
+                <div className='flex justify-between w-[100%] border border-[red]'>
+                    <div className='left-side-offers w-[51%] border border-[white] flex flex-col gap-[100px]'>
+                        <div className='mt-[100px]'>
+                            <h3 className='text-[76px] text-[#000000D1] '>
+                                <div>
+                                    Social Media Marketing
+                                </div>
+                            </h3>
+                            <p className='text-[32px] text-[#000000AD]'>
+                                <div>
+                                    Content creation and advertising
+                                </div>
+                            </p>
                         </div>
-                    </h2>
-                    <h3>
                         <div>
-                            Content creation and advertising
+                            <h3 className='text-[76px] text-[#000000D1] text-[normal]'>
+                                <div>
+                                    Social Media Marketing
+                                </div>
+                            </h3>
+                            <p className='text-[32px] text-[#000000AD]'>
+                                <div>
+                                    Content creation and advertising
+                                </div>
+                            </p>
                         </div>
-                    </h3>
-                </div>
-                <div>
-                    <h2>
+                    </div>
+                    <div className='right-side-offers flex flex-col gap-[100px]'>
                         <div>
-                            Social Media Marketing
+                            <h3 className='text-[76px] text-[#000000D1] text-[normal]'>
+                                <div>
+                                    Social Media Marketing
+                                </div>
+                            </h3>
+                            <p className='text-[32px] text-[#000000AD]'>
+                                <div>
+                                    Content creation and advertising
+                                </div>
+                            </p>
                         </div>
-                    </h2>
-                    <h3>
                         <div>
-                            Content creation and advertising
+                            <h3 className='text-[76px] text-[#000000D1] text-[normal]'>
+                                <div>
+                                    Social Media Marketing
+                                </div>
+                            </h3>
+                            <p className='text-[32px] text-[#000000AD]'>
+                                <div>
+                                    Content creation and advertising
+                                </div>
+                            </p>
                         </div>
-                    </h3>
-                </div>
-                <div>
-                    <h2>
-                        <div>
-                            Social Media Marketing
-                        </div>
-                    </h2>
-                    <h3>
-                        <div>
-                            Content creation and advertising
-                        </div>
-                    </h3>
+                    </div>
+                   
                 </div>
                 
-            </div>
-            <div className="border border-[white] w-[50%] flex flex-col ">
-                <div>
-                        <h2>
-                            <div>
-                                Social Media Marketing
-                            </div>
-                        </h2>
-                        <h3>
-                            <div>
-                                Content creation and advertising
-                            </div>
-                        </h3>
-                </div>
                
-                <div>
-                    <h2>
-                        <div>
-                            Social Media Marketing
-                        </div>
-                    </h2>
-                    <h3>
-                        <div>
-                            Content creation and advertising
-                        </div>
-                    </h3>
-                </div>
+                
             </div>
+           
         </section>
     )
 }

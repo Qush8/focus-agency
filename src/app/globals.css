@@ -61,13 +61,14 @@ a{
   line-height: 100%;
   font: bold;
   letter-spacing: 0%;
-  
 }
+
 
 body {
   font-family: 'Satoshi', sans-serif;
   width: 100%;
   overflow-x: hidden;
+  
 }
 
 main {
@@ -138,7 +139,7 @@ nav > div:last-child a:first-child {
 .section-hero > h2 {
   font-size: 48px;
   font-weight: 300;
-  line-height: 100px; 
+  line-height: 100px;
   letter-spacing: 0%;
   margin-bottom: 0;
   color: #FFFFFF;
@@ -147,7 +148,7 @@ nav > div:last-child a:first-child {
 .section-hero > h1 {
   font-size: 96px;
   font-weight: 300;
-  line-height: 100px; 
+  line-height: 100px;
   letter-spacing: 0%;
   margin-top: 0;
   color: rgba(255, 255, 255, 0.92);
@@ -167,5 +168,16 @@ nav > div:last-child a:first-child {
 
 .section-service {
   height: 100vh;
+  padding-top: 80px;
+  padding-left: 100px;
+  padding-right: 100px;
 }
 
+#services h3 {
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 400 !important;
+  font-size: 76px;
+  line-height: 91px;
+  letter-spacing: 0%;
+  color: rgba(0, 0, 0, 0.82);
+}

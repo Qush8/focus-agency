@@ -16,9 +16,9 @@ const SocialIcon = ({ icon, size = 20 }: { icon: string; size?: number }) => (
 export const Hero = () => {
   return (
     <section className="section-hero w-full flex flex-col items-start bg-[black] h-[100vh] ">
-      <h2 className="text-[white]">
+      <p className="text-[white] text-[48px] line-height-[100px] font-light tracking-normal">
         Increase your sales
-      </h2>
+      </p>
       <h1 className="text-[white]">
         <div>Increase your sales and</div>
         <div>brand awareness with</div>
