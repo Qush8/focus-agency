@@ -1,12 +1,89 @@
+"use client";
+import React, { useState } from 'react';
 import '../../app/globals.css';
+import { motion, AnimatePresence } from 'framer-motion';
 
+interface ServiceItemProps {
+    title: string;
+    subtitle: string;
+    description: string;
+}
+
+const ServiceItem: React.FC<ServiceItemProps> = ({ title, subtitle, description }) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+        <div>
+            <h3 className='text-[76px] text-[#000000D1]'>
+                <div>
+                    {title}
+                </div>
+            </h3>
+            <div className='flex gap-[10px] cursor-pointer group' onClick={() => setIsOpen(!isOpen)}>
+                <p className='text-[32px] text-[#000000AD] transition-colors duration-300 group-hover:text-[#000000]'>
+                    {subtitle}
+                </p>
+                <motion.img 
+                    src="/icons/arrow.svg" 
+                    alt="" 
+                    className='w-[18px] h-[24px] mt-[13px]'
+                    animate={{ rotate: isOpen ? 180 : 0 }}
+                    transition={{ duration: 0.3 }}
+                />
+            </div>
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        className="overflow-hidden"
+                    >
+                        <div className="pt-4 pb-2">
+                             <p className='text-[24px] text-[#00000090] font-light leading-relaxed max-w-[90%]'>
+                                {description}
+                            </p>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </div>
+    );
+};
+
+const leftSideServices = [
+    {
+        title: "Social Media Marketing",
+        subtitle: "Content creation and advertising",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    },
+    {
+        title: "Social Media Marketing",
+        subtitle: "Content creation and advertising",
+        description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    }
+];
+
+const rightSideServices = [
+    {
+        title: "Social Media Marketing",
+        subtitle: "Content creation and advertising",
+        description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
+    },
+    {
+        title: "Social Media Marketing",
+        subtitle: "Content creation and advertising",
+        description: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet."
+    }
+];
 
 export const Service = () => {
     return (
-        <section id="services" className="section-service w-full  py-32 px-6 flex    h-[300px] flex justify-between">
-            <div className="border border-[white] w-[100%]">
-                <div className='w-[100%] border border-[orange] flex justify-start'>
-                    <h2 className="text-[black] text-[96px] text-[bold] text-[#000000BD]">
+        <section id="services" className="section-service w-full px-6 flex h-auto flex justify-between">
+            <div className="w-[100%]">
+                <div className='w-[100%] flex justify-start mb-[50px]'>
+                    <h2 className="text-[96px] font-bold text-[#000000BD]">
                         <div>
                             We offer full digital
                         </div>
@@ -15,66 +92,23 @@ export const Service = () => {
                         </div>
                     </h2>
                 </div>
-                <div className='flex justify-between w-[100%] border border-[red]'>
-                    <div className='left-side-offers w-[51%] border border-[white] flex flex-col gap-[100px]'>
-                        <div className='mt-[100px]'>
-                            <h3 className='text-[76px] text-[#000000D1] '>
-                                <div>
-                                    Social Media Marketing
-                                </div>
-                            </h3>
-                            <p className='text-[32px] text-[#000000AD]'>
-                                <div>
-                                    Content creation and advertising
-                                </div>
-                            </p>
-                        </div>
-                        <div>
-                            <h3 className='text-[76px] text-[#000000D1] text-[normal]'>
-                                <div>
-                                    Social Media Marketing
-                                </div>
-                            </h3>
-                            <p className='text-[32px] text-[#000000AD]'>
-                                <div>
-                                    Content creation and advertising
-                                </div>
-                            </p>
-                        </div>
+                <div className='flex justify-between w-[100%] items-start'>
+                    <div className='left-side-offers w-[50%] flex flex-col gap-[100px]'>
+                        {leftSideServices.map((service, index) => (
+                            <div key={index} className={index === 0 ? 'mt-[100px]' : ''}>
+                                <ServiceItem {...service} />
+                            </div>
+                        ))}
                     </div>
-                    <div className='right-side-offers flex flex-col gap-[100px]'>
-                        <div>
-                            <h3 className='text-[76px] text-[#000000D1] text-[normal]'>
-                                <div>
-                                    Social Media Marketing
-                                </div>
-                            </h3>
-                            <p className='text-[32px] text-[#000000AD]'>
-                                <div>
-                                    Content creation and advertising
-                                </div>
-                            </p>
-                        </div>
-                        <div>
-                            <h3 className='text-[76px] text-[#000000D1] text-[normal]'>
-                                <div>
-                                    Social Media Marketing
-                                </div>
-                            </h3>
-                            <p className='text-[32px] text-[#000000AD]'>
-                                <div>
-                                    Content creation and advertising
-                                </div>
-                            </p>
-                        </div>
+                    <div className='right-side-offers w-[50%] flex flex-col gap-[100px]'>
+                        {rightSideServices.map((service, index) => (
+                            <div key={index}>
+                                <ServiceItem {...service} />
+                            </div>
+                        ))}
                     </div>
-                   
                 </div>
-                
-               
-                
             </div>
-           
         </section>
     )
 }

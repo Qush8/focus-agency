@@ -167,10 +167,12 @@ nav > div:last-child a:first-child {
 }
 
 .section-service {
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   padding-top: 80px;
   padding-left: 100px;
   padding-right: 100px;
+  padding-bottom: 80px;
 }
 
 #services h3 {
