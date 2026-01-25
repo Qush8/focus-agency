@@ -127,6 +127,9 @@ nav > div:last-child a:first-child {
   padding-right: 110px;
   min-height: 100vh;
 }
+/* .section-hero .icons {
+  margin-top: 198px;
+} */
 
 .filter-red {
   filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2768%) hue-rotate(338deg) brightness(99%) contrast(92%);
@@ -230,4 +233,141 @@ nav > div:last-child a:first-child {
   margin-bottom: 0;
   color: #FFFFFF;
 
+}
+
+@media screen and (max-width: 1700px) and (min-width: 900px) {
+
+  /* header section */
+  nav {
+    padding-left: 70px;
+    padding-right: 70px;
+  }
+
+  /* section hero <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+  .section-hero {
+      padding-left: 70px;
+      padding-top: 200px;
+      padding-right: 70px;
+  }
+ 
+  .section-hero > h1 {
+    font-size: 80px;
+    line-height: 90px;
+  }
+
+  .section-hero .icons {
+    margin-top: 120px;
+  }
+
+  .section-hero > h2 {
+    font-size: 32px;
+    line-height: 50px;
+  }
+
+  /* Service sections <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  */
+  .section-service {
+    padding-left: 70px;
+    padding-right: 70px;
+  }
+  .section-service h2 {
+    font-size: 85px;
+  }
+  .section-service .left-side-offers h3 {
+    font-size: 60px!important;
+  }
+  .section-service .left-side-offers p {
+    font-size: 25px!important;
+  }
+  .section-service .right-side-offers h3 {
+    font-size: 60px!important;
+  }
+  .section-service .right-side-offers p {
+    font-size: 25px!important;
+  }
+  .services h3 {
+    font-size: 60px;
+    line-height: 70px;
+  }
+
+  
+
+  /* about section <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  */
+  .section-about {
+    padding-left: 40px!important;
+    padding-right: 40px!important;
+  }
+
+  .section-about .left-side-about {
+    align-items: center!important;
+  }
+  .section-about .left-side-about h2 {
+    font-size: 90px!important;
+  }
+  .section-about .left-side-about p {
+    font-size: 25px!important;
+  }
+  .section-about .right-side-about h3 {
+    font-size: 35px!important;
+  }
+  .section-about .right-side-about p {
+    font-size: 20px!important;
+  }
+
+
+  /* footer section <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  */
+  .footer {
+    padding-left: 90px;
+    padding-right: 90px;
+  }
+
+  .footer .question-section > div {
+    padding-top: 35px!important;
+  }
+
+  .footer .form {
+    gap: 20px!important;
+  }
+  .footer .form > div {
+    gap: 35px!important;
+  }
+
+  .footer form p {
+    font-size: 14px!important;
+  }
+  .footer form input {
+    font-size: 16px!important;
+  }
+  .footer form textarea {
+    font-size: 16px!important;
+  }
+  .footer form button {
+    font-size: 16px!important;
+  }
+
+
+
+  .footer .contact-section {
+    padding-top: 58px!important;
+  }
+
+  .footer .contact-container  h3 {
+    font-size: 16px!important;
+  }
+  .footer .contact-container  p {
+    font-size: 14px!important;
+  }
+
+  .footer .connect-container h3 {
+    font-size: 16px!important;
+  }
+  .footer .connect-container p {
+    font-size: 14px!important;
+  }
+
+  .footer .home-container h3 {
+    font-size: 16px!important;
+  }
+  .footer .home-container p {
+    font-size: 14px!important;
+  }
 }
