@@ -24,7 +24,7 @@ export const Hero = () => {
         <div>brand awareness with</div>
         <div>the <span className="font-[700]">FocusAgency</span> team</div>
       </h1>
-      <div className="mt-[44px]">
+      <div className="hero-button mt-[44px]">
         <Button css={'gradient-border w-[261px] h-[49px] bg-[#000000] '} text={'SCHEDULE A MEETING'} onClick={() => {console.log('clicked')}} />
       </div>
       <div className='icons flex justify-between w-[100%] mt-[198px] '>

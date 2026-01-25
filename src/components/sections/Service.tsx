@@ -41,7 +41,7 @@ const ServiceItem: React.FC<ServiceItemProps> = ({ title, subtitle, description 
                         className="overflow-hidden absolute top-full left-0 w-full z-10 bg-white"
                     >
                         <div className="pt-4 pb-2">
-                             <p className='text-[24px] text-[#00000090] font-light leading-relaxed max-w-[90%]'>
+                             <p className='text-[24px] text-[#00000090] font-light leading-relaxed max-w-full md:max-w-[80%]'>
                                 {description}
                             </p>
                         </div>
@@ -82,7 +82,7 @@ export const Service = () => {
     return (
         <section id="services" className="section-service w-full flex h-auto flex justify-between">
             <div className="w-[100%]">
-                <div className='w-[100%] flex justify-start mb-[50px]'>
+                <div className='for-headline w-[100%] flex justify-start mb-[50px]'>
                     <h2 className="text-[96px] font-bold text-[#000000BD]">
                         <div>
                             We offer full digital
@@ -92,7 +92,7 @@ export const Service = () => {
                         </div>
                     </h2>
                 </div>
-                <div className='flex justify-between w-[100%] items-start'>
+                <div className='services-container flex justify-between w-[100%] items-start'>
                     <div className='left-side-offers w-[50%] flex flex-col gap-[200px]'>
                         {leftSideServices.map((service, index) => (
                             <div key={index} className={index === 0 ? 'mt-[100px]' : ''}>

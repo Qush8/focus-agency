@@ -199,6 +199,11 @@ nav > div:last-child a:first-child {
   color: rgba(0, 0, 0, 0.82);
 }
 
+.section-service .left-side-offers > div > div > div:last-child > div > p,
+.section-service .right-side-offers > div > div > div:last-child > div > p {
+  max-width: 80%;
+}
+
 .section-about > h2 {
   font-size: 96px;
   font-weight: 700;
@@ -291,7 +296,10 @@ nav > div:last-child a:first-child {
     line-height: 70px;
   }
 
-  
+  .section-service .left-side-offers > div > div > div:last-child > div > p,
+  .section-service .right-side-offers > div > div > div:last-child > div > p {
+    max-width: 80%!important;
+  }
 
   /* about section <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  */
   .section-about {
@@ -445,6 +453,11 @@ nav > div:last-child a:first-child {
     line-height: 60px;
   }
 
+  .section-service .left-side-offers > div > div > div:last-child > div > p,
+  .section-service .right-side-offers > div > div > div:last-child > div > p {
+    max-width: 80%!important;
+  }
+
   /* about section <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
   .section-about {
     padding-left: 30px!important;
@@ -534,5 +547,363 @@ nav > div:last-child a:first-child {
 
   .footer .home-container p {
     font-size: 13px!important;
+  }
+}
+
+/* MOBILE VERSION ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ******  MOBILE VERSION */
+@media screen and (max-width: 767px) {
+  /* header section <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+  nav {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  nav .logo {
+    width: 70px;
+    height: 70px;
+  }
+
+  nav .nav-links {
+   
+  }
+
+  nav .language-links {
+  
+  }
+  
+
+  nav > div:nth-child(2) {
+    padding-right: 0;
+    justify-content: start;
+  }
+
+  nav > div:nth-child(2) a {
+    margin-right: 15px;
+    font-size: 10px!important;
+  }
+
+  nav > div:last-child a:first-child {
+    margin-right: 15px;
+  }
+
+  nav > div:last-child a {
+    font-size: 10px!important;
+  }
+
+  /* section hero <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+  .section-hero {
+    padding-left: 20px;
+    padding-top: 150px;
+    padding-right: 20px;
+  }
+
+  .section-hero > h1 {
+    font-size: 30px;
+    line-height: 35px;
+  }
+  .section-hero p {
+    font-size: 20px!important;
+  }
+  .section-hero .hero-button {
+    margin-top: 35px!important;
+  }
+
+  .section-hero .icons {
+    margin-top: 80px;
+  }
+  .section-hero .left-side-icons {
+    width: 75%!important;
+  }
+
+ 
+
+  .section-hero > h2,
+  .section-hero > p {
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  /* Service sections <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+  .section-service {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 100px!important;
+  }
+  .section-service .for-headline {
+    display: flex!important;
+    justify-content: center!important;
+    margin-bottom: 0px!important;
+  }
+
+  .section-service h2 {
+    font-size: 32px;
+    line-height: 40px;
+    text-align: center!important;
+  }
+
+  .section-service .services-container {
+    flex-direction: column!important;
+    align-items: center!important;
+  }
+
+  .section-service .left-side-offers {
+    width: 100%!important;
+    gap: 10px!important;
+    margin-top: 0!important;
+    align-items: center!important;
+  }
+
+  .section-service .left-side-offers > div:first-child {
+    margin-top: 0!important;
+  }
+
+  .section-service .left-side-offers > div {
+    width: 100%!important;
+    display: flex!important;
+    flex-direction: column!important;
+    align-items: center!important;
+    text-align: center!important;
+    margin-bottom: 20px!important;
+  }
+
+  .section-service .right-side-offers {
+    width: 100%!important;
+    gap: 10px!important;
+    margin-top: 40px!important;
+    align-items: center!important;
+  }
+
+  .section-service .right-side-offers > div {
+    width: 100%!important;
+    display: flex!important;
+    flex-direction: column!important;
+    align-items: center!important;
+    text-align: center!important;
+    margin-bottom: 20px!important;
+  }
+
+  .section-service .left-side-offers h3 {
+    font-size: 28px!important;
+    text-align: center!important;
+  }
+
+  .section-service .left-side-offers p {
+    font-size: 16px!important;
+    text-align: center!important;
+  }
+
+  .section-service .right-side-offers h3 {
+    font-size: 28px!important;
+    text-align: center!important;
+  }
+
+  .section-service .right-side-offers p {
+    font-size: 16px!important;
+    text-align: center!important;
+  }
+
+  .section-service .left-side-offers div.flex.cursor-pointer,
+  .section-service .right-side-offers div.flex.cursor-pointer,
+  .section-service .left-side-offers > div > div > div.flex,
+  .section-service .right-side-offers > div > div > div.flex {
+    justify-content: center!important;
+    align-items: center!important;
+    width: 100%!important;
+    display: flex!important;
+    margin-left: auto!important;
+    margin-right: auto!important;
+  }
+
+  .section-service .left-side-offers div.flex.cursor-pointer > p,
+  .section-service .right-side-offers div.flex.cursor-pointer > p,
+  .section-service .left-side-offers > div > div > div.flex > p,
+  .section-service .right-side-offers > div > div > div.flex > p {
+    margin: 0!important;
+    text-align: center!important;
+  }
+
+  .section-service .left-side-offers div.flex.cursor-pointer > img,
+  .section-service .right-side-offers div.flex.cursor-pointer > img,
+  .section-service .left-side-offers > div > div > div.flex > img,
+  .section-service .right-side-offers > div > div > div.flex > img,
+  .section-service .left-side-offers div.flex.cursor-pointer > div,
+  .section-service .right-side-offers div.flex.cursor-pointer > div,
+  .section-service .left-side-offers > div > div > div.flex > div,
+  .section-service .right-side-offers > div > div > div.flex > div {
+    margin-top: 0!important;
+  }
+
+  .section-service .left-side-offers > div > div,
+  .section-service .right-side-offers > div > div {
+    position: relative!important;
+    width: 100%!important;
+  }
+
+  .section-service .left-side-offers > div > div > div:last-child,
+  .section-service .right-side-offers > div > div > div:last-child {
+    position: relative!important;
+    top: auto!important;
+    left: auto!important;
+    width: 100%!important;
+    z-index: 1!important;
+    background-color: white!important;
+    margin-top: 10px!important;
+  }
+
+  .section-service .left-side-offers > div > div > div:last-child > div > p,
+  .section-service .right-side-offers > div > div > div:last-child > div > p {
+    max-width: 100%!important;
+  }
+
+  .services h3 {
+    font-size: 28px;
+    line-height: 35px;
+  }
+
+  /* about section <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+  .section-about {
+    padding-left: 15px!important;
+    padding-right: 15px!important;
+  }
+
+  .section-about > div {
+    flex-direction: column!important;
+  }
+
+  .section-about .left-side-about {
+    width: 100%!important;
+    align-items: center!important;
+    padding-left: 20px!important;
+    padding-right: 20px!important;
+    padding-top: 30px!important;
+    padding-bottom: 30px!important;
+    border-right: none!important;
+    border-bottom: 1px solid #FFFFFFBD!important;
+  }
+
+  .section-about .left-side-about h2 {
+    font-size: 28px!important;
+    line-height: 35px!important;
+  }
+
+  .section-about .left-side-about p {
+    font-size: 16px!important;
+  }
+
+  .section-about .right-side-about {
+    width: 100%!important;
+  }
+
+  .section-about .right-side-about > div {
+    height: auto!important;
+    min-height: 200px!important;
+    padding-left: 20px!important;
+    padding-right: 20px!important;
+    padding-top: 20px!important;
+    padding-bottom: 20px!important;
+  }
+
+  .section-about .right-side-about h3 {
+    font-size: 20px!important;
+  }
+
+  .section-about .right-side-about p {
+    font-size: 14px!important;
+  }
+
+  .section-about .right-side-about > div > div:first-child p {
+    font-size: 20px!important;
+  }
+
+  .section-about .right-side-about > div > div:first-child > div:first-child p {
+    font-size: 24px!important;
+  }
+
+  /* footer section <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+  .footer {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .footer .footer-content {
+    flex-direction: column!important;
+    gap: 40px!important;
+  }
+
+  .footer .question-section {
+    width: 100%!important;
+  }
+
+  .footer .question-section > div {
+    width: 100%!important;
+    padding-top: 25px!important;
+  }
+
+  .footer .contact-section {
+    flex-direction: column!important;
+    padding-top: 30px!important;
+    gap: 30px!important;
+    align-items: flex-start!important;
+  }
+
+  .footer .form {
+    gap: 15px!important;
+  }
+
+  .footer .form > div {
+    gap: 20px!important;
+  }
+
+  .footer form p {
+    font-size: 11px!important;
+  }
+
+  .footer form input {
+    font-size: 14px!important;
+  }
+
+  .footer form textarea {
+    font-size: 14px!important;
+  }
+
+  .footer form button {
+    font-size: 14px!important;
+  }
+
+  .footer .contact-container {
+    gap: 30px!important;
+  }
+
+  .footer .contact-container h3 {
+    font-size: 14px!important;
+  }
+
+  .footer .contact-container p {
+    font-size: 12px!important;
+  }
+
+  .footer .connect-container {
+    gap: 12px!important;
+  }
+
+  .footer .connect-container h3 {
+    font-size: 14px!important;
+  }
+
+  .footer .connect-container p {
+    font-size: 12px!important;
+  }
+
+  .footer .home-container {
+    padding-left: 0!important;
+    gap: 15px!important;
+  }
+
+  .footer .home-container h3 {
+    font-size: 14px!important;
+  }
+
+  .footer .home-container p {
+    font-size: 12px!important;
   }
 }
