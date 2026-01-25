@@ -31,7 +31,7 @@ export const Input: React.FC<InputProps> = ({ value, onChange, icon, placeholder
                         src={icon}
                         alt="icon"
                         className={`w-[14px] h-[14px] brightness-0 invert rotate-[45deg] ${
-                            icon.includes('face') ? 'rotate-[-45deg]' : ''
+                            icon.includes('face') ? 'rotate-[-360deg]' : ''
                         }`}
                     />
                 </div>

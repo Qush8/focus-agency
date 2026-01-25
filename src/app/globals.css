@@ -216,3 +216,8 @@ nav > div:last-child a:first-child {
   position: relative;
   height: 1000px!important;
 }
+.footer > p {
+  color: rgba(255, 255, 255, 0.92);
+
+
+}
