@@ -8,7 +8,7 @@ interface FormProps {
 
 const Form = ({ inputFields }: FormProps) => {
   return (
-    <form className="w-full flex flex-col gap-[0px] h-[100%] justify-evenly">
+    <form className="w-full flex flex-col gap-[35px] h-[100%] justify-evenly">
         {inputFields.map((field : any , index : number) => (
             <Input
                 key={index}

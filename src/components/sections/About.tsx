@@ -72,7 +72,7 @@ const aboutItems = [
     },
     {
         number: "03",
-        title: "Initial Consultation",
+        title: "Review and Final Refinement",
         subtitle: "Desktop Publishing Software Like",
         description: "Letraset sheets containing Lorem Ipsum passages , and more recentlu with desktop publishing"
     }

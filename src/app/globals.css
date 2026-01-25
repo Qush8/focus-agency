@@ -125,7 +125,7 @@ nav > div:last-child a:first-child {
   padding-left: 110px;
   padding-top: 250px;
   padding-right: 110px;
-  
+  min-height: 100vh;
 }
 
 .filter-red {
@@ -165,10 +165,14 @@ nav > div:last-child a:first-child {
     linear-gradient(#000, #000) padding-box,
     linear-gradient(to right, #464646, #F43E46, #464646) border-box;
 }
+.section-service {
+  padding-bottom: 200px!important;
+  position: relative;
+}
 
 .section-service,
 .section-about {
-  min-height: 100vh;
+
   height: auto;
   padding-top: 80px;
   padding-left: 110px;
@@ -177,8 +181,10 @@ nav > div:last-child a:first-child {
 }
 
 .section-about {
-  padding-bottom: 90px!important;
+  padding-bottom: 55px!important;
   padding-top: 90px!important;
+  padding-left: 67px!important;
+  padding-right: 67px!important;
 }
 
 #services h3 {
@@ -202,7 +208,7 @@ nav > div:last-child a:first-child {
   border-bottom: none !important;
 }
 .footer {
-  padding-top: 60px;
+  padding-top: 5px;
   padding-right: 110px;
   padding-left: 110px;
   padding-bottom: 60px;
@@ -214,10 +220,14 @@ nav > div:last-child a:first-child {
   letter-spacing: 0%;
   /* border: solid 1px white; */
   position: relative;
-  height: 1000px!important;
+  /* height: 1000px!important; */
 }
 .footer > p {
   color: rgba(255, 255, 255, 0.92);
-
+}
+.footer > h3 > div {
+  letter-spacing: 0%;
+  margin-bottom: 0;
+  color: #FFFFFF;
 
 }

@@ -40,11 +40,11 @@ export const Footer = () => {
 ]
   return (
     <footer className="footer w-full  text-sm text-gray-500 relative">
-      <div className='footer-line w-[95%] bg-[white] h-[1px] absolute top-0 left-1/2 -translate-x-1/2'></div>
+      <div className='footer-line w-[91%] bg-[white] h-[1px] absolute top-0 left-1/2 -translate-x-1/2'></div>
       <div className='footer-content w-full h-[50%] flex gap-[85px] mt-[35px]'>
         <div className='question-section w-[40%]  '>
           <h2> Have a question?</h2>
-          <div className='w-[80%] h-[400px]  '>
+          <div className='w-[80%] pt-[53px]  '>
             <Form inputFields={inputFields}  />
           </div>
 
@@ -52,7 +52,7 @@ export const Footer = () => {
         <div className='contact-section pt-[73px] gap-[20px] flex justify-evenly'>
           <div className='contact-container flex flex-col gap-[53px]  '>
             <div className='flex flex-col gap-[18px] '>
-              <h3>
+              <h3 className='text-[18px]'>
                 <div>Call us anytime</div>
               </h3>
               <div>
@@ -60,7 +60,7 @@ export const Footer = () => {
               </div>
             </div>
             <div className='flex flex-col   '>
-              <h3>
+              <h3 className='text-[18px]'>
                 <div>You're welcome to visit us</div>
               </h3>
               <div className='pt-[18px] '>
@@ -73,13 +73,15 @@ export const Footer = () => {
             
           </div>
           <div className='connect-container flex flex-col gap-[16px] '>
-            <h3>Connect with us by email</h3>
+            <h3 className='text-[18px]'>Connect with us by email</h3>
             <div>
               <p>gamarjoba@focusagency.ge</p>
             </div>
           </div>
           <div className='home-container pl-[80px] flex flex-col gap-[18px] '>
-            <h3>Home</h3>
+            <h3 className='text-[18px]'>
+              <div>Home</div>
+              </h3>
             <div>
               <p>We are</p>
             </div>
@@ -96,10 +98,10 @@ export const Footer = () => {
         </div>
       </div>
       
-      <div className='copyright-section footer-line w-[95%] absolute top-0 left-1/2 -translate-x-1/2 mt-[60px] h-[100px] w-full flex flex-col justify-center items-center'>
-          <div className='copyright-up-line w-[95%] bg-[white] h-[1px] '></div>
+      <div className='copyright-section footer-line w-[95%] pb-[20px] bg-[black] absolute top-0 left-1/2 -translate-x-1/2 mt-[60px] h-[100px] w-full flex flex-col justify-center items-center'>
+          <div className='copyright-up-line w-[91%] bg-[white] h-[1px] '></div>
             <p className=" p-[5px] text-[white] text-center">2026 created by Systemctl</p>
-          <div className='copyright-down-line w-[95%] bg-[white] h-[1px]'></div>
+          <div className='copyright-down-line w-[91%] bg-[white] h-[1px]'></div>
       </div>
       
     </footer>

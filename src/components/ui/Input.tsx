@@ -14,7 +14,7 @@ interface InputProps {
 
 export const Input: React.FC<InputProps> = ({ value, onChange, icon, placeholder, type = 'text', name, message }) => {
     return (
-        <div className="relative z-0 w-full group flex flex-col gap-[20px] max-w-[451px]">
+        <div className="relative z-0 w-full group flex flex-col gap-[40px] max-w-[451px]">
             <p className="text-[#FFFFFF] text-[16px] font-weight-[700] line-height-[94%] ">{message}</p>
             <input
                 type={type}

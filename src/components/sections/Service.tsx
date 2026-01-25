@@ -13,7 +13,7 @@ const ServiceItem: React.FC<ServiceItemProps> = ({ title, subtitle, description 
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div>
+        <div className="relative">
             <h3 className='text-[76px] text-[#000000D1]'>
                 <div>
                     {title}
@@ -37,8 +37,8 @@ const ServiceItem: React.FC<ServiceItemProps> = ({ title, subtitle, description 
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                        className="overflow-hidden"
+                        transition={{ duration: 0.5, ease: "easeInOut" }}
+                        className="overflow-hidden absolute top-full left-0 w-full z-10 bg-white"
                     >
                         <div className="pt-4 pb-2">
                              <p className='text-[24px] text-[#00000090] font-light leading-relaxed max-w-[90%]'>
@@ -93,14 +93,14 @@ export const Service = () => {
                     </h2>
                 </div>
                 <div className='flex justify-between w-[100%] items-start'>
-                    <div className='left-side-offers w-[50%] flex flex-col gap-[100px]'>
+                    <div className='left-side-offers w-[50%] flex flex-col gap-[200px]'>
                         {leftSideServices.map((service, index) => (
                             <div key={index} className={index === 0 ? 'mt-[100px]' : ''}>
                                 <ServiceItem {...service} />
                             </div>
                         ))}
                     </div>
-                    <div className='right-side-offers w-[50%] flex flex-col gap-[100px]'>
+                    <div className='right-side-offers w-[50%] flex flex-col gap-[200px]'>
                         {rightSideServices.map((service, index) => (
                             <div key={index}>
                                 <ServiceItem {...service} />
