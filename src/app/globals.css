@@ -102,6 +102,8 @@ nav > div:nth-child(2) {
   flex: 1;
   justify-content: end;
   padding-right: 250px;
+  display: flex !important;
+  visibility: visible !important;
 }
 
 nav > div:nth-child(2) a {
@@ -115,6 +117,8 @@ nav > div:nth-child(2) a:last-child {
 nav > div:last-child {
   flex: 0 0 auto;
   justify-content: flex-end;
+  display: flex !important;
+  visibility: visible !important;
 }
 
 nav > div:last-child a:first-child {
@@ -622,11 +626,15 @@ nav .language-links a:hover::after {
   }
 
   nav .nav-links {
-   
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 
   nav .language-links {
-  
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
   
 
