@@ -12,13 +12,13 @@ export const Navbar = () => {
             className="h-full w-auto"
           />
         </div>
-        <div className=" flex h-full items-center">
+        <div className="nav-links flex h-full items-center">
           <a href="#" className="hover:text-white transition-colors text-[white] text-12">We are</a>
           <a href="#" className="hover:text-white transition-colors text-[white] text-12">Services</a>
           <a href="#" className="hover:text-white transition-colors text-[white] text-12">Blog</a>
           <a href="#" className="hover:text-white transition-colors text-[white] text-12">Contact</a>
         </div>
-        <div className="h-full flex items-center">
+        <div className="language-links h-full flex items-center">
           <a href="#" className="text-[white] text-12">ქართ</a>
           <a href="#" className="text-[white] text-12">ENG</a>
         </div>
