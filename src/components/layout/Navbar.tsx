@@ -1,11 +1,15 @@
 'use client'
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import "../../app/globals.css";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export const Navbar = () => {
   const [activeLanguage, setActiveLanguage] = useState('en');
+  const [isServiceSection, setIsServiceSection] = useState(false);
   const navRef = useRef<HTMLElement>(null);
 
   useGSAP(() => {
@@ -50,9 +54,79 @@ export const Navbar = () => {
 
   }, { scope: navRef });
 
+  useEffect(() => {
+    // Wait a bit for DOM to be ready
+    const checkSections = () => {
+      const serviceSection = document.querySelector('#services');
+      const heroSection = document.querySelector('.section-hero');
+      
+      if (!serviceSection || !heroSection) {
+        // Retry after a short delay if sections not found
+        setTimeout(checkSections, 100);
+        return;
+      }
+
+      let isHeroVisible = false;
+      let isServiceVisible = false;
+
+      // Use IntersectionObserver to detect when Hero section is in viewport
+      const heroObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            isHeroVisible = entry.isIntersecting;
+            // If Hero is visible, navbar should be transparent
+            if (isHeroVisible) {
+              setIsServiceSection(false);
+            } else if (isServiceVisible) {
+              // If Hero is not visible but Service is, navbar should be black
+              setIsServiceSection(true);
+            }
+          });
+        },
+        {
+          threshold: 0,
+          rootMargin: '0px'
+        }
+      );
+
+      // Use IntersectionObserver to detect when Service section is in viewport
+      const serviceObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            isServiceVisible = entry.isIntersecting;
+            // Only set to black if Hero is not visible
+            if (isServiceVisible && !isHeroVisible) {
+              setIsServiceSection(true);
+            } else if (!isServiceVisible && !isHeroVisible) {
+              setIsServiceSection(false);
+            }
+          });
+        },
+        {
+          threshold: 0,
+          rootMargin: '0px'
+        }
+      );
+
+      heroObserver.observe(heroSection);
+      serviceObserver.observe(serviceSection);
+
+      return () => {
+        heroObserver.disconnect();
+        serviceObserver.disconnect();
+      };
+    };
+
+    checkSections();
+  }, []);
+
   return (
     <div className="fixed top-0 left-0 w-full z-50 flex justify-center">
-      <nav ref={navRef} className=" h-[125px] w-full max-w-[1920px] flex justify-between items-center">
+      <nav 
+        ref={navRef} 
+        className="h-[125px] w-full max-w-[1920px] flex justify-between items-center transition-colors duration-300"
+        style={{ backgroundColor: isServiceSection ? 'rgb(0, 0, 0)' : 'rgba(255, 255, 255, 0)' }}
+      >
         <div className="logo h-full text-xl font-bold text-[white] flex items-center">
           <svg 
             width="52" 
