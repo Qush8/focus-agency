@@ -30,7 +30,7 @@ export const Hero = () => {
   useGSAP(() => {
     // Always set initial hidden state for all elements
     gsap.set('.hero-text-inner, .hero-heading-inner', { y: "100%" });
-    gsap.set('.hero-button-wrapper', { y: 20, opacity: 0 });
+    gsap.set('.hero-button-wrapper', { scale: 0, opacity: 0 });
     gsap.set('.left-icon, .right-icon', { scale: 0, opacity: 0, y: 20 });
 
     // Entrance timeline - plays once on page load (no ScrollTrigger)
@@ -45,34 +45,39 @@ export const Hero = () => {
     });
 
     // Paragraph animation (1) - starts immediately
-    tl.to('.hero-text-inner', { y: 0 }, 0);
+    tl.to('.hero-text-inner', { y: 0 }, 0.1);
 
     // Heading divs animation with stagger (2, 3, 4) - starts at 0.1s
     tl.to('.hero-heading-inner', { 
       y: 0,
       stagger: 0.1
-    }, 0.1);
-
-    // Button animation (5) - starts at 0.2s
-    tl.to('.hero-button-wrapper', { 
-      y: 0, 
-      opacity: 1 
     }, 0.2);
 
-    // Left icons animation (6, 7, 8, 9) - starts at 0.3s
+    // Button animation - starts after h1 completes (~0.3s)
+    // h1 completes at: 0.1 (start) + 0.1 (stagger) + 0.6 (duration) = ~0.8s
+    // But we want it to start slightly before h1 fully completes for smooth flow
+    tl.to('.hero-button-wrapper', { 
+      scale: 1, 
+      opacity: 1 
+    }, 0.3);
+
+    // Left icons animation - starts after button (~0.5s)
+    // Button completes at: 0.3 + 0.6 = 0.9s
+    // Start left icons at 0.5s so they appear while button is still animating
     tl.to('.left-icon', { 
       scale: 1,
       opacity: 1,
       y: 0,
-      // stagger: 0.1
-    }, 0.3);
+      stagger: 0.1 // Sequential appearance
+    }, 0.4);
 
-    // Right icon animation (10) - starts at 0.4s
+    // Right icon animation - starts after left icons complete (~0.9s)
+    // Left icons: 4 icons * 0.1 stagger = 0.4s, starts at 0.5s, completes at ~0.9s
     tl.to('.right-icon', { 
       scale: 1, 
       opacity: 1, 
       y: 0 
-    }, 0.4);
+    }, 0.7);
 
     // Clear entrance animation properties after completion to prevent conflicts with scroll-out
     tl.call(() => {
