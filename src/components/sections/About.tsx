@@ -112,8 +112,8 @@ export const About = () => {
         tl.to('.about-border-main, .about-border-left, .about-border-item-0, .about-border-item-1, .about-border-item-2', { opacity: 1 }, 0);
 
         // Left side h2 and button - appear faster
-        tl.to('.about-h2-text', { y: 0 }, 0.6);
-        tl.to('.about-button', { scale: 1 }, 0.7);
+        tl.to('.about-h2-text', { y: 0 }, 0.4);
+        tl.to('.about-button', { scale: 1 }, 0.5);
 
         // Right side item[0] title + subtitle
         tl.to('.about-title-0', { x: 0 }, 0.1);
@@ -124,10 +124,10 @@ export const About = () => {
         tl.to('.about-arrow-0', { scale: 1 }, 0.15);
 
         // 1s delay, then item[1] (starts at 1.15 = 0.15 + 1s)
-        tl.to('.about-title-1', { x: 0 }, 0.6);
-        tl.to('.about-subtitle-1', { x: 0 }, 0.7);
-        tl.to('.about-number-1', { y: 0 }, 0.8);
-        tl.to('.about-arrow-1', { scale: 1 }, 0.85);
+        tl.to('.about-title-1', { x: 0 }, 0.5);
+        tl.to('.about-subtitle-1', { x: 0 }, 0.6);
+        tl.to('.about-number-1', { y: 0 }, 0.7);
+        tl.to('.about-arrow-1', { scale: 1 }, 0.8);
 
         // 1s delay, then item[2] (starts at 2.15 = 1.15 + 1s)
         tl.to('.about-title-2', { x: 0 }, 0.7);
@@ -146,8 +146,8 @@ export const About = () => {
                             <span className="about-h2-text block pb-1">Flow to work</span>
                         </div>
                     </h2>
-                    <div className="about-button">
-                        <Button css={'gradient-border w-[261px] h-[49px] bg-[#000000] mt-[46px] mx-auto'} text={'SCHEDULE A MEETING'} onClick={() => {}} />
+                    <div className="about-button w-full flex justify-center mt-[46px]">
+                        <Button css={'gradient-border w-[261px] h-[49px] bg-[#000000]'} text={'SCHEDULE A MEETING'} onClick={() => {}} />
                     </div>
                 </div>
                 <div className="right-side-about w-[60%] flex flex-col ">

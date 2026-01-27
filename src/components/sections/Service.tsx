@@ -113,11 +113,11 @@ export const Service = () => {
         tl.to('.service-h2-line-2', { y: 0 }, 0.1);
 
         // right[0] title (right-to-left)
-        tl.to('.service-title-right-0', { x: 0 }, 0.2);
+        tl.to('.service-title-right-0', { x: 0 }, 0.4);
         // right[0] subtitle text (right-to-left)
-        tl.to('.service-subtitle-text-right-0', { x: 0 }, 0.3);
+        tl.to('.service-subtitle-text-right-0', { x: 0 }, 0.5);
         // right[0] arrow (scale) - last for right[0]
-        tl.to('.service-arrow-right-0', { scale: 1 }, 0.4);
+        tl.to('.service-arrow-right-0', { scale: 1 }, 0.7);
 
         // left[0] title (left-to-right) - starts after right[0] arrow
         tl.to('.service-title-left-0', { x: 0 }, 0.5);
