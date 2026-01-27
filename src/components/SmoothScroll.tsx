@@ -9,6 +9,9 @@ interface SmoothScrollProps {
 
 export const SmoothScroll = ({ children }: SmoothScrollProps) => {
   useEffect(() => {
+    // Scroll to top on page load/refresh
+    window.scrollTo(0, 0);
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -16,10 +19,12 @@ export const SmoothScroll = ({ children }: SmoothScrollProps) => {
       gestureOrientation: 'vertical',
       smoothWheel: true,
       wheelMultiplier: 1,
-      smoothTouch: false,
       touchMultiplier: 2,
       infinite: false,
     });
+
+    // Also scroll Lenis to top
+    lenis.scrollTo(0, { immediate: true });
 
     const raf = (time: number) => {
       lenis.raf(time);
