@@ -47,12 +47,12 @@ export const Footer = () => {
 
   useGSAP(() => {
     // Set initial hidden states
-    gsap.set('.footer-line-top', { scaleX: 0, transformOrigin: 'left' });
+    gsap.set('.footer-line-top', { scaleX: 0, transformOrigin: 'center' });
     gsap.set('.footer-h2-text', { y: "100%" });
-    gsap.set('.footer-form-message-0, .footer-form-message-1, .footer-form-message-2', { x: -100 });
-    gsap.set('.footer-form-input-0, .footer-form-input-1, .footer-form-input-2', { scale: 0, opacity: 0 });
+    gsap.set('.footer-form-message-0, .footer-form-message-1, .footer-form-message-2', { x: -100, opacity: 0 });
+    gsap.set('.footer-form-input-0, .footer-form-input-1, .footer-form-input-2', { x: -100, opacity: 0 });
     gsap.set('.footer-call-us-text, .footer-phone-number, .footer-visit-us-text, .footer-tbilisi-text, .footer-address-text, .footer-connect-text, .footer-email-text, .footer-home-text, .footer-link-we-are, .footer-link-service, .footer-link-blog, .footer-link-contact', { y: "100%" });
-    gsap.set('.copyright-up-line, .copyright-down-line', { scaleX: 0, transformOrigin: 'left' });
+    gsap.set('.copyright-up-line, .copyright-down-line', { scaleX: 0, transformOrigin: 'center' });
     gsap.set('.copyright-text', { y: "100%" });
 
     // Second Timeline: Remaining content - auto-plays with 0.6s duration when footer bottom reaches viewport bottom
@@ -103,19 +103,19 @@ export const Footer = () => {
     scrubTl.to('.footer-h2-text', { y: 0 }, 0.1);
 
     // Form message[0]
-    autoPlayTl.to('.footer-form-message-0', { x: 0 }, 0);
+    autoPlayTl.to('.footer-form-message-0', { x: 0, opacity: 1 }, 0);
     // Form input[0]
-    autoPlayTl.to('.footer-form-input-0', { scale: 1, opacity: 1 }, 0.1);
+    autoPlayTl.to('.footer-form-input-0', { x: 0, opacity: 1 }, 0.1);
 
     // Form message[1]
-    autoPlayTl.to('.footer-form-message-1', { x: 0 }, 0.2);
+    autoPlayTl.to('.footer-form-message-1', { x: 0, opacity: 1 }, 0.2);
     // Form input[1]
-    autoPlayTl.to('.footer-form-input-1', { scale: 1, opacity: 1 }, 0.3);
+    autoPlayTl.to('.footer-form-input-1', { x: 0, opacity: 1 }, 0.3);
 
     // Form message[2]
-    autoPlayTl.to('.footer-form-message-2', { x: 0 }, 0.4);
+    autoPlayTl.to('.footer-form-message-2', { x: 0, opacity: 1 }, 0.4);
     // Form input[2]
-    autoPlayTl.to('.footer-form-input-2', { scale: 1, opacity: 1 }, 0.5);
+    autoPlayTl.to('.footer-form-input-2', { x: 0, opacity: 1 }, 0.5);
 
     // Right side "Call us anytime"
     autoPlayTl.to('.footer-call-us-text', { y: 0 }, 0.6);
