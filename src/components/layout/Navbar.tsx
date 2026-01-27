@@ -10,7 +10,7 @@ export const Navbar = () => {
 
   useGSAP(() => {
     const tl = gsap.timeline({
-      defaults: { duration: 0.4, ease: "power2.inOut" },
+      defaults: { duration: 0.6, ease: "power2.inOut" },
       delay: 0.1,
       onComplete: () => {
         window.dispatchEvent(new Event('navbarReady'));
@@ -27,21 +27,21 @@ export const Navbar = () => {
     tl.fromTo('.logo-ball',
       { scale: 0 },
       { scale: 1 },
-      "-=0.1"
+      "0.1"
     );
 
     // Step 2: All menu links animate simultaneously (no stagger)
     tl.fromTo('.nav-links .nav-item-inner',
       { y: "100%" },
       { y: 0 },
-      "+=0.1"
+      "0.2"
     );
 
     // Step 3: All language links animate simultaneously (no stagger)
     tl.fromTo('.language-links .nav-item-inner',
       { y: "100%" },
       { y: 0 },
-      "+=0.1"
+      "0.3"
     );
 
     // Clear y transform after animation completes to prevent layout conflicts

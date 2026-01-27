@@ -44,7 +44,7 @@ export const Hero = () => {
     if (!isNavFinished) return;
 
     const tl = gsap.timeline({
-      defaults: { duration: 0.3, ease: "power2.inOut" },
+      defaults: { duration: 0.6, ease: "power2.inOut" },
       scrollTrigger: {
         trigger: heroRef.current,
         start: "top 80%",
@@ -54,35 +54,35 @@ export const Hero = () => {
       }
     });
 
-    // Paragraph animation (1)
-    tl.to('.hero-text-inner', { y: 0 });
+    // Paragraph animation (1) - starts immediately
+    tl.to('.hero-text-inner', { y: 0 }, 0);
 
-    // Heading divs animation with stagger (2, 3, 4)
+    // Heading divs animation with stagger (2, 3, 4) - starts at 0.1s
     tl.to('.hero-heading-inner', { 
       y: 0,
       stagger: 0.1
-    }, "+=0.1");
+    }, 0.1);
 
-    // Button animation (5)
+    // Button animation (5) - starts at 0.2s
     tl.to('.hero-button-wrapper', { 
       y: 0, 
       opacity: 1 
-    }, "+=0.1");
+    }, 0.2);
 
-    // Left icons animation with stagger (6, 7, 8, 9)
+    // Left icons animation (6, 7, 8, 9) - starts at 0.3s
     tl.to('.left-icon', { 
       scale: 1,
       opacity: 1,
       y: 0,
       // stagger: 0.1
-    }, "+=0.1");
+    }, 0.3);
 
-    // Right icon animation (10)
+    // Right icon animation (10) - starts at 0.4s
     tl.to('.right-icon', { 
       scale: 1, 
       opacity: 1, 
       y: 0 
-    }, "+=0.1");
+    }, 0.4);
 
   }, { scope: heroRef, dependencies: [isNavFinished] });
 
