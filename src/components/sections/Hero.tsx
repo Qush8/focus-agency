@@ -99,24 +99,38 @@ export const Hero = () => {
       defaults: { ease: "none" }
     });
 
-    // Animate text elements with mask animation (reverse of entrance)
-    // Entrance: y: "100%" -> y: 0 (comes from bottom)
-    // Scroll-out: y: 0 -> y: "-100%" (goes up and disappears)
-    scrollOutTl.to('.hero-text-inner, .hero-heading-inner', {
+    // Animate text elements with mask animation (reverse of entrance, sequential)
+    // Entrance: paragraph first, then headings with stagger
+    // Scroll-out: paragraph first, then headings with stagger (reverse order)
+    // Paragraph disappears first (as it appeared first)
+    scrollOutTl.to('.hero-text-inner', {
       y: "-100%"
     }, 0);
 
-    // Animate button to fade out and move up (second)
-    scrollOutTl.to('.hero-button-wrapper', {
-      opacity: 0,
-      y: -50
-    }, 0.2);
+    // Heading divs disappear with stagger (as they appeared with stagger)
+    scrollOutTl.to('.hero-heading-inner', {
+      y: "-100%",
+      stagger: 0.4
+    }, 0.1);
 
-    // Animate icons to fade out and move up (last)
-    scrollOutTl.to('.left-icon, .right-icon', {
+    // Button disappears (after text)
+    scrollOutTl.to('.hero-button-wrapper', {
+      scale: 0,
+      opacity: 0
+    }, 1);
+
+    // Left icons disappear with stagger (as they appeared with stagger)
+    scrollOutTl.to('.left-icon', {
+      scale: 0,
       opacity: 0,
-      y: -50
-    }, 0.4);
+      stagger: 0.1
+    }, 1.3);
+
+    // Right icon disappears last (as it appeared last)
+    scrollOutTl.to('.right-icon', {
+      scale: 0,
+      opacity: 0
+    }, 1.5);
 
   }, { scope: heroRef });
 
