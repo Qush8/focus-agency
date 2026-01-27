@@ -15,8 +15,8 @@ export const Navbar = () => {
           />
         </div>
         <div className="nav-links flex h-full items-center">
-          <a href="#" className="hover:text-white transition-colors text-[white] text-12">We are</a>
-          <a href="#" className="hover:text-white transition-colors text-[white] text-12">Services</a>
+          <a href="#about" className="hover:text-white transition-colors text-[white] text-12">We are</a>
+          <a href="#services" className="hover:text-white transition-colors text-[white] text-12">Services</a>
           <a href="#" className="hover:text-white transition-colors text-[white] text-12">Blog</a>
           <a href="#" className="hover:text-white transition-colors text-[white] text-12">Contact</a>
         </div>
