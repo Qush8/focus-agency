@@ -234,7 +234,21 @@ nav .language-links a:hover::after {
 }
 
 .hero-text-inner,
-.hero-heading-inner {
+.hero-heading-inner,
+.footer-h2-text,
+.footer-call-us-text,
+.footer-phone-number,
+.footer-visit-us-text,
+.footer-tbilisi-text,
+.footer-address-text,
+.footer-connect-text,
+.footer-email-text,
+.footer-home-text,
+.footer-link-we-are,
+.footer-link-service,
+.footer-link-blog,
+.footer-link-contact,
+.copyright-text {
   will-change: transform;
 }
 

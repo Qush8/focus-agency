@@ -10,12 +10,13 @@ interface InputProps {
     type?: string;
     name?: string;
     message?: string;
+    index?: number;
 }
 
-export const Input: React.FC<InputProps> = ({ value, onChange, icon, placeholder, type = 'text', name, message }) => {
+export const Input: React.FC<InputProps> = ({ value, onChange, icon, placeholder, type = 'text', name, message, index = 0 }) => {
     return (
-        <div className="relative z-0 w-full group flex flex-col gap-[40px] max-w-[451px]">
-            <p className="text-[#FFFFFF] text-[16px] font-weight-[700] line-height-[94%] ">{message}</p>
+        <div className={`footer-form-input-${index} relative z-0 w-full group flex flex-col gap-[40px] max-w-[451px]`}>
+            <p className={`footer-form-message-${index} text-[#FFFFFF] text-[16px] font-weight-[700] line-height-[94%] `}>{message}</p>
             <input
                 type={type}
                 name={name}

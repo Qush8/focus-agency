@@ -12,6 +12,7 @@ const Form = ({ inputFields }: FormProps) => {
         {inputFields.map((field : any , index : number) => (
             <Input
                 key={index}
+                index={index}
                 value={field.value}
                 onChange={field.onChange}
                 name={field.name}
