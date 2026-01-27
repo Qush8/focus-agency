@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import Lenis from 'lenis';
 
 interface SmoothScrollProps {
@@ -8,8 +8,15 @@ interface SmoothScrollProps {
 }
 
 export const SmoothScroll = ({ children }: SmoothScrollProps) => {
-  useEffect(() => {
-    // Scroll to top on page load/refresh
+  useLayoutEffect(() => {
+    // Disable browser scroll restoration
+    if (typeof window !== 'undefined' && 'scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+
+    // Multiple scroll reset methods for reliability
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
     window.scrollTo(0, 0);
 
     const lenis = new Lenis({
@@ -23,8 +30,10 @@ export const SmoothScroll = ({ children }: SmoothScrollProps) => {
       infinite: false,
     });
 
-    // Also scroll Lenis to top
-    lenis.scrollTo(0, { immediate: true });
+    // Ensure Lenis scroll happens after instance is ready
+    requestAnimationFrame(() => {
+      lenis.scrollTo(0, { immediate: true });
+    });
 
     const raf = (time: number) => {
       lenis.raf(time);
