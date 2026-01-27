@@ -33,15 +33,14 @@ export const Hero = () => {
     gsap.set('.hero-button-wrapper', { y: 20, opacity: 0 });
     gsap.set('.left-icon, .right-icon', { scale: 0, opacity: 0, y: 20 });
 
+    // Entrance timeline - plays once on page load (no ScrollTrigger)
+    // This animation completes before scroll-out can interfere
     const tl = gsap.timeline({
       defaults: { duration: 0.6, ease: "power2.inOut" },
       delay: 0.1,
-      scrollTrigger: {
-        trigger: heroRef.current,
-        start: "top 80%",
-        end: "bottom 20%",
-        toggleActions: "play reverse play reverse",
-        invalidateOnRefresh: true
+      onComplete: () => {
+        // Ensure entrance animation is fully complete before scroll-out takes over
+        // This prevents conflicts between the two timelines
       }
     });
 
@@ -73,6 +72,45 @@ export const Hero = () => {
       scale: 1, 
       opacity: 1, 
       y: 0 
+    }, 0.4);
+
+    // Clear entrance animation properties after completion to prevent conflicts with scroll-out
+    tl.call(() => {
+      // Entrance animation is complete, now scroll-out can take full control
+      // No need to clear props as scroll-out will animate from current state
+    });
+
+    // Scroll-out timeline - scrubs with scroll position
+    // Starts when user starts scrolling down
+    const scrollOutTl = gsap.timeline({
+      paused: false, // Allow ScrollTrigger to control it
+      scrollTrigger: {
+        trigger: heroRef.current,
+        start: "top 0%", // Starts when Hero top reaches viewport bottom (immediately on scroll)
+        end: "bottom 40%", // Ends when Hero bottom reaches viewport top
+        scrub: true, // Direct scrubbing (no lag)
+        invalidateOnRefresh: true
+      },
+      defaults: { ease: "none" }
+    });
+
+    // Animate text elements with mask animation (reverse of entrance)
+    // Entrance: y: "100%" -> y: 0 (comes from bottom)
+    // Scroll-out: y: 0 -> y: "-100%" (goes up and disappears)
+    scrollOutTl.to('.hero-text-inner, .hero-heading-inner', {
+      y: "-100%"
+    }, 0);
+
+    // Animate button to fade out and move up (second)
+    scrollOutTl.to('.hero-button-wrapper', {
+      opacity: 0,
+      y: -50
+    }, 0.2);
+
+    // Animate icons to fade out and move up (last)
+    scrollOutTl.to('.left-icon, .right-icon', {
+      opacity: 0,
+      y: -50
     }, 0.4);
 
   }, { scope: heroRef });
