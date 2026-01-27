@@ -56,7 +56,7 @@ a{
   text-decoration: none;
 }
 .text-12 {
-  font-size: 12px;
+  font-size: 22px;
   font-weight: 700;
   line-height: 100%;
   font: bold;
@@ -151,7 +151,11 @@ nav .language-links a {
   position: relative;
   transition: all 0.3s ease;
   z-index: 10;
+  text-decoration: none!important;
+
 }
+
+
 
 nav .language-links a::after {
   content: '';
@@ -369,7 +373,7 @@ nav .language-links a:hover::after {
     align-items: center!important;
   }
   .section-about .left-side-about h2 {
-    font-size: 90px!important;
+    font-size: 75px!important;
   }
   .section-about .left-side-about p {
     font-size: 25px!important;

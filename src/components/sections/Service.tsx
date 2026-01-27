@@ -100,7 +100,7 @@ export const Service = () => {
                             </div>
                         ))}
                     </div>
-                    <div className='right-side-offers w-[50%] flex flex-col gap-[200px]'>
+                    <div className='right-side-offers w-[50%] flex flex-col gap-[200px] items-end'>
                         {rightSideServices.map((service, index) => (
                             <div key={index}>
                                 <ServiceItem {...service} />
