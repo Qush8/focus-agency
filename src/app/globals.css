@@ -168,6 +168,10 @@ nav .language-links a span {
   padding-bottom: 2px;
 }
 
+nav .nav-item-inner {
+  will-change: transform;
+}
+
 nav .language-links a::after {
   content: '';
   position: absolute;
@@ -227,6 +231,11 @@ nav .language-links a:hover::after {
 /* Hero paragraph overflow-hidden line-height (48px font-size) */
 .section-hero > div > div.overflow-hidden {
   line-height: 1.15;
+}
+
+.hero-text-inner,
+.hero-heading-inner {
+  will-change: transform;
 }
 
 /* Hero h1 overflow-hidden line-height (96px font-size) */

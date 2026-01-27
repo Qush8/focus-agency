@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -26,13 +26,6 @@ const SocialIcon = ({ icon, size = 20, className = '' }: SocialIconProps) => (
 
 export const Hero = () => {
   const heroRef = useRef<HTMLElement>(null);
-  const [isNavFinished, setIsNavFinished] = useState(false);
-
-  useEffect(() => {
-    const handleReady = () => setIsNavFinished(true);
-    window.addEventListener('navbarReady', handleReady);
-    return () => window.removeEventListener('navbarReady', handleReady);
-  }, []);
 
   useGSAP(() => {
     // Always set initial hidden state for all elements
@@ -40,11 +33,9 @@ export const Hero = () => {
     gsap.set('.hero-button-wrapper', { y: 20, opacity: 0 });
     gsap.set('.left-icon, .right-icon', { scale: 0, opacity: 0, y: 20 });
 
-    // Only create timeline and ScrollTrigger after Navbar is ready
-    if (!isNavFinished) return;
-
     const tl = gsap.timeline({
       defaults: { duration: 0.6, ease: "power2.inOut" },
+      delay: 0.1,
       scrollTrigger: {
         trigger: heroRef.current,
         start: "top 80%",
@@ -84,7 +75,7 @@ export const Hero = () => {
       y: 0 
     }, 0.4);
 
-  }, { scope: heroRef, dependencies: [isNavFinished] });
+  }, { scope: heroRef });
 
   return (
     <section ref={heroRef} className="section-hero w-full flex flex-col items-start bg-[black] h-[100vh] ">
