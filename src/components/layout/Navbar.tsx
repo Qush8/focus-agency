@@ -10,34 +10,34 @@ export const Navbar = () => {
 
   useGSAP(() => {
     const tl = gsap.timeline({
-      defaults: { duration: 0.3, ease: "power2.inOut" },
-      delay: 0.2
+      defaults: { duration: 0.4, ease: "power2.inOut" },
+      delay: 0.1,
+      onComplete: () => {
+        window.dispatchEvent(new Event('navbarReady'));
+      }
     });
 
-    // Logo 'F' animation
+    // Step 1: Logo 'F' animation
     tl.fromTo('.logo-f', 
       { opacity: 0 },
       { opacity: 1 }
     );
 
-    // Logo ball animation with overlap
+    // Step 1: Logo ball animation with overlap
     tl.fromTo('.logo-ball',
       { scale: 0 },
       { scale: 1 },
       "-=0.1"
     );
 
-    // Nav links animation with stagger
+    // Step 2: All menu links animate simultaneously (no stagger)
     tl.fromTo('.nav-links .nav-item-inner',
       { y: "100%" },
-      { 
-        y: 0,
-        stagger: 0.1
-      },
+      { y: 0 },
       "+=0.1"
     );
 
-    // Language switcher animation
+    // Step 3: All language links animate simultaneously (no stagger)
     tl.fromTo('.language-links .nav-item-inner',
       { y: "100%" },
       { y: 0 },

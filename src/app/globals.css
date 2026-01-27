@@ -127,6 +127,11 @@ nav .nav-links a {
   z-index: 10;
 }
 
+
+nav .nav-links a > div {
+  line-height: 1.2;
+}
+
 nav .nav-links a::after {
   content: '';
   position: absolute;
@@ -155,7 +160,13 @@ nav .language-links a {
 
 }
 
+nav .language-links a > div {
+  line-height: 1.2;
+}
 
+nav .language-links a span {
+  padding-bottom: 2px;
+}
 
 nav .language-links a::after {
   content: '';
@@ -211,6 +222,20 @@ nav .language-links a:hover::after {
   letter-spacing: 0%;
   margin-top: 0;
   color: rgba(255, 255, 255, 0.92);
+}
+
+/* Hero paragraph overflow-hidden line-height (48px font-size) */
+.section-hero > div > div.overflow-hidden {
+  line-height: 1.15;
+}
+
+/* Hero h1 overflow-hidden line-height (96px font-size) */
+.section-hero > h1 > div > div.overflow-hidden {
+  line-height: 1.1;
+}
+
+.section-hero > h1 > div > div.overflow-hidden > span > span {
+  line-height: 1.30;
 }
 
 .section-hero > h1 > span {
