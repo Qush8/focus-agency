@@ -55,11 +55,19 @@ export const Footer = () => {
     gsap.set('.copyright-up-line, .copyright-down-line', { scaleX: 0, transformOrigin: 'center' });
     gsap.set('.copyright-text', { y: "100%" });
 
-    // Second Timeline: Remaining content - auto-plays with 0.6s duration when footer bottom reaches viewport bottom
+    // Detect mobile viewport once on mount
+    const isMobile =
+      typeof window !== 'undefined' &&
+      window.matchMedia &&
+      window.matchMedia('(max-width: 768px)').matches;
+
+    // Second Timeline: Remaining content
+    // Desktop: იწყება როცა footer-ის bottom შეეხება viewport-ის bottom-ს
+    // Mobile: ბევრად ადრე, როცა footer-ის top მოხვდება viewport-ის bottom-ში
     const autoPlayTl = gsap.timeline({
       scrollTrigger: {
         trigger: footerRef.current,
-        start: "bottom bottom",
+        start: isMobile ? 'top bottom' : 'bottom bottom',
         toggleActions: "play reverse play reverse",
         invalidateOnRefresh: true
       },

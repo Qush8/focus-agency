@@ -14,7 +14,7 @@ export const Navbar = () => {
 
   useGSAP(() => {
     const tl = gsap.timeline({
-      defaults: { duration: 0.3, ease: "power2.out" },
+      defaults: { duration: 0.6, ease: "power2.out" },
       delay: 0.1
     });
 
@@ -54,52 +54,41 @@ export const Navbar = () => {
 
   }, { scope: navRef });
 
+  // Variant 3: glass/elevation effect on background (bg + blur + shadow)
   useEffect(() => {
-    // Wait a bit for DOM to be ready
-    const checkSections = () => {
-      const serviceSection = document.querySelector('#services');
+    if (!navRef.current) return;
+
+    gsap.to(navRef.current, {
+      backgroundColor: isServiceSection
+        ? 'rgba(0, 0, 0, 0.65)'
+        : 'rgba(0, 0, 0, 0)',
+      boxShadow: isServiceSection
+        ? '0 18px 45px rgba(0, 0, 0, 0.55)'
+        : '0 0 0 rgba(0, 0, 0, 0)',
+      backdropFilter: isServiceSection ? 'blur(14px)' : 'blur(0px)',
+      WebkitBackdropFilter: isServiceSection ? 'blur(14px)' : 'blur(0px)',
+      duration: 0.6,
+      ease: 'power3.out',
+    });
+  }, [isServiceSection]);
+
+  useEffect(() => {
+    // გვაინტერესებს მხოლოდ Hero სექცია:
+    // Hero-ზე → navbar გამჭირვალე
+    // Hero-ის მიღმა ნებისმიერ სხვაგან → glass background ჩართული
+    const checkHero = () => {
       const heroSection = document.querySelector('.section-hero');
-      
-      if (!serviceSection || !heroSection) {
-        // Retry after a short delay if sections not found
-        setTimeout(checkSections, 100);
+
+      if (!heroSection) {
+        setTimeout(checkHero, 100);
         return;
       }
 
-      let isHeroVisible = false;
-      let isServiceVisible = false;
-
-      // Use IntersectionObserver to detect when Hero section is in viewport
       const heroObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            isHeroVisible = entry.isIntersecting;
-            // If Hero is visible, navbar should be transparent
-            if (isHeroVisible) {
-              setIsServiceSection(false);
-            } else if (isServiceVisible) {
-              // If Hero is not visible but Service is, navbar should be black
-              setIsServiceSection(true);
-            }
-          });
-        },
-        {
-          threshold: 0,
-          rootMargin: '0px'
-        }
-      );
-
-      // Use IntersectionObserver to detect when Service section is in viewport
-      const serviceObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            isServiceVisible = entry.isIntersecting;
-            // Only set to black if Hero is not visible
-            if (isServiceVisible && !isHeroVisible) {
-              setIsServiceSection(true);
-            } else if (!isServiceVisible && !isHeroVisible) {
-              setIsServiceSection(false);
-            }
+            const isHeroVisible = entry.isIntersecting;
+            setIsServiceSection(!isHeroVisible);
           });
         },
         {
@@ -109,23 +98,25 @@ export const Navbar = () => {
       );
 
       heroObserver.observe(heroSection);
-      serviceObserver.observe(serviceSection);
 
       return () => {
         heroObserver.disconnect();
-        serviceObserver.disconnect();
       };
     };
 
-    checkSections();
+    const cleanup = checkHero();
+    return () => {
+      if (typeof cleanup === 'function') {
+        cleanup();
+      }
+    };
   }, []);
 
   return (
     <div className="fixed top-0 left-0 w-full z-50 flex justify-center">
       <nav 
         ref={navRef} 
-        className="h-[125px] w-full max-w-[1920px] flex justify-between items-center transition-colors duration-300"
-        style={{ backgroundColor: isServiceSection ? 'rgb(0, 0, 0)' : 'rgba(255, 255, 255, 0)' }}
+        className="h-[125px] w-full max-w-[1920px] flex justify-between items-center"
       >
         <div className="logo h-full text-xl font-bold text-[white] flex items-center">
           <svg 
