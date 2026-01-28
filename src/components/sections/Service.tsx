@@ -89,94 +89,176 @@ export const Service = () => {
     const serviceRef = useRef<HTMLElement>(null);
 
     useGSAP(() => {
-        // Set initial hidden states
-        gsap.set('.service-h2-line-1, .service-h2-line-2', { y: "100%" });
-        gsap.set('.service-title-right-0, .service-title-right-1', { x: 100 });
-        gsap.set('.service-title-left-0, .service-title-left-1', { x: -100 });
-        gsap.set('.service-subtitle-text-right-0, .service-subtitle-text-right-1', { x: 100 });
-        gsap.set('.service-subtitle-text-left-0, .service-subtitle-text-left-1', { x: -100 });
-        gsap.set('.service-arrow-right-0, .service-arrow-right-1, .service-arrow-left-0, .service-arrow-left-1', { scale: 0 });
+        const mm = gsap.matchMedia();
 
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: serviceRef.current,
-                start: "top 100%",
-                end: "bottom 99%",
-                scrub: true,
-                invalidateOnRefresh: true
-            },
-            defaults: { ease: "none" }
+        // Desktop / large screens: current behavior (side slide + arrows scale)
+        mm.add("(min-width: 1024px)", () => {
+            // Set initial hidden states
+            gsap.set('.service-h2-line-1, .service-h2-line-2', { y: "100%" });
+            gsap.set('.service-title-right-0, .service-title-right-1', { x: 100 });
+            gsap.set('.service-title-left-0, .service-title-left-1', { x: -100 });
+            gsap.set('.service-subtitle-text-right-0, .service-subtitle-text-right-1', { x: 100 });
+            gsap.set('.service-subtitle-text-left-0, .service-subtitle-text-left-1', { x: -100 });
+            gsap.set('.service-arrow-right-0, .service-arrow-right-1, .service-arrow-left-0, .service-arrow-left-1', { scale: 0 });
+
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: serviceRef.current,
+                    start: "top 100%",
+                    end: "bottom 99%",
+                    scrub: true,
+                    invalidateOnRefresh: true
+                },
+                defaults: { ease: "none" }
+            });
+
+            // h2 mask animation with stagger
+            tl.to('.service-h2-line-1', { y: 0 }, 0);
+            tl.to('.service-h2-line-2', { y: 0 }, 0.1);
+
+            // right[0] title (right-to-left)
+            tl.to('.service-title-right-0', { x: 0 }, 0.4);
+            // right[0] subtitle text (right-to-left)
+            tl.to('.service-subtitle-text-right-0', { x: 0 }, 0.5);
+            // right[0] arrow (scale) - last for right[0]
+            tl.to('.service-arrow-right-0', { scale: 1 }, 0.7);
+
+            // left[0] title (left-to-right) - starts after right[0] arrow
+            tl.to('.service-title-left-0', { x: 0 }, 0.5);
+            // left[0] subtitle text (left-to-right)
+            tl.to('.service-subtitle-text-left-0', { x: 0 }, 0.6);
+            // left[0] arrow (scale) - last for left[0]
+            tl.to('.service-arrow-left-0', { scale: 1 }, 0.7);
+
+            // right[1] title (right-to-left)
+            tl.to('.service-title-right-1', { x: 0 }, 0.8);
+            // right[1] subtitle text (right-to-left)
+            tl.to('.service-subtitle-text-right-1', { x: 0 }, 0.9);
+            // right[1] arrow (scale) - last for right[1]
+            tl.to('.service-arrow-right-1', { scale: 1 }, 1.0);
+
+            // left[1] title (left-to-right)
+            tl.to('.service-title-left-1', { x: 0 }, 1.1);
+            // left[1] subtitle text (left-to-right)
+            tl.to('.service-subtitle-text-left-1', { x: 0 }, 1.2);
+            // left[1] arrow (scale) - last overall
+            tl.to('.service-arrow-left-1', { scale: 1 }, 1.3);
+
+            // Scroll-out timeline - scrubs with scroll position when scrolling past section
+            const scrollOutTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: serviceRef.current,
+                    start: "bottom top", // Starts when section bottom reaches viewport top
+                    end: "+=1000", // Animation completes after scrolling 1000px past start
+                    scrub: true,
+                    invalidateOnRefresh: true
+                },
+                defaults: { ease: "none" }
+            });
+
+            // Reverse order: last appeared → first appeared
+            // left[1] (last)
+            scrollOutTl.to('.service-arrow-left-1', { scale: 0 }, 0);
+            scrollOutTl.to('.service-subtitle-text-left-1', { x: -100 }, 0.05);
+            scrollOutTl.to('.service-title-left-1', { x: -100 }, 0.1);
+
+            // right[1]
+            scrollOutTl.to('.service-arrow-right-1', { scale: 0 }, 0.2);
+            scrollOutTl.to('.service-subtitle-text-right-1', { x: 100 }, 0.25);
+            scrollOutTl.to('.service-title-right-1', { x: 100 }, 0.3);
+
+            // left[0]
+            scrollOutTl.to('.service-arrow-left-0', { scale: 0 }, 0.4);
+            scrollOutTl.to('.service-subtitle-text-left-0', { x: -100 }, 0.45);
+            scrollOutTl.to('.service-title-left-0', { x: -100 }, 0.5);
+
+            // right[0]
+            scrollOutTl.to('.service-arrow-right-0', { scale: 0 }, 0.6);
+            scrollOutTl.to('.service-subtitle-text-right-0', { x: 100 }, 0.65);
+            scrollOutTl.to('.service-title-right-0', { x: 100 }, 0.7);
+
+            // h2 (first appeared)
+            scrollOutTl.to('.service-h2-line-2', { y: "-100%" }, 0.8);
+            scrollOutTl.to('.service-h2-line-1', { y: "-100%" }, 0.9);
         });
 
-        // h2 mask animation with stagger
-        tl.to('.service-h2-line-1', { y: 0 }, 0);
-        tl.to('.service-h2-line-2', { y: 0 }, 0.1);
+        // Mobile / tablet: mask animation, left side first then right side
+        mm.add("(max-width: 1023px)", () => {
+            // Initial states: all text masked down, arrows scaled down
+            gsap.set('.service-h2-line-1, .service-h2-line-2', { y: "100%" });
+            gsap.set('.service-title-left-0, .service-title-left-1, .service-title-right-0, .service-title-right-1', { y: "100%" });
+            gsap.set('.service-subtitle-text-left-0, .service-subtitle-text-left-1, .service-subtitle-text-right-0, .service-subtitle-text-right-1', { y: "100%" });
+            gsap.set('.service-arrow-right-0, .service-arrow-right-1, .service-arrow-left-0, .service-arrow-left-1', { scale: 0 });
 
-        // right[0] title (right-to-left)
-        tl.to('.service-title-right-0', { x: 0 }, 0.4);
-        // right[0] subtitle text (right-to-left)
-        tl.to('.service-subtitle-text-right-0', { x: 0 }, 0.5);
-        // right[0] arrow (scale) - last for right[0]
-        tl.to('.service-arrow-right-0', { scale: 1 }, 0.7);
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: serviceRef.current,
+                    start: "top 100%",
+                    end: "bottom 99%",
+                    scrub: true,
+                    invalidateOnRefresh: true
+                },
+                defaults: { ease: "none" }
+            });
 
-        // left[0] title (left-to-right) - starts after right[0] arrow
-        tl.to('.service-title-left-0', { x: 0 }, 0.5);
-        // left[0] subtitle text (left-to-right)
-        tl.to('.service-subtitle-text-left-0', { x: 0 }, 0.6);
-        // left[0] arrow (scale) - last for left[0]
-        tl.to('.service-arrow-left-0', { scale: 1 }, 0.7);
+            // h2 mask animation with stagger
+            tl.to('.service-h2-line-1', { y: 0 }, 0);
+            tl.to('.service-h2-line-2', { y: 0 }, 0.1);
 
-        // right[1] title (right-to-left)
-        tl.to('.service-title-right-1', { x: 0 }, 0.8);
-        // right[1] subtitle text (right-to-left)
-        tl.to('.service-subtitle-text-right-1', { x: 0 }, 0.9);
-        // right[1] arrow (scale) - last for right[1]
-        tl.to('.service-arrow-right-1', { scale: 1 }, 1.0);
+            // LEFT side first (top then bottom)
+            tl.to('.service-title-left-0', { y: 0 }, 0.4);
+            tl.to('.service-subtitle-text-left-0', { y: 0 }, 0.5);
+            tl.to('.service-arrow-left-0', { scale: 1 }, 0.6);
 
-        // left[1] title (left-to-right)
-        tl.to('.service-title-left-1', { x: 0 }, 1.1);
-        // left[1] subtitle text (left-to-right)
-        tl.to('.service-subtitle-text-left-1', { x: 0 }, 1.2);
-        // left[1] arrow (scale) - last overall
-        tl.to('.service-arrow-left-1', { scale: 1 }, 1.3);
+            tl.to('.service-title-left-1', { y: 0 }, 0.8);
+            tl.to('.service-subtitle-text-left-1', { y: 0 }, 0.9);
+            tl.to('.service-arrow-left-1', { scale: 1 }, 1.0);
 
-        // Scroll-out timeline - scrubs with scroll position when scrolling past section
-        const scrollOutTl = gsap.timeline({
-            scrollTrigger: {
-                trigger: serviceRef.current,
-                start: "bottom top", // Starts when section bottom reaches viewport top
-                end: "+=1000", // Animation completes after scrolling 1000px past start
-                scrub: true,
-                invalidateOnRefresh: true
-            },
-            defaults: { ease: "none" }
+            // RIGHT side afterwards (top then bottom)
+            tl.to('.service-title-right-0', { y: 0 }, 1.2);
+            tl.to('.service-subtitle-text-right-0', { y: 0 }, 1.3);
+            tl.to('.service-arrow-right-0', { scale: 1 }, 1.4);
+
+            tl.to('.service-title-right-1', { y: 0 }, 1.6);
+            tl.to('.service-subtitle-text-right-1', { y: 0 }, 1.7);
+            tl.to('.service-arrow-right-1', { scale: 1 }, 1.8);
+
+            // Scroll-out: reverse order of appearance
+            const scrollOutTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: serviceRef.current,
+                    start: "bottom top",
+                    end: "+=1000",
+                    scrub: true,
+                    invalidateOnRefresh: true
+                },
+                defaults: { ease: "none" }
+            });
+
+            // reverse order: right[1] → right[0] → left[1] → left[0] → h2
+            scrollOutTl.to('.service-arrow-right-1', { scale: 0 }, 0);
+            scrollOutTl.to('.service-subtitle-text-right-1', { y: "-100%" }, 0.05);
+            scrollOutTl.to('.service-title-right-1', { y: "-100%" }, 0.1);
+
+            scrollOutTl.to('.service-arrow-right-0', { scale: 0 }, 0.2);
+            scrollOutTl.to('.service-subtitle-text-right-0', { y: "-100%" }, 0.25);
+            scrollOutTl.to('.service-title-right-0', { y: "-100%" }, 0.3);
+
+            scrollOutTl.to('.service-arrow-left-1', { scale: 0 }, 0.4);
+            scrollOutTl.to('.service-subtitle-text-left-1', { y: "-100%" }, 0.45);
+            scrollOutTl.to('.service-title-left-1', { y: "-100%" }, 0.5);
+
+            scrollOutTl.to('.service-arrow-left-0', { scale: 0 }, 0.6);
+            scrollOutTl.to('.service-subtitle-text-left-0', { y: "-100%" }, 0.65);
+            scrollOutTl.to('.service-title-left-0', { y: "-100%" }, 0.7);
+
+            scrollOutTl.to('.service-h2-line-2', { y: "-100%" }, 0.8);
+            scrollOutTl.to('.service-h2-line-1', { y: "-100%" }, 0.9);
         });
 
-        // Reverse order: last appeared → first appeared
-        // left[1] (last)
-        scrollOutTl.to('.service-arrow-left-1', { scale: 0 }, 0);
-        scrollOutTl.to('.service-subtitle-text-left-1', { x: -100 }, 0.05);
-        scrollOutTl.to('.service-title-left-1', { x: -100 }, 0.1);
-
-        // right[1]
-        scrollOutTl.to('.service-arrow-right-1', { scale: 0 }, 0.2);
-        scrollOutTl.to('.service-subtitle-text-right-1', { x: 100 }, 0.25);
-        scrollOutTl.to('.service-title-right-1', { x: 100 }, 0.3);
-
-        // left[0]
-        scrollOutTl.to('.service-arrow-left-0', { scale: 0 }, 0.4);
-        scrollOutTl.to('.service-subtitle-text-left-0', { x: -100 }, 0.45);
-        scrollOutTl.to('.service-title-left-0', { x: -100 }, 0.5);
-
-        // right[0]
-        scrollOutTl.to('.service-arrow-right-0', { scale: 0 }, 0.6);
-        scrollOutTl.to('.service-subtitle-text-right-0', { x: 100 }, 0.65);
-        scrollOutTl.to('.service-title-right-0', { x: 100 }, 0.7);
-
-        // h2 (first appeared)
-        scrollOutTl.to('.service-h2-line-2', { y: "-100%" }, 0.8);
-        scrollOutTl.to('.service-h2-line-1', { y: "-100%" }, 0.9);
-
+        return () => {
+            mm.revert();
+        };
     }, { scope: serviceRef });
 
     return (
