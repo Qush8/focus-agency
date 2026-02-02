@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
-import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import '../../app/globals.css';
@@ -18,45 +17,6 @@ export const Navbar = () => {
   const mobileMenuOverlayRef = useRef<HTMLDivElement>(null);
   const mobileMenuPanelRef = useRef<HTMLDivElement>(null);
   const mobileMenuInitialized = useRef(false);
-
-  useGSAP(
-    () => {
-      const tl = gsap.timeline({
-        defaults: { duration: 0.6, ease: 'power2.out' },
-        delay: 0.1,
-      });
-
-      tl.fromTo('.logo-f', { opacity: 0 }, { opacity: 1 });
-
-      tl.fromTo(
-        '.logo-ball',
-        { scale: 0 },
-        { scale: 1 },
-        '0.1',
-      );
-
-      tl.fromTo(
-        '.nav-links .nav-item-inner',
-        { y: '100%' },
-        { y: 0 },
-        '0.2',
-      );
-
-      tl.fromTo(
-        '.language-links .nav-item-inner',
-        { y: '100%' },
-        { y: 0 },
-        '0.3',
-      );
-
-      tl.call(() => {
-        gsap.set('.nav-item-inner', { clearProps: 'y' });
-        gsap.set('.logo-f', { clearProps: 'opacity' });
-        gsap.set('.logo-ball', { clearProps: 'scale' });
-      });
-    },
-    { scope: navRef },
-  );
 
   useEffect(() => {
     const mediaQueryList = window.matchMedia('(max-width: 1024px)');
@@ -241,7 +201,7 @@ export const Navbar = () => {
       >
         <div className="relative w-[15%] flex justify-center h-full shrink-0 items-center">
           <div
-            className="logo-left-line absolute left-[0] top-0 z-[100] h-[124px] w-[1px] "
+            className="logo-left-line absolute left-[0] top-0 z-[100] h-[124px] w-[1px]"
             aria-hidden
           />
           <div className="logo flex shrink-0 items-center text-xl font-bold text-[white]">
@@ -341,7 +301,7 @@ export const Navbar = () => {
               </a>
             </div>
             <div
-              className="languages-right-line absolute right-[0px] top-0 z-[100] h-[124px] w-[1px] bg-[]"
+              className="languages-right-line absolute right-[0px] top-0 z-[100] h-[124px] w-[1px]"
               aria-hidden
             />
           </div>
