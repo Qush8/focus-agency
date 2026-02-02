@@ -20,7 +20,7 @@ const AboutItem: React.FC<AboutItemProps> = ({ number, title, subtitle, descript
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className={`w-[100%] h-[300px] border border-b-[#FFFFFFBD] flex pl-[30px] pt-[30px] pb-[30px] gap-[5px] about-border-item-${index}`}>
+        <div className={`w-[100%] h-[300px] flex pl-[30px] pt-[30px] pb-[30px] gap-[5px] about-border-item-${index}`}>
             <div className="">
                 <p className={`text-[32px] font-bold text-[#FFFFFFE5] about-number-${index}`}>{number}</p>
             </div>
@@ -141,25 +141,33 @@ export const About = () => {
         <section ref={aboutRef} id="about" className="section-about relative w-full flex justify-between bg-[black]">
         <div className='left-side-line w-[1px] h-[100%] bg-[#FFFFFF33] absolute left-[31px] z-[100] top-[0px]'></div>
         <div className='right-side-line w-[1px] h-[100%] bg-[#FFFFFF33] absolute right-[31px] z-[100] top-[0px]'></div>
-
-
-            <div className="w-[100%] flex border border-[#FFFFFFBD] about-border-main">
-                <div className="left-side-about w-[40%] border border-r-[#FFFFFFBD] flex justify-center flex-col items-start pr-[50px] pl-[40px] about-border-left">
-                    <h2 className="text-[96px] font-bold text-[#FFFFFFF0] leading-none">
-                        <div className="overflow-hidden block h-fit py-1">
-                            <span className="about-h2-text block pb-1">Flow to work</span>
+       
+            <div className={`about-container w-[100%] relative`}>
+            <div className='top-about-line w-[100%] absolute top-[0] left-[0] right-[0] h-[1px] bg-[#FFFFFF33]'></div>
+           
+                <div className="w-[100%] flex  about-border-main">
+                    <div className="left-side-about w-[40%] border border-r-[#FFFFFF33] flex justify-center flex-col items-start pr-[50px] pl-[40px] about-border-left">
+                        <h2 className="text-[96px] font-bold text-[#FFFFFFF0] leading-none">
+                            <div className="overflow-hidden block h-fit py-1">
+                                <span className="about-h2-text block pb-1">Flow to work</span>
+                            </div>
+                        </h2>
+                        <div className="about-button w-full flex justify-center mt-[46px]">
+                            <Button css={'gradient-border w-[261px] h-[49px] bg-[#000000]'} text={'SCHEDULE A MEETING'} onClick={() => {}} />
                         </div>
-                    </h2>
-                    <div className="about-button w-full flex justify-center mt-[46px]">
-                        <Button css={'gradient-border w-[261px] h-[49px] bg-[#000000]'} text={'SCHEDULE A MEETING'} onClick={() => {}} />
+                    </div>
+                    <div className="right-side-about w-[60%] flex flex-col ">
+                        {aboutItems.map((item, index) => (
+                            <AboutItem key={index} {...item} index={index} />
+                        ))}
                     </div>
                 </div>
-                <div className="right-side-about w-[60%] flex flex-col ">
-                    {aboutItems.map((item, index) => (
-                        <AboutItem key={index} {...item} index={index} />
-                    ))}
-                </div>
+            <div className='bottom-about-line w-[100%] absolute bottom-[0] left-[0] right-[0] h-[1px] bg-[#FFFFFF33]'></div>
             </div>
+
+            <div className={`about-container-right-line w-[59.3%] h-[1px] bg-[#FFFFFF33] top-[39%] absolute right-[0]`}></div>
+            <div className={`about-container-right-line w-[59.3%] h-[1px] bg-[#FFFFFF33] top-[70%] absolute right-[0]`}></div>
+
         </section>
     )
 }

@@ -100,6 +100,7 @@ footer {
   margin-left: auto;
   margin-right: auto;
   width: 100%;
+  padding-top: 60px!important;
 }
 
 nav {
@@ -308,9 +309,14 @@ nav .language-links a:hover::after {
 
   height: auto;
   padding-top: 80px;
+  /* padding-left: 90px;
+  padding-right: 90px; */
+  /* padding-bottom: 80px; */
+}
+
+.section-about .about-container {
   padding-left: 90px;
   padding-right: 90px;
-  padding-bottom: 80px;
 }
 
 .section-service {
@@ -367,12 +373,17 @@ nav .language-links a:hover::after {
 }
 
 .section-about {
-  padding-bottom: 55px!important;
+  /* padding-bottom: 55px!important; */
+  padding-bottom: 1px!important;
+
   padding-top: 90px!important;
+ 
+}
+
+.section-about .about-container{
   padding-left: 67px!important;
   padding-right: 67px!important;
 }
-
 #services h3 {
   font-family: 'Satoshi', sans-serif;
   font-weight: 400 !important;
@@ -401,7 +412,7 @@ nav .language-links a:hover::after {
 }
 
 .right-side-about > div:last-child {
-  border-bottom: none !important;
+  /* border-bottom: none !important; */
 }
 .footer {
   padding-top: 5px;
@@ -530,6 +541,10 @@ nav .language-links a:hover::after {
 
   /* about section <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  */
   .section-about {
+    /* padding-left: 40px!important;
+    padding-right: 40px!important; */
+  }
+  .section-about .about-container{
     padding-left: 40px!important;
     padding-right: 40px!important;
   }
@@ -1078,6 +1093,10 @@ nav .language-links a:hover::after {
 
   /* about section <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
   .section-about {
+    /* padding-left: 15px!important;
+    padding-right: 15px!important; */
+  }
+  .section-about .about-container{
     padding-left: 15px!important;
     padding-right: 15px!important;
   }

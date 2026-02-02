@@ -161,7 +161,7 @@ export const Footer = () => {
 
   return (
     <footer ref={footerRef} className="footer w-full  text-sm text-gray-500 relative">
-      <div className='footer-line-top footer-line w-[91%] bg-[white] h-[1px] absolute top-0 left-1/2 -translate-x-1/2'></div>
+      <div className='footer-line-top footer-line w-[95%] bg-[#FFFFFF33] h-[1px] absolute top-0 left-1/2 -translate-x-1/2'></div>
       <div className='footer-content w-full h-[50%] flex gap-[85px] mt-[35px]'>
         <div className='question-section w-[40%]  '>
           <h2>
@@ -250,13 +250,13 @@ export const Footer = () => {
       </div>
       
       <div className='copyright-section footer-line w-[95%] pb-[20px] bg-[black] absolute top-0 left-1/2 -translate-x-1/2 mt-[60px] h-[100px] w-full flex flex-col justify-center items-center'>
-          <div className='copyright-up-line w-[91%] bg-[white] h-[1px] '></div>
+          <div className='copyright-up-line w-[95%] bg-[#FFFFFF33] h-[1px] '></div>
             <div className=" p-[5px] text-[white] text-center">
               <div className="overflow-hidden inline-block">
                 <span className="copyright-text block">2026 created by Systemctl</span>
               </div>
             </div>
-          <div className='copyright-down-line w-[91%] bg-[white] h-[1px]'></div>
+          <div className='copyright-down-line w-[95%] bg-[#FFFFFF33] h-[1px]'></div>
       </div>
       
     </footer>
