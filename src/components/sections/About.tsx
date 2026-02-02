@@ -138,7 +138,11 @@ export const About = () => {
     }, { scope: aboutRef });
 
     return (
-        <section ref={aboutRef} id="about" className="section-about w-full flex justify-between bg-[black]">
+        <section ref={aboutRef} id="about" className="section-about relative w-full flex justify-between bg-[black]">
+        <div className='left-side-line w-[1px] h-[100%] bg-[#FFFFFF33] absolute left-[31px] z-[100] top-[0px]'></div>
+        <div className='right-side-line w-[1px] h-[100%] bg-[#FFFFFF33] absolute right-[31px] z-[100] top-[0px]'></div>
+
+
             <div className="w-[100%] flex border border-[#FFFFFFBD] about-border-main">
                 <div className="left-side-about w-[40%] border border-r-[#FFFFFFBD] flex justify-center flex-col items-start pr-[50px] pl-[40px] about-border-left">
                     <h2 className="text-[96px] font-bold text-[#FFFFFFF0] leading-none">

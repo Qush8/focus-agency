@@ -39,6 +39,7 @@ export default function RootLayout({
       >
         <SmoothScroll>
           <Navbar />
+         
           {children}
           <Footer />
         </SmoothScroll>

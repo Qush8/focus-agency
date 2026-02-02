@@ -135,43 +135,47 @@ export const Hero = () => {
   }, { scope: heroRef });
 
   return (
-    <section ref={heroRef} className="section-hero w-full flex flex-col items-start bg-[black] h-[100vh] ">
-      <div className="text-[white] text-[48px] line-height-[100px] font-light tracking-normal">
-        <div className="overflow-hidden block h-fit py-1">
-          <span className="hero-text-inner block pb-1">Increase your sales</span>
-        </div>
-      </div>
-      <h1 className="text-[white]">
-        <div>
-          <div className="overflow-hidden block h-fit py-1">
-            <span className="hero-heading-inner block pb-1">Increase your sales and</span>
+    <section ref={heroRef} className="section-hero relative w-full flex flex-col items-start bg-[black] h-[100vh] ">
+       <div className='left-side-line w-[1px] h-[100%] bg-[#FFFFFF33] absolute left-[31px] z-[100] top-[0px]'></div>
+
+          <div className="text-[white] text-[48px] line-height-[100px] font-light tracking-normal">
+            <div className="overflow-hidden block h-fit py-1">
+              <span className="hero-text-inner block pb-1">Increase your sales</span>
+            </div>
           </div>
-        </div>
-        <div>
-          <div className="overflow-hidden block h-fit py-1">
-            <span className="hero-heading-inner block pb-1">brand awareness with</span>
+          <h1 className="text-[white]">
+            <div>
+              <div className="overflow-hidden block h-fit py-1">
+                <span className="hero-heading-inner block pb-1">Increase your sales and</span>
+              </div>
+            </div>
+            <div>
+              <div className="overflow-hidden block h-fit py-1">
+                <span className="hero-heading-inner block pb-1">brand awareness with</span>
+              </div>
+            </div>
+            <div>
+              <div className="overflow-hidden block h-fit py-1">
+                <span className="hero-heading-inner block pb-1">the <span className="font-[700]">FocusAgency</span> team</span>
+              </div>
+            </div>
+          </h1>
+          <div className="hero-button-wrapper hero-button mt-[44px]">
+            <Button css={'gradient-border w-[261px] h-[49px] bg-[#000000] '} text={'SCHEDULE A MEETING'} onClick={() => {console.log('clicked')}} />
           </div>
-        </div>
-        <div>
-          <div className="overflow-hidden block h-fit py-1">
-            <span className="hero-heading-inner block pb-1">the <span className="font-[700]">FocusAgency</span> team</span>
+          <div className='icons flex justify-between w-[100%] mt-[198px] '>
+            <div className='left-side-icons w-[40%] flex justify-start gap-[24px]'>
+                <SocialIcon icon="/icons/tweet.svg" className="left-icon" />
+                <SocialIcon icon="/icons/insta.svg" className="left-icon" />
+                <SocialIcon icon="/icons/face.svg" className="left-icon" />
+                <SocialIcon icon="/icons/gmail.svg" className="left-icon" />
+            </div>
+            <div className='right-side-icons w-[40%] flex justify-end'>
+              <SocialIcon icon="/icons/pause.svg" size={15} className="right-icon" />
+            </div>
           </div>
-        </div>
-      </h1>
-      <div className="hero-button-wrapper hero-button mt-[44px]">
-        <Button css={'gradient-border w-[261px] h-[49px] bg-[#000000] '} text={'SCHEDULE A MEETING'} onClick={() => {console.log('clicked')}} />
-      </div>
-      <div className='icons flex justify-between w-[100%] mt-[198px] '>
-        <div className='left-side-icons w-[40%] flex justify-start gap-[24px]'>
-            <SocialIcon icon="/icons/tweet.svg" className="left-icon" />
-            <SocialIcon icon="/icons/insta.svg" className="left-icon" />
-            <SocialIcon icon="/icons/face.svg" className="left-icon" />
-            <SocialIcon icon="/icons/gmail.svg" className="left-icon" />
-        </div>
-        <div className='right-side-icons w-[40%] flex justify-end'>
-          <SocialIcon icon="/icons/pause.svg" size={15} className="right-icon" />
-        </div>
-      </div>
+      <div className='right-side-line w-[1px] h-[100%] bg-[#FFFFFF33] absolute right-[31px] z-[100] top-[0px]'></div>
+
     </section>
   );
 };

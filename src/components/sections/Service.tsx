@@ -52,9 +52,13 @@ const ServiceItem: React.FC<ServiceItemProps> = ({ title, subtitle, description,
                                 {description}
                             </p>
                         </div>
+                
                     </motion.div>
                 )}
+
+            
             </AnimatePresence>
+            {/* სდსდს */}
         </div>
     );
 };
@@ -263,34 +267,38 @@ export const Service = () => {
 
     return (
         <section ref={serviceRef} id="services" className="section-service w-full flex h-auto flex justify-between">
-            <div className="w-[100%]">
-                <div className='for-headline w-[100%] flex justify-start mb-[50px]'>
-                    <h2 className="text-[96px] font-bold text-[#000000BD]">
-                        <div className="overflow-hidden block h-fit py-1">
-                            <span className="service-h2-line-1 block pb-1">We offer full digital</span>
-                        </div>
-                        <div className="overflow-hidden block h-fit py-1">
-                            <span className="service-h2-line-2 block pb-1">services</span>
-                        </div>
-                    </h2>
-                </div>
-                <div className='services-container flex justify-between w-[100%] items-start'>
-                    <div className='left-side-offers w-[50%] flex flex-col gap-[200px]'>
-                        {leftSideServices.map((service, index) => (
-                            <div key={index} className={index === 0 ? 'mt-[100px]' : ''}>
-                                <ServiceItem {...service} side="left" index={index} />
+            <div className='left-side-line w-[1px] h-[100%] bg-[#8b8a8a52] absolute left-[31px] z-[100] top-[0px]'></div>
+                <div className="w-[100%]">
+                    <div className='for-headline w-[100%] flex justify-start mb-[50px]'>
+                        <h2 className="text-[96px] font-bold text-[#000000BD]">
+                            <div className="overflow-hidden block h-fit py-1">
+                                <span className="service-h2-line-1 block pb-1">We offer full digital</span>
                             </div>
-                        ))}
-                    </div>
-                    <div className='right-side-offers w-[50%] flex flex-col gap-[200px] items-end'>
-                        {rightSideServices.map((service, index) => (
-                            <div key={index}>
-                                <ServiceItem {...service} side="right" index={index} />
+                            <div className="overflow-hidden block h-fit py-1">
+                                <span className="service-h2-line-2 block pb-1">services</span>
                             </div>
-                        ))}
+                        </h2>
+                    </div>
+                    <div className='services-container flex justify-between w-[100%] items-start'>
+                        <div className='left-side-offers w-[50%] flex flex-col gap-[200px]'>
+                            {leftSideServices.map((service, index) => (
+                                <div key={index} className={index === 0 ? 'mt-[100px]' : ''}>
+                                    <ServiceItem {...service} side="left" index={index} />
+                                </div>
+                            ))}
+                        </div>
+                        
+                        <div className='right-side-offers w-[50%] flex flex-col gap-[200px] items-end'>
+                            {rightSideServices.map((service, index) => (
+                                <div key={index}>
+                                    <ServiceItem {...service} side="right" index={index} />
+                                </div>
+                            ))}
+                        </div>
+                        
                     </div>
                 </div>
-            </div>
+            <div className='right-side-line w-[1px] h-[100%] bg-[#8b8a8a52] absolute right-[31px] z-[100] top-[0px]'></div>
         </section>
     )
 }

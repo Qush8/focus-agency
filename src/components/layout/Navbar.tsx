@@ -239,28 +239,38 @@ export const Navbar = () => {
         ref={navRef}
         className="flex h-[125px] w-full max-w-[1920px] items-center justify-between px-4 md:px-8 max-[1024px]:px-5"
       >
-        <div className="logo flex h-full shrink-0 items-center text-xl font-bold text-[white]">
-          <svg
-            width="52"
-            height="97"
-            viewBox="0 0 52 97"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-full w-auto"
-          >
-            <path
-              className="logo-f"
-              d="M34.632 54.472H15.048V76H5.832V23.368H38.376V31.864H15.048V46.192H34.632V54.472Z"
-              fill="white"
-            />
-            <circle
-              className="logo-ball"
-              cx="41.5"
-              cy="76.5"
-              r="10.5"
-              fill="#E85B5B"
-            />
-          </svg>
+        <div className="relative w-[15%] flex justify-center h-full shrink-0 items-center">
+          <div
+            className="logo-left-line absolute left-[0] top-0 z-[100] h-[124px] w-[1px] "
+            aria-hidden
+          />
+          <div className="logo flex shrink-0 items-center text-xl font-bold text-[white]">
+            <svg
+              width="70px"
+              height="100px"
+              viewBox="0 0 52 97"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-full w-auto"
+            >
+              <path
+                className="logo-f"
+                d="M34.632 54.472H15.048V76H5.832V23.368H38.376V31.864H15.048V46.192H34.632V54.472Z"
+                fill="white"
+              />
+              <circle
+                className="logo-ball"
+                cx="37.5"
+                cy="76.5"
+                r="10"
+                fill="#E85B5B"
+              />
+            </svg>
+          </div>
+          <div
+            className="logo-right-line absolute right-[0] top-0 z-[100] h-[124px] w-[1px] bg-[#FFFFFF33]"
+            aria-hidden
+          />
         </div>
 
         {/* Desktop nav links: only > 1024px */}
@@ -304,27 +314,36 @@ export const Navbar = () => {
         </div>
 
         {/* Languages + Hamburger row */}
-        <div className="flex gap-[20px] shrink-0 items-center gap-6">
-          {/* Languages: only > 1024px */}
-          <div className="language-links h-full flex items-center">
-            <a
-              href="#"
-              onClick={() => setActiveLanguage('ka')}
-              className={` ${activeLanguage === 'ka' ? '!text-[white]' : '!text-[#FFFFFF8F]'} text-12 `}
-            >
-              <div className="inline-block h-fit overflow-hidden py-1">
-                <span className="nav-item-inner block pb-1">ქარ</span>
-              </div>
-            </a>
-            <a
-              href="#"
-              onClick={() => setActiveLanguage('en')}
-              className={` ${activeLanguage === 'en' ? '!text-[white]' : '!text-[#FFFFFF8F]'} text-12 `}
-            >
-              <div className="inline-block h-fit overflow-hidden py-1">
-                <span className="nav-item-inner block pb-1">ENG</span>
-              </div>
-            </a>
+        <div className="relative w-[15%] flex justify-center gap-[20px] shrink-0 items-center gap-6">
+          <div className=" flex h-full shrink-0 items-center">
+            <div
+              className="languages-left-line absolute left-[0px] top-0 z-[100] h-[124px] w-[1px] bg-[#FFFFFF33]"
+              aria-hidden
+            />
+            <div className="language-links h-full flex items-center">
+              <a
+                href="#"
+                onClick={() => setActiveLanguage('ka')}
+                className={` ${activeLanguage === 'ka' ? '!text-[white]' : '!text-[#FFFFFF8F]'} text-12 `}
+              >
+                <div className="inline-block h-fit overflow-hidden py-1">
+                  <span className="nav-item-inner block pb-1">ქარ</span>
+                </div>
+              </a>
+              <a
+                href="#"
+                onClick={() => setActiveLanguage('en')}
+                className={` ${activeLanguage === 'en' ? '!text-[white]' : '!text-[#FFFFFF8F]'} text-12 `}
+              >
+                <div className="inline-block h-fit overflow-hidden py-1">
+                  <span className="nav-item-inner block pb-1">ENG</span>
+                </div>
+              </a>
+            </div>
+            <div
+              className="languages-right-line absolute right-[0px] top-0 z-[100] h-[124px] w-[1px] bg-[]"
+              aria-hidden
+            />
           </div>
 
           {/* Hamburger: ≤ 1024px */}
@@ -366,6 +385,9 @@ export const Navbar = () => {
           </button>
         </div>
       </nav>
+
+     
+      <div className='navbar-bottom-line w-[100%] h-[1px] bg-[#FFFFFF33] absolute bottom-[0px] left-0'></div>
 
       {/* Mobile menu: overlay + side panel, always in DOM on mobile for exit animation */}
       <div

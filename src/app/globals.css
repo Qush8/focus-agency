@@ -106,11 +106,18 @@ nav {
   max-width: 1920px;
   margin-left: auto;
   margin-right: auto;
-  padding-right: 110px;
-  padding-left: 110px;
+  padding-right: 31px;
+  padding-left: 31px!important;
   background-color: rgba(255, 255, 255, 0);
   
 }
+
+/* @media screen and (max-width: 1920px) {
+  nav {
+    padding-right: 70px;
+    padding-left: 0px;
+  }
+} */
 
 nav > div:first-child {
   flex: 0 0 auto;
@@ -119,7 +126,7 @@ nav > div:first-child {
 nav > div:nth-child(2) {
   flex: 1;
   justify-content: end;
-  padding-right: 250px;
+  padding-right: 100px;
 }
 
 nav > div:nth-child(2) a {
@@ -132,7 +139,7 @@ nav > div:nth-child(2) a:last-child {
 
 nav > div:last-child {
   flex: 0 0 auto;
-  justify-content: flex-end;
+  /* justify-content: flex-end; */
 }
 
 nav > div:last-child a:first-child {
@@ -300,8 +307,8 @@ nav .language-links a:hover::after {
 
   height: auto;
   padding-top: 80px;
-  padding-left: 110px;
-  padding-right: 110px;
+  padding-left: 90px;
+  padding-right: 90px;
   padding-bottom: 80px;
 }
 
