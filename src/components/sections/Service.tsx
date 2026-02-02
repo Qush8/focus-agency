@@ -16,49 +16,68 @@ interface ServiceItemProps {
     index: number;
 }
 
+const LINE_CLOSED_BOTTOM = -60;
+const LINE_OPEN_BOTTOM = -160;
+const LINE_ANIM_DURATION = 0.4;
+const TEXT_DELAY_AFTER_LINE = 0;
+
 const ServiceItem: React.FC<ServiceItemProps> = ({ title, subtitle, description, side, index }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [showDescription, setShowDescription] = useState(false);
+
+    React.useEffect(() => {
+        if (isOpen) {
+            const t = setTimeout(() => setShowDescription(true), (LINE_ANIM_DURATION + TEXT_DELAY_AFTER_LINE) * 0.01);
+            return () => clearTimeout(t);
+        }
+        setShowDescription(false);
+    }, [isOpen]);
 
     return (
         <div className="relative">
             <h3 className={`text-[76px] text-[#000000D1] service-title-${side}-${index}`}>
-                <div>
+                <div className={`right-side-title`}>
                     {title}
                 </div>
             </h3>
-            <div className={`flex gap-[10px] cursor-pointer group service-subtitle-${side}-${index}`} onClick={() => setIsOpen(!isOpen)}>
+            <div className={`flex subtitle gap-[10px] cursor-pointer group service-subtitle-${side}-${index}`} onClick={() => setIsOpen(!isOpen)}>
                 <p className={`text-[32px] text-[#000000AD] transition-colors duration-300 group-hover:text-[#000000] service-subtitle-text-${side}-${index}`}>
                     {subtitle}
                 </p>
                 <motion.img 
                     src="/icons/arrow.svg" 
                     alt="" 
-                    className={`w-[18px] h-[24px] mt-[13px] service-arrow-${side}-${index}`}
+                    className={`w-[18px] h-[24px] mt-[15px] service-arrow-${side}-${index}`}
                     animate={{ rotate: isOpen ? 45 : 0 }}
                     transition={{ duration: 0.3 }}
                 />
             </div>
+
+        
+            <motion.div
+                className="service-description-line absolute left-0 w-full h-[1px] bg-[#8b8a8a52]"
+                initial={false}
+                animate={{ bottom: isOpen ? LINE_OPEN_BOTTOM : LINE_CLOSED_BOTTOM }}
+                transition={{ duration: LINE_ANIM_DURATION, ease: 'easeInOut' }}
+                aria-hidden
+            />
             <AnimatePresence>
-                {isOpen && (
+                {isOpen && showDescription && (
                     <motion.div
                         initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
+                        animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.5, ease: "easeInOut" }}
+                        transition={{ duration: 0.4, ease: 'easeInOut' }}
                         className="overflow-hidden absolute top-full left-0 w-full z-10 bg-white"
                     >
-                        <div className="pt-4 pb-2">
-                             <p className='text-[24px] text-[#00000090] font-light leading-relaxed max-w-full md:max-w-[80%]'>
+                        <div className="service-description-content pt-4 pb-2">
+                            <p className="text-[24px] text-[#00000090] font-light leading-relaxed max-w-full md:max-w-[80%]">
                                 {description}
                             </p>
                         </div>
-                
                     </motion.div>
                 )}
-
-            
             </AnimatePresence>
-            {/* სდსდს */}
         </div>
     );
 };
@@ -268,8 +287,8 @@ export const Service = () => {
     return (
         <section ref={serviceRef} id="services" className="section-service w-full flex h-auto flex justify-between">
             <div className='left-side-line w-[1px] h-[100%] bg-[#8b8a8a52] absolute left-[31px] z-[100] top-[0px]'></div>
-                <div className="w-[100%]">
-                    <div className='for-headline w-[100%] flex justify-start mb-[50px]'>
+                <div className="w-[100%] service-content relative">
+                    <div className='for-headline w-[100%] relative  mb-[0px]'>
                         <h2 className="text-[96px] font-bold text-[#000000BD]">
                             <div className="overflow-hidden block h-fit py-1">
                                 <span className="service-h2-line-1 block pb-1">We offer full digital</span>
@@ -278,17 +297,20 @@ export const Service = () => {
                                 <span className="service-h2-line-2 block pb-1">services</span>
                             </div>
                         </h2>
+                        <div className='service-headline-line w-[50%] h-[1px] bg-[#8b8a8a52] absolute left-[0px] bottom-[-50px]'></div>
                     </div>
                     <div className='services-container flex justify-between w-[100%] items-start'>
-                        <div className='left-side-offers w-[50%] flex flex-col gap-[200px]'>
+                        <div className="left-side-offers relative w-[50%] flex flex-col gap-[200px]">
+                            <div className="absolute left-[0] top-[27%] bottom-0 w-[40px] h-[1px] bg-[#8b8a8a52] z-0" aria-hidden />
                             {leftSideServices.map((service, index) => (
-                                <div key={index} className={index === 0 ? 'mt-[100px]' : ''}>
+                                <div key={index} className={index === 0 ? 'mt-[100px]' : '' }>
                                     <ServiceItem {...service} side="left" index={index} />
                                 </div>
                             ))}
                         </div>
                         
-                        <div className='right-side-offers w-[50%] flex flex-col gap-[200px] items-end'>
+                        <div className="right-side-offers relative w-[50%] flex flex-col gap-[200px] items-end">
+                            <div className="absolute right-side-mini-line right-[0] top-[12%] bottom-0 w-[40px] h-[1px] bg-[#8b8a8a52] z-0" aria-hidden />
                             {rightSideServices.map((service, index) => (
                                 <div key={index}>
                                     <ServiceItem {...service} side="right" index={index} />

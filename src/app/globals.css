@@ -302,7 +302,8 @@ nav .language-links a:hover::after {
   position: relative;
 }
 
-.section-service,
+
+
 .section-about {
 
   height: auto;
@@ -310,6 +311,59 @@ nav .language-links a:hover::after {
   padding-left: 90px;
   padding-right: 90px;
   padding-bottom: 80px;
+}
+
+.section-service {
+
+  height: auto;
+  padding-top: 80px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 80px;
+}
+
+.section-service .service-content{
+  /* padding-left: 90px;
+  padding-right: 90px; */
+}
+.section-service .for-headline{
+  
+}
+
+.section-service .for-headline h2 {
+  padding-left: 90px;
+  padding-right: 90px;
+}
+
+.section-service .services-container .left-side-offers h3 {
+  padding-left: 90px;
+  padding-right: 90px;
+}
+
+.section-service .services-container .left-side-offers .subtitle {
+  padding-left: 90px;
+  padding-right: 90px;
+}
+
+
+.section-service .services-container .right-side-offers h3 {
+  padding-left: 90px;
+  padding-right: 90px;
+}
+
+
+.right-side-offers .right-side-mini-line {
+  width: 40px!important;
+}
+
+.section-service .services-container .right-side-offers .subtitle {
+  padding-left: 90px;
+  padding-right: 90px;
+}
+
+.section-service .service-description-content {
+  padding-left: 90px;
+  padding-right: 90px;
 }
 
 .section-about {
@@ -332,6 +386,11 @@ nav .language-links a:hover::after {
 .section-service .right-side-offers > div > div > div:last-child > div > p {
   max-width: 80%;
 }
+
+/* ამან გაზარდა */
+/* .section-service .right-side-offers > div {
+  width: 100%;
+} */
 
 .section-about > h2 {
   font-size: 96px;
@@ -388,7 +447,7 @@ nav .language-links a:hover::after {
   /* section hero <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
   .section-hero {
       padding-left: 70px;
-      padding-top: 200px;
+      padding-top: 150px;
       padding-right: 70px;
   }
  
@@ -398,7 +457,7 @@ nav .language-links a:hover::after {
   }
 
   .section-hero .icons {
-    margin-top: 90px;
+    margin-top: 55px;
   }
 
   .section-hero > h2 {
@@ -407,25 +466,54 @@ nav .language-links a:hover::after {
   }
 
   /* Service sections <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  */
-  .section-service {
+  .section-service .service-content {
+    /* padding-left: 70px;
+    padding-right: 70px; */
+  }
+  .section-service .for-headline h2 {
     padding-left: 70px;
     padding-right: 70px;
+  }
+  .section-service .services-container .left-side-offers h3 {
+    padding-left: 70px;
+    padding-right: 70px;
+  }
+  .section-service .services-container .left-side-offers .subtitle {
+    padding-left: 70px;
+    padding-right: 70px;
+  }
+  .section-service .services-container .right-side-offers h3 {
+    padding-left: 70px;
+    padding-right: 70px;
+  }
+  .section-service .services-container .right-side-offers .subtitle {
+    padding-left: 70px;
+    padding-right: 70px;
+  }
+
+  
+  .section-service .service-description-content {
+    padding-left: 70px;
+    padding-right: 70px;
+  }
+  .section-service .right-side-offers > div {
+    width: 100%;
   }
   .section-service h2 {
     font-size: 85px;
   }
-  .section-service .left-side-offers h3 {
-    font-size: 60px!important;
+  .section-service h3 {
+    font-size: 55px!important;
   }
-  .section-service .left-side-offers p {
+  .section-service  p {
     font-size: 25px!important;
   }
-  .section-service .right-side-offers h3 {
-    font-size: 60px!important;
+  /* .section-service .right-side-offers h3 {
+    font-size: 55px!important;
   }
   .section-service .right-side-offers p {
     font-size: 25px!important;
-  }
+  } */
   .services h3 {
     font-size: 60px;
     line-height: 70px;
@@ -435,6 +523,10 @@ nav .language-links a:hover::after {
   .section-service .right-side-offers > div > div > div:last-child > div > p {
     max-width: 80%!important;
   }
+  .section-service .service-description-content p{
+    font-size: 18px!important;
+  }
+  /*  */
 
   /* about section <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  */
   .section-about {
@@ -458,6 +550,19 @@ nav .language-links a:hover::after {
     font-size: 20px!important;
   }
 
+  /* .right-side-offers .right-side-title {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .right-side-offers .subtitle {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .right-side-offers .service-description-content {
+    display: flex;
+    justify-content: flex-end;
+  } */
 
   /* footer section <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  */
   .footer {
@@ -517,6 +622,27 @@ nav .language-links a:hover::after {
   }
 }
 
+@media screen and (max-width: 1440px) and (max-height: 900px) {
+  .section-hero {
+    padding-left: 70px;
+    padding-top: 180px;
+    padding-right: 70px;
+  }
+  .section-hero .icons {
+    margin-top: 80px;
+  }
+
+}
+@media screen and (max-width: 1280px) and (max-height: 800px) {
+  .section-hero {
+    padding-left: 70px;
+    padding-top: 150px;
+    padding-right: 70px;
+  }
+  .section-hero .icons {
+    margin-top: 50px;
+  }
+}
 
 
 /* TABLET version ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ******  TABLET VERSION */
@@ -558,8 +684,35 @@ nav .language-links a:hover::after {
 
   /* Service sections <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
   .section-service {
+    /* padding-left: 50px;
+    padding-right: 50px; */
+  }
+  .section-service .for-headline h2 {
     padding-left: 50px;
     padding-right: 50px;
+  }
+  .section-service .services-container .left-side-offers h3 {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  .section-service .services-container .left-side-offers .subtitle {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  .section-service .services-container .right-side-offers h3 {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  .section-service .services-container .right-side-offers .subtitle {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  .section-service .service-description-content {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  .section-service .right-side-offers > div {
+    width: 100%;
   }
 
   .section-service h2 {
@@ -591,6 +744,9 @@ nav .language-links a:hover::after {
   .section-service .left-side-offers > div > div > div:last-child > div > p,
   .section-service .right-side-offers > div > div > div:last-child > div > p {
     max-width: 80%!important;
+  }
+  .section-service .service-description-content p{
+    font-size: 14px!important;
   }
 
   /* about section <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
@@ -769,7 +925,32 @@ nav .language-links a:hover::after {
     justify-content: center!important;
     margin-bottom: 0px!important;
   }
-
+  /* mobile new version */
+  .section-service .for-headline h2 {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .section-service .services-container .left-side-offers h3 {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .section-service .services-container .left-side-offers .subtitle {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .section-service .services-container .right-side-offers h3 {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .section-service .services-container .right-side-offers .subtitle {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .section-service .service-description-content {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+/* mobile new version lines div */
   .section-service h2 {
     font-size: 32px;
     line-height: 40px;
