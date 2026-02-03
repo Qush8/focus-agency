@@ -426,6 +426,22 @@ nav .language-links a:hover::after {
   opacity: 0;
 }
 
+/* About section lines: initial state until GSAP scroll (avoids flash on first load) */
+.section-about .left-side-line,
+.section-about .right-side-line {
+  clip-path: inset(0 0 100% 0);
+}
+.section-about .top-about-line,
+.section-about .bottom-about-line {
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.section-about .about-right-line-0,
+.section-about .about-right-line-1 {
+  transform: scaleX(0);
+  transform-origin: right;
+}
+
 .section-about {
   /* padding-bottom: 55px!important; */
   padding-bottom: 1px!important;
@@ -1152,6 +1168,10 @@ nav .language-links a:hover::after {
   .section-about .about-container{
     padding-left: 15px!important;
     padding-right: 15px!important;
+  }
+
+  .section-about .about-border-main {
+    flex-direction: column !important;
   }
 
   .section-about > div {

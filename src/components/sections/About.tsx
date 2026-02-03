@@ -83,6 +83,12 @@ export const About = () => {
         gsap.set('.about-arrow-0, .about-arrow-1, .about-arrow-2', { scale: 0 });
         gsap.set('.about-number-0, .about-number-1, .about-number-2', { y: "100%" });
 
+        // Lines initial state (clipPath for vertical, scaleX for horizontal)
+        gsap.set('.section-about .left-side-line, .section-about .right-side-line', { clipPath: 'inset(0 0 100% 0)' });
+        gsap.set('.top-about-line', { scaleX: 0, transformOrigin: 'left' });
+        gsap.set('.bottom-about-line', { scaleX: 0, transformOrigin: 'left' });
+        gsap.set('.about-right-line-0, .about-right-line-1', { scaleX: 0, transformOrigin: 'right' });
+
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: aboutRef.current,
@@ -94,8 +100,18 @@ export const About = () => {
             defaults: { ease: "none" }
         });
 
+        // Vertical lines descend (clipPath)
+        tl.fromTo('.section-about .left-side-line, .section-about .right-side-line',
+            { clipPath: 'inset(0 0 100% 0)' },
+            { clipPath: 'inset(0 0 0 0)', duration: 0.6 },
+            0
+        );
+
         // Borders
         tl.to('.about-border-main, .about-border-left, .about-border-item-0, .about-border-item-1, .about-border-item-2', { opacity: 1 }, 0);
+
+        // Top horizontal line (scaleX from left)
+        tl.fromTo('.top-about-line', { scaleX: 0, transformOrigin: 'left' }, { scaleX: 1, duration: 0.4 }, 0.2);
 
         // Left side h2 and button - appear faster
         tl.to('.about-h2-text', { y: 0 }, 0.4);
@@ -109,17 +125,44 @@ export const About = () => {
         tl.to('.about-number-0', { y: 0 }, 0.3);
         tl.to('.about-arrow-0', { scale: 1 }, 0.15);
 
+        // Right horizontal line 0 (after item 0 arrow)
+        tl.fromTo('.about-right-line-0', { scaleX: 0, transformOrigin: 'right' }, { scaleX: 1, duration: 0.35 }, 0.35);
+
         // 1s delay, then item[1] (starts at 1.15 = 0.15 + 1s)
         tl.to('.about-title-1', { x: 0 }, 0.5);
         tl.to('.about-subtitle-1', { x: 0 }, 0.6);
         tl.to('.about-number-1', { y: 0 }, 0.7);
         tl.to('.about-arrow-1', { scale: 1 }, 0.8);
 
+        // Right horizontal line 1 (after item 1 arrow)
+        tl.fromTo('.about-right-line-1', { scaleX: 0, transformOrigin: 'right' }, { scaleX: 1, duration: 0.35 }, 0.85);
+
         // 1s delay, then item[2] (starts at 2.15 = 1.15 + 1s)
         tl.to('.about-title-2', { x: 0 }, 0.7);
         tl.to('.about-subtitle-2', { x: 0 }, 0.8);
         tl.to('.about-number-2', { y: 0 }, 0.9);
         tl.to('.about-arrow-2', { scale: 1 }, 0.9);
+
+        // Bottom horizontal line last (starts later, after all content)
+        tl.fromTo('.bottom-about-line', { scaleX: 0, transformOrigin: 'left' }, { scaleX: 1, duration: 0.5 }, 1.05);
+
+        // Scroll-out timeline (reverse line animations when section exits viewport)
+        const scrollOutTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: aboutRef.current,
+                start: "bottom top",
+                end: "+=800",
+                scrub: true,
+                invalidateOnRefresh: true
+            },
+            defaults: { ease: "none" }
+        });
+
+        scrollOutTl.to('.bottom-about-line', { scaleX: 0, duration: 0.1 }, 0);
+        scrollOutTl.to('.about-right-line-1', { scaleX: 0, duration: 0.08 }, 0.05);
+        scrollOutTl.to('.about-right-line-0', { scaleX: 0, duration: 0.08 }, 0.1);
+        scrollOutTl.to('.top-about-line', { scaleX: 0, duration: 0.1 }, 0.15);
+        scrollOutTl.to('.section-about .left-side-line, .section-about .right-side-line', { clipPath: 'inset(0 0 100% 0)', duration: 0.2 }, 0.2);
 
     }, { scope: aboutRef });
 
@@ -129,7 +172,7 @@ export const About = () => {
         <div className='right-side-line w-[1px] h-[100%] bg-[#FFFFFF33] absolute right-[31px] z-[100] top-[0px]'></div>
        
             <div className={`about-container w-[100%] relative`}>
-            <div className='top-about-line w-[100%] absolute top-[0] left-[0] right-[0] h-[1px] bg-[#FFFFFF33]'></div>
+            <div className="top-about-line w-[100%] absolute top-[0] left-[0] right-[0] h-[1px] bg-[#FFFFFF33] overflow-hidden" aria-hidden></div>
            
                 <div className="w-[100%] flex  about-border-main">
                     <div className="left-side-about w-[40%] border border-r-[#FFFFFF33] flex justify-center flex-col items-start pr-[50px] pl-[40px] about-border-left">
@@ -148,11 +191,11 @@ export const About = () => {
                         ))}
                     </div>
                 </div>
-            <div className='bottom-about-line w-[100%] absolute bottom-[0] left-[0] right-[0] h-[1px] bg-[#FFFFFF33]'></div>
+            <div className="bottom-about-line w-[100%] absolute bottom-[0] left-[0] right-[0] h-[1px] bg-[#FFFFFF33] overflow-hidden" aria-hidden></div>
             </div>
 
-            <div className={`about-container-right-line w-[59.3%] h-[1px] bg-[#FFFFFF33] top-[39%] absolute right-[0]`}></div>
-            <div className={`about-container-right-line w-[59.3%] h-[1px] bg-[#FFFFFF33] top-[70%] absolute right-[0]`}></div>
+            <div className="about-right-line-0 w-[59.3%] h-[1px] bg-[#FFFFFF33] top-[39%] absolute right-[0] overflow-hidden" aria-hidden></div>
+            <div className="about-right-line-1 w-[59.3%] h-[1px] bg-[#FFFFFF33] top-[70%] absolute right-[0] overflow-hidden" aria-hidden></div>
 
         </section>
     )
