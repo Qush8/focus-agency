@@ -162,7 +162,7 @@ export const Footer = () => {
   }, { scope: footerRef });
 
   return (
-    <footer ref={footerRef} className="footer w-full  text-sm text-gray-500 relative">
+    <footer ref={footerRef} id="footer" className="footer w-full  text-sm text-gray-500 relative">
       <div className='footer-line-top footer-line w-[95%] bg-[#FFFFFF33] h-[1px] absolute top-0 left-1/2 -translate-x-1/2'></div>
       <div className='footer-content w-full h-[50%] flex gap-[85px] mt-[35px]'>
         <div className='question-section w-[40%]  '>

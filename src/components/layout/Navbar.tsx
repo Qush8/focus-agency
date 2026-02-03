@@ -13,6 +13,7 @@ export const Navbar = () => {
   const [isServiceSection, setIsServiceSection] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileViewport, setIsMobileViewport] = useState(false);
+  const [activeLink, setActiveLink] = useState('');
   const navRef = useRef<HTMLElement>(null);
   const isFirstBurgerRun = useRef(true);
   const mobileMenuOverlayRef = useRef<HTMLDivElement>(null);
@@ -194,6 +195,11 @@ export const Navbar = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const handleLinkClick = (linkName: string) => {
+    setActiveLink(linkName);
+    handleCloseMobileMenu();
+  };
+
   return (
     <div className="fixed top-0 left-0 right-0 z-50 flex w-full justify-center overflow-x-hidden">
       <nav
@@ -225,6 +231,7 @@ export const Navbar = () => {
                 cy="76.5"
                 r="10"
                 fill="#E85B5B"
+                fillOpacity="1"
               />
             </svg>
           </div>
@@ -238,8 +245,8 @@ export const Navbar = () => {
         <div className="nav-links hidden min-[1025px]:flex h-full items-center gap-6">
           <a
             href="#about"
-            className="text-12 hover:text-white transition-colors text-[white]"
-            onClick={handleCloseMobileMenu}
+            className={`text-12 hover:text-white transition-colors text-[white] ${activeLink === 'weAre' ? 'active' : ''}`}
+            onClick={() => handleLinkClick('weAre')}
           >
             <div className="inline-block h-fit overflow-hidden py-1">
               <span className="nav-item-inner block pb-1">{t.navbar.weAre}</span>
@@ -247,26 +254,26 @@ export const Navbar = () => {
           </a>
           <a
             href="#services"
-            className="text-12 hover:text-white transition-colors text-[white]"
-            onClick={handleCloseMobileMenu}
+            className={`text-12 hover:text-white transition-colors text-[white] ${activeLink === 'services' ? 'active' : ''}`}
+            onClick={() => handleLinkClick('services')}
           >
             <div className="inline-block h-fit overflow-hidden py-1">
               <span className="nav-item-inner block pb-1">{t.navbar.services}</span>
             </div>
           </a>
           <a
-            href="#blog"
-            className="text-12 hover:text-white transition-colors text-[white]"
-            onClick={handleCloseMobileMenu}
+            href="#hero"
+            className={`text-12 hover:text-white transition-colors text-[white] ${activeLink === 'blog' ? 'active' : ''}`}
+            onClick={() => handleLinkClick('blog')}
           >
             <div className="inline-block h-fit overflow-hidden py-1">
               <span className="nav-item-inner block pb-1">{t.navbar.blog}</span>
             </div>
           </a>
           <a
-            href="#contact"
-            className="text-12 hover:text-white transition-colors text-[white]"
-            onClick={handleCloseMobileMenu}
+            href="#footer"
+            className={`text-12 hover:text-white transition-colors text-[white] ${activeLink === 'contact' ? 'active' : ''}`}
+            onClick={() => handleLinkClick('contact')}
           >
             <div className="inline-block h-fit overflow-hidden py-1">
               <span className="nav-item-inner block pb-1">{t.navbar.contact}</span>
@@ -383,7 +390,7 @@ export const Navbar = () => {
             <a
               href="#about"
               className="mobile-menu-link text-[14px] text-[white] transition-colors hover:text-white"
-              onClick={handleCloseMobileMenu}
+              onClick={() => handleLinkClick('weAre')}
             >
               <div className="inline-block h-fit overflow-hidden py-1">
                 <span className="nav-item-inner block pb-1">{t.navbar.weAre}</span>
@@ -392,25 +399,25 @@ export const Navbar = () => {
             <a
               href="#services"
               className="mobile-menu-link text-[14px] text-[white] transition-colors hover:text-white"
-              onClick={handleCloseMobileMenu}
+              onClick={() => handleLinkClick('services')}
             >
               <div className="inline-block h-fit overflow-hidden py-1">
                 <span className="nav-item-inner block pb-1">{t.navbar.services}</span>
               </div>
             </a>
             <a
-              href="#blog"
+              href="#hero"
               className="mobile-menu-link text-[14px] text-[white] transition-colors hover:text-white"
-              onClick={handleCloseMobileMenu}
+              onClick={() => handleLinkClick('blog')}
             >
               <div className="inline-block h-fit overflow-hidden py-1">
                 <span className="nav-item-inner block pb-1">{t.navbar.blog}</span>
               </div>
             </a>
             <a
-              href="#contact"
+              href="#footer"
               className="mobile-menu-link text-[14px] text-[white] transition-colors hover:text-white"
-              onClick={handleCloseMobileMenu}
+              onClick={() => handleLinkClick('contact')}
             >
               <div className="inline-block h-fit overflow-hidden py-1">
                 <span className="nav-item-inner block pb-1">{t.navbar.contact}</span>
@@ -423,4 +430,3 @@ export const Navbar = () => {
     </div>
   );
 };
-

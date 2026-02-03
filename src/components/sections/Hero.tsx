@@ -78,7 +78,7 @@ export const Hero = () => {
   }, { scope: heroRef });
 
   return (
-    <section ref={heroRef} className="section-hero relative w-full flex flex-col items-start bg-[black] h-[100vh] ">
+    <section ref={heroRef} id="hero" className="section-hero relative w-full flex flex-col items-start bg-[black] h-[100vh] ">
        <div className='left-side-line w-[1px] h-[100%] bg-[#FFFFFF33] absolute left-[31px] z-[100] top-[0px]'></div>
 
           <div className="text-[white] text-[48px] line-height-[100px] font-light tracking-normal">

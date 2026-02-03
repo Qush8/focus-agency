@@ -47,6 +47,32 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'NinoMT';
+  src: url('/fonts/ninoMT/BPGNinoMtavruli.woff2') format('woff2'),
+       url('/fonts/ninoMT/BPGNinoMtavruli.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+body.lang-ka {
+  font-family: 'NinoMT', sans-serif;
+}
+
+@font-face {
+    font-family: 'NinoMT';
+    src: url('/fonts/ninoMT/BPGNinoMtavruli.eot');
+    src: url('/fonts/ninoMT/BPGNinoMtavruli.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/ninoMT/BPGNinoMtavruli.woff2') format('woff2'),
+        url('/fonts/ninoMT/BPGNinoMtavruli.woff') format('woff'),
+        url('/fonts/ninoMT/BPGNinoMtavruli.ttf') format('truetype'),
+        url('/fonts/ninoMT/BPGNinoMtavruli.svg#BPGNinoMtavruli') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 *{
   margin: 0;
   padding: 0;
@@ -70,6 +96,10 @@ body {
   width: 100%;
   overflow-x: hidden;
   
+}
+
+body.lang-ka {
+  font-family: 'NinoMT', sans-serif;
 }
 
 @media screen and (max-width: 1024px) {
@@ -167,13 +197,14 @@ nav .nav-links a::after {
   height: 10px;
   background-color: #F43E46;
   transform: scaleX(0);
-  /* transform-origin: center; */
-  transition: transform 0.3s ease;
+  transform-origin: center;
+  transition: all 0.3s ease-in-out;
   opacity: 0;
   z-index: -1;
 }
 
-nav .nav-links a:hover::after {
+nav .nav-links a:hover::after,
+nav .nav-links a.active::after {
   transform: scaleX(1);
   opacity: 1;
 }
@@ -207,8 +238,8 @@ nav .language-links a::after {
   height: 10px;
   background-color: #F43E46;
   transform: scaleX(0);
-  /* transform-origin: center; */
-  transition: transform 0.3s ease;
+  transform-origin: center;
+  transition: all 0.3s ease-in-out;
   opacity: 0;
   z-index: -1;
 }
@@ -385,7 +416,6 @@ nav .language-links a:hover::after {
   padding-right: 67px!important;
 }
 #services h3 {
-  font-family: 'Satoshi', sans-serif;
   font-weight: 400 !important;
   font-size: 76px;
   line-height: 91px;

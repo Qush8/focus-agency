@@ -29,6 +29,23 @@ export const LanguageProvider = ({
     }
   }, []);
 
+  useEffect(() => {
+    document.documentElement.lang = language;
+    if (language === "ka") {
+      document.body.classList.add("lang-ka");
+      document.body.classList.remove("lang-en");
+    } else {
+      document.body.classList.add("lang-en");
+      document.body.classList.remove("lang-ka");
+    }
+  }, [language]);
+
+  useEffect(() => {
+    document.documentElement.lang = language;
+    document.body.classList.remove("lang-en", "lang-ka");
+    document.body.classList.add(`lang-${language}`);
+  }, [language]);
+
   const handleSetLanguage = (lang: Language) => {
     setLanguage(lang);
     localStorage.setItem("language", lang);
