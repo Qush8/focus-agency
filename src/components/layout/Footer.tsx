@@ -4,11 +4,13 @@ import Form from '../ui/Form';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '@/context/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export const Footer = () => {
   const footerRef = useRef<HTMLElement>(null);
+  const { t } = useLanguage();
   const [value, setValue] = useState({
     name: '',
     email: '',
@@ -21,8 +23,8 @@ export const Footer = () => {
         type: 'text',
         value: value.name,
         onChange: (e: React.ChangeEvent<HTMLInputElement>) => setValue({ ...value, name: e.target.value }),
-        placeholder: 'Name',
-        message: 'PLEASE ENTER YOUR FULL NAME',
+        placeholder: t.footer.form.namePlaceholder,
+        message: t.footer.form.nameError,
         name: 'full_name',
     },
     {
@@ -30,8 +32,8 @@ export const Footer = () => {
         type: 'email',
         value: value.email,
         onChange: (e: React.ChangeEvent<HTMLInputElement>) => setValue({ ...value, email: e.target.value }),
-        placeholder: '@Email',
-        message: 'PLEASE ENTER YOUR EMAIL ADDRESS',
+        placeholder: t.footer.form.emailPlaceholder,
+        message: t.footer.form.emailError,
         name: 'email',
     },
     {
@@ -39,8 +41,8 @@ export const Footer = () => {
         type: 'text',
         value: value.message,
         onChange: (e: React.ChangeEvent<HTMLInputElement>) => setValue({ ...value, message: e.target.value }),
-        placeholder: 'Message',
-        message: 'SHOOT A MESSAGE',
+        placeholder: t.footer.form.messagePlaceholder,
+        message: t.footer.form.messageError,
         name: 'message',
     },
 ]
@@ -166,7 +168,7 @@ export const Footer = () => {
         <div className='question-section w-[40%]  '>
           <h2>
             <div className="overflow-hidden">
-              <span className="footer-h2-text block">Have a question?</span>
+              <span className="footer-h2-text block">{t.footer.question}</span>
             </div>
           </h2>
           <div className='w-[80%] pt-[53px]  '>
@@ -179,7 +181,7 @@ export const Footer = () => {
             <div className='flex flex-col gap-[18px] '>
               <h3 className='text-[18px]'>
                 <div className="overflow-hidden">
-                  <span className="footer-call-us-text block">Call us anytime</span>
+                  <span className="footer-call-us-text block">{t.footer.callUs}</span>
                 </div>
               </h3>
               <div>
@@ -191,17 +193,17 @@ export const Footer = () => {
             <div className='flex flex-col   '>
               <h3 className='text-[18px]'>
                 <div className="overflow-hidden">
-                  <span className="footer-visit-us-text block">You're welcome to visit us</span>
+                  <span className="footer-visit-us-text block">{t.footer.visitUs}</span>
                 </div>
               </h3>
               <div className='pt-[18px] '>
                 <div className="overflow-hidden">
-                  <span className="footer-tbilisi-text block">Tbilisi, Saburtalo</span>
+                  <span className="footer-tbilisi-text block">{t.footer.address.city}</span>
                 </div>
               </div>
               <div>
                 <div className="overflow-hidden">
-                  <span className="footer-address-text block">Alexandre Kazbegi st N24</span>
+                  <span className="footer-address-text block">{t.footer.address.street}</span>
                 </div>
               </div>
             </div>
@@ -210,7 +212,7 @@ export const Footer = () => {
           <div className='connect-container flex flex-col gap-[16px] '>
             <h3 className='text-[18px]'>
               <div className="overflow-hidden">
-                <span className="footer-connect-text block">Connect with us by email</span>
+                <span className="footer-connect-text block">{t.footer.connect}</span>
               </div>
             </h3>
             <div>
@@ -222,27 +224,27 @@ export const Footer = () => {
           <div className='home-container pl-[80px] flex flex-col gap-[18px] '>
             <h3 className='text-[18px]'>
               <div className="overflow-hidden">
-                <span className="footer-home-text block">Home</span>
+                <span className="footer-home-text block">{t.footer.home}</span>
               </div>
             </h3>
             <div>
               <div className="overflow-hidden">
-                <span className="footer-link-we-are block">We are</span>
+                <span className="footer-link-we-are block">{t.footer.nav.weAre}</span>
               </div>
             </div>
             <div>
               <div className="overflow-hidden">
-                <span className="footer-link-service block">Service</span>
+                <span className="footer-link-service block">{t.footer.nav.service}</span>
               </div>
             </div>
             <div>
               <div className="overflow-hidden">
-                <span className="footer-link-blog block">Blog</span>
+                <span className="footer-link-blog block">{t.footer.nav.blog}</span>
               </div>
             </div>
             <div>
               <div className="overflow-hidden">
-                <span className="footer-link-contact block">Contact</span>
+                <span className="footer-link-contact block">{t.footer.nav.contact}</span>
               </div>
             </div>
           </div>
@@ -253,7 +255,7 @@ export const Footer = () => {
           <div className='copyright-up-line w-[95%] bg-[#FFFFFF33] h-[1px] '></div>
             <div className=" p-[5px] text-[white] text-center">
               <div className="overflow-hidden inline-block">
-                <span className="copyright-text block">2026 created by Systemctl</span>
+                <span className="copyright-text block">{t.footer.copyright}</span>
               </div>
             </div>
           <div className='copyright-down-line w-[95%] bg-[#FFFFFF33] h-[1px]'></div>

@@ -4,6 +4,7 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Button } from '../ui/Button';
+import { useLanguage } from '@/context/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -26,6 +27,7 @@ const SocialIcon = ({ icon, size = 20, className = '' }: SocialIconProps) => (
 
 export const Hero = () => {
   const heroRef = useRef<HTMLElement>(null);
+  const { t } = useLanguage();
 
   useGSAP(() => {
     const scrollOutTl = gsap.timeline({
@@ -81,28 +83,32 @@ export const Hero = () => {
 
           <div className="text-[white] text-[48px] line-height-[100px] font-light tracking-normal">
             <div className="overflow-hidden block h-fit py-1">
-              <span className="hero-text-inner block pb-1">Increase your sales</span>
+              <span className="hero-text-inner block pb-1">{t.hero.line1}</span>
             </div>
           </div>
           <h1 className="text-[white]">
             <div>
               <div className="overflow-hidden block h-fit py-1">
-                <span className="hero-heading-inner block pb-1">Increase your sales and</span>
+                <span className="hero-heading-inner block pb-1">{t.hero.line2}</span>
               </div>
             </div>
             <div>
               <div className="overflow-hidden block h-fit py-1">
-                <span className="hero-heading-inner block pb-1">brand awareness with</span>
+                <span className="hero-heading-inner block pb-1">{t.hero.line3}</span>
               </div>
             </div>
             <div>
               <div className="overflow-hidden block h-fit py-1">
-                <span className="hero-heading-inner block pb-1">the <span className="font-[700]">FocusAgency</span> team</span>
+                <span className="hero-heading-inner block pb-1">
+                  {t.hero.line4_prefix}
+                  <span className="font-[700]">{t.hero.line4_brand}</span>
+                  {t.hero.line4_suffix}
+                </span>
               </div>
             </div>
           </h1>
           <div className="hero-button-wrapper hero-button mt-[44px]">
-            <Button css={'gradient-border w-[261px] h-[49px] bg-[#000000] '} text={'SCHEDULE A MEETING'} onClick={() => {console.log('clicked')}} />
+            <Button css={'gradient-border w-[261px] h-[49px] bg-[#000000] '} text={t.hero.cta} onClick={() => {console.log('clicked')}} />
           </div>
           <div className='icons flex justify-between w-[100%] mt-[198px] '>
             <div className='left-side-icons w-[40%] flex justify-start gap-[24px]'>

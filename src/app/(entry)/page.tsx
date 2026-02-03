@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { Button } from "@/components/ui/Button";
 import { useRouter } from "next/navigation";
+import { useLanguage } from "@/context/LanguageContext";
 
 const SOUND_PREFERENCE_KEY = "soundPreference";
 
@@ -25,6 +26,7 @@ const handleEnterWithoutSound = (router: ReturnType<typeof useRouter>) => {
 export default function EntryPage() {
   const router = useRouter();
   const sectionRef = useRef<HTMLElement>(null);
+  const { t } = useLanguage();
 
   useGSAP(
     () => {
@@ -57,11 +59,11 @@ export default function EntryPage() {
       className="entry-page flex flex-col items-center justify-center w-[100%] h-[100vh] bg-[black] relative"
       aria-label="Choose how to enter the site"
     >
-      <div className="flex flex-col items-center justify-center gap-[32px] -translate-y-[70px]">
+      <div className="flex flex-col items-center justify-center gap-[32px] -translate-y-[100px]">
         <div className="choose-entry-title">
           <h1 className="text-[#FFFFFF] text-[128px]">
             <div className="overflow-hidden block h-fit py-1">
-              <span className="entry-title-inner block pb-1">FocusAgency</span>
+              <span className="entry-title-inner block pb-1">{t.entry.brand}</span>
             </div>
           </h1>
         </div>
@@ -71,7 +73,7 @@ export default function EntryPage() {
               css={
                 "gradient-border w-[277px] h-[58px] bg-[#000000] cursor-[pointer]"
               }
-              text={"ENTER WITH SOUND"}
+              text={t.entry.enterSound}
               onClick={() => handleEnterWithSound(router)}
             />
           </div>
@@ -80,7 +82,7 @@ export default function EntryPage() {
               css={
                 "gradient-border w-[277px] h-[58px] bg-[#000000] cursor-[pointer]"
               }
-              text={"ENTER WITHOUT SOUND"}
+              text={t.entry.enterSilent}
               onClick={() => handleEnterWithoutSound(router)}
             />
           </div>
@@ -90,17 +92,17 @@ export default function EntryPage() {
         <h2 className="font-['Satoshi'] font-normal text-[14px] leading-[94%] tracking-[0.06em] text-center uppercase text-[#FFFFFF]">
           <div className="overflow-hidden block h-fit py-1">
             <span className="entry-bottom-line block pb-1">
-              WHERE DESIGN MEETS DEVELOPMENT -
+              {t.entry.slogan.line1}
             </span>
           </div>
           <div className="overflow-hidden block h-fit py-1">
             <span className="entry-bottom-line block pb-1">
-              CREATING DIGITAL EXPERIENCES WITH
+              {t.entry.slogan.line2}
             </span>
           </div>
           <div className="overflow-hidden block h-fit py-1">
             <span className="entry-bottom-line block pb-1">
-              EMOTION, CLARITY, AND CRAFT.
+              {t.entry.slogan.line3}
             </span>
           </div>
         </h2>

@@ -4,11 +4,12 @@ import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import '../../app/globals.css';
+import { useLanguage } from '@/context/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export const Navbar = () => {
-  const [activeLanguage, setActiveLanguage] = useState('en');
+  const { t, language, setLanguage } = useLanguage();
   const [isServiceSection, setIsServiceSection] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileViewport, setIsMobileViewport] = useState(false);
@@ -241,7 +242,7 @@ export const Navbar = () => {
             onClick={handleCloseMobileMenu}
           >
             <div className="inline-block h-fit overflow-hidden py-1">
-              <span className="nav-item-inner block pb-1">We are</span>
+              <span className="nav-item-inner block pb-1">{t.navbar.weAre}</span>
             </div>
           </a>
           <a
@@ -250,7 +251,7 @@ export const Navbar = () => {
             onClick={handleCloseMobileMenu}
           >
             <div className="inline-block h-fit overflow-hidden py-1">
-              <span className="nav-item-inner block pb-1">Services</span>
+              <span className="nav-item-inner block pb-1">{t.navbar.services}</span>
             </div>
           </a>
           <a
@@ -259,7 +260,7 @@ export const Navbar = () => {
             onClick={handleCloseMobileMenu}
           >
             <div className="inline-block h-fit overflow-hidden py-1">
-              <span className="nav-item-inner block pb-1">Blog</span>
+              <span className="nav-item-inner block pb-1">{t.navbar.blog}</span>
             </div>
           </a>
           <a
@@ -268,7 +269,7 @@ export const Navbar = () => {
             onClick={handleCloseMobileMenu}
           >
             <div className="inline-block h-fit overflow-hidden py-1">
-              <span className="nav-item-inner block pb-1">Contact</span>
+              <span className="nav-item-inner block pb-1">{t.navbar.contact}</span>
             </div>
           </a>
         </div>
@@ -283,20 +284,20 @@ export const Navbar = () => {
             <div className="language-links h-full flex items-center">
               <a
                 href="#"
-                onClick={() => setActiveLanguage('ka')}
-                className={` ${activeLanguage === 'ka' ? '!text-[white]' : '!text-[#FFFFFF8F]'} text-12 `}
+                onClick={(e) => { e.preventDefault(); setLanguage('ka'); }}
+                className={` ${language === 'ka' ? '!text-[white]' : '!text-[#FFFFFF8F]'} text-12 `}
               >
                 <div className="inline-block h-fit overflow-hidden py-1">
-                  <span className="nav-item-inner block pb-1">ქარ</span>
+                  <span className="nav-item-inner block pb-1">{t.navbar.ka}</span>
                 </div>
               </a>
               <a
                 href="#"
-                onClick={() => setActiveLanguage('en')}
-                className={` ${activeLanguage === 'en' ? '!text-[white]' : '!text-[#FFFFFF8F]'} text-12 `}
+                onClick={(e) => { e.preventDefault(); setLanguage('en'); }}
+                className={` ${language === 'en' ? '!text-[white]' : '!text-[#FFFFFF8F]'} text-12 `}
               >
                 <div className="inline-block h-fit overflow-hidden py-1">
-                  <span className="nav-item-inner block pb-1">ENG</span>
+                  <span className="nav-item-inner block pb-1">{t.navbar.en}</span>
                 </div>
               </a>
             </div>
@@ -385,7 +386,7 @@ export const Navbar = () => {
               onClick={handleCloseMobileMenu}
             >
               <div className="inline-block h-fit overflow-hidden py-1">
-                <span className="nav-item-inner block pb-1">We are</span>
+                <span className="nav-item-inner block pb-1">{t.navbar.weAre}</span>
               </div>
             </a>
             <a
@@ -394,7 +395,7 @@ export const Navbar = () => {
               onClick={handleCloseMobileMenu}
             >
               <div className="inline-block h-fit overflow-hidden py-1">
-                <span className="nav-item-inner block pb-1">Services</span>
+                <span className="nav-item-inner block pb-1">{t.navbar.services}</span>
               </div>
             </a>
             <a
@@ -403,7 +404,7 @@ export const Navbar = () => {
               onClick={handleCloseMobileMenu}
             >
               <div className="inline-block h-fit overflow-hidden py-1">
-                <span className="nav-item-inner block pb-1">Blog</span>
+                <span className="nav-item-inner block pb-1">{t.navbar.blog}</span>
               </div>
             </a>
             <a
@@ -412,7 +413,7 @@ export const Navbar = () => {
               onClick={handleCloseMobileMenu}
             >
               <div className="inline-block h-fit overflow-hidden py-1">
-                <span className="nav-item-inner block pb-1">Contact</span>
+                <span className="nav-item-inner block pb-1">{t.navbar.contact}</span>
               </div>
             </a>
             </div>

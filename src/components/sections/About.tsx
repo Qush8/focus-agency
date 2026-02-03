@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '@/context/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -63,29 +64,14 @@ const AboutItem: React.FC<AboutItemProps> = ({ number, title, subtitle, descript
     );
 };
 
-const aboutItems = [
-    {
-        number: "01",
-        title: "Initial Consultation",
-        subtitle: "Desktop Publishing Software Like",
-        description: "Letraset sheets containing Lorem Ipsum passages , and more recentlu with desktop publishing"
-    },
-    {
-        number: "02",
-        title: "Strategy Development and Implementation",
-        subtitle: "Desktop Publishing Software Like",
-        description: "Letraset sheets containing Lorem Ipsum passages , and more recentlu with desktop publishing"
-    },
-    {
-        number: "03",
-        title: "Review and Final Refinement",
-        subtitle: "Desktop Publishing Software Like",
-        description: "Letraset sheets containing Lorem Ipsum passages , and more recentlu with desktop publishing"
-    }
-];
-
 export const About = () => {
     const aboutRef = useRef<HTMLElement>(null);
+    const { t } = useLanguage();
+
+    const aboutItems = t.about.items.map((item, index) => ({
+        ...item,
+        number: `0${index + 1}`
+    }));
 
     useGSAP(() => {
         // Set initial hidden states
@@ -149,11 +135,11 @@ export const About = () => {
                     <div className="left-side-about w-[40%] border border-r-[#FFFFFF33] flex justify-center flex-col items-start pr-[50px] pl-[40px] about-border-left">
                         <h2 className="text-[96px] font-bold text-[#FFFFFFF0] leading-none">
                             <div className="overflow-hidden block h-fit py-1">
-                                <span className="about-h2-text block pb-1">Flow to work</span>
+                                <span className="about-h2-text block pb-1">{t.about.title}</span>
                             </div>
                         </h2>
                         <div className="about-button w-full flex justify-center mt-[46px]">
-                            <Button css={'gradient-border w-[261px] h-[49px] bg-[#000000]'} text={'SCHEDULE A MEETING'} onClick={() => {}} />
+                            <Button css={'gradient-border w-[261px] h-[49px] bg-[#000000]'} text={t.about.cta} onClick={() => {}} />
                         </div>
                     </div>
                     <div className="right-side-about w-[60%] flex flex-col ">

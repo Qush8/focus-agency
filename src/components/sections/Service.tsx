@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '@/context/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -82,34 +83,12 @@ const ServiceItem: React.FC<ServiceItemProps> = ({ title, subtitle, description,
     );
 };
 
-const leftSideServices = [
-    {
-        title: "Social Media Marketing",
-        subtitle: "Content creation and advertising",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    },
-    {
-        title: "Social Media Marketing",
-        subtitle: "Content creation and advertising",
-        description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-    }
-];
-
-const rightSideServices = [
-    {
-        title: "Social Media Marketing",
-        subtitle: "Content creation and advertising",
-        description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
-    },
-    {
-        title: "Social Media Marketing",
-        subtitle: "Content creation and advertising",
-        description: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet."
-    }
-];
-
 export const Service = () => {
     const serviceRef = useRef<HTMLElement>(null);
+    const { t } = useLanguage();
+
+    const leftSideServices = t.services.items.slice(0, 2);
+    const rightSideServices = t.services.items.slice(2, 4);
 
     useGSAP(() => {
         const mm = gsap.matchMedia();
@@ -291,10 +270,10 @@ export const Service = () => {
                     <div className='for-headline w-[100%] relative  mb-[0px]'>
                         <h2 className="text-[96px] font-bold text-[#000000BD]">
                             <div className="overflow-hidden block h-fit py-1">
-                                <span className="service-h2-line-1 block pb-1">We offer full digital</span>
+                                <span className="service-h2-line-1 block pb-1">{t.services.title}</span>
                             </div>
                             <div className="overflow-hidden block h-fit py-1">
-                                <span className="service-h2-line-2 block pb-1">services</span>
+                                <span className="service-h2-line-2 block pb-1">{t.services.subtitle}</span>
                             </div>
                         </h2>
                         <div className='service-headline-line w-[50%] h-[1px] bg-[#8b8a8a52] absolute left-[0px] bottom-[-50px]'></div>
