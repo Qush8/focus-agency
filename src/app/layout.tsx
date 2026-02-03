@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { PageEntrance } from "@/components/layout/PageEntrance";
-import { Footer } from "@/components/layout/Footer";
-import { SmoothScroll } from "@/components/SmoothScroll";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,8 +20,7 @@ export const metadata: Metadata = {
     description: "we are best in the world for landing page",
     url: "https://landing_f.com",
     siteName: "landing_f",
-   
-  }
+  },
 };
 
 export default function RootLayout({
@@ -35,12 +31,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SmoothScroll>
-          <PageEntrance>{children}</PageEntrance>
-          <Footer />
-        </SmoothScroll>
+        {children}
       </body>
     </html>
   );
