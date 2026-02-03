@@ -403,6 +403,29 @@ nav .language-links a:hover::after {
   padding-right: 90px;
 }
 
+/* Service section: hidden until GSAP scroll (avoids flash on first load).
+   visibility !important so first paint hides; GSAP uses setProperty(..., 'important') to show. */
+.section-service .service-line-left-0,
+.section-service .service-line-left-1 {
+  transform: scaleX(0);
+  transform-origin: left;
+  opacity: 0;
+  visibility: hidden !important;
+}
+.section-service .service-line-right-0,
+.section-service .service-line-right-1 {
+  transform: scaleX(0);
+  transform-origin: right;
+  opacity: 0;
+  visibility: hidden !important;
+}
+.section-service .service-arrow-left-0,
+.section-service .service-arrow-left-1,
+.section-service .service-arrow-right-0,
+.section-service .service-arrow-right-1 {
+  opacity: 0;
+}
+
 .section-about {
   /* padding-bottom: 55px!important; */
   padding-bottom: 1px!important;

@@ -15,6 +15,8 @@ interface ServiceItemProps {
     description: string;
     side: 'left' | 'right';
     index: number;
+    isOpen: boolean;
+    onToggle: () => void;
 }
 
 const LINE_CLOSED_BOTTOM = -60;
@@ -22,8 +24,7 @@ const LINE_OPEN_BOTTOM = -160;
 const LINE_ANIM_DURATION = 0.4;
 const TEXT_DELAY_AFTER_LINE = 0;
 
-const ServiceItem: React.FC<ServiceItemProps> = ({ title, subtitle, description, side, index }) => {
-    const [isOpen, setIsOpen] = useState(false);
+const ServiceItem: React.FC<ServiceItemProps> = ({ title, subtitle, description, side, index, isOpen, onToggle }) => {
     const [showDescription, setShowDescription] = useState(false);
 
     React.useEffect(() => {
@@ -41,7 +42,7 @@ const ServiceItem: React.FC<ServiceItemProps> = ({ title, subtitle, description,
                     {title}
                 </div>
             </h3>
-            <div className={`flex subtitle gap-[10px] cursor-pointer group service-subtitle-${side}-${index}`} onClick={() => setIsOpen(!isOpen)}>
+            <div className={`flex subtitle gap-[10px] cursor-pointer group service-subtitle-${side}-${index}`} onClick={onToggle}>
                 <p className={`text-[32px] text-[#000000AD] transition-colors duration-300 group-hover:text-[#000000] service-subtitle-text-${side}-${index}`}>
                     {subtitle}
                 </p>
@@ -53,15 +54,6 @@ const ServiceItem: React.FC<ServiceItemProps> = ({ title, subtitle, description,
                     transition={{ duration: 0.3 }}
                 />
             </div>
-
-        
-            <motion.div
-                className="service-description-line absolute left-0 w-full h-[1px] bg-[#8b8a8a52]"
-                initial={false}
-                animate={{ bottom: isOpen ? LINE_OPEN_BOTTOM : LINE_CLOSED_BOTTOM }}
-                transition={{ duration: LINE_ANIM_DURATION, ease: 'easeInOut' }}
-                aria-hidden
-            />
             <AnimatePresence>
                 {isOpen && showDescription && (
                     <motion.div
@@ -86,6 +78,7 @@ const ServiceItem: React.FC<ServiceItemProps> = ({ title, subtitle, description,
 export const Service = () => {
     const serviceRef = useRef<HTMLElement>(null);
     const { t } = useLanguage();
+    const [openId, setOpenId] = useState<string | null>(null);
 
     const leftSideServices = t.services.items.slice(0, 2);
     const rightSideServices = t.services.items.slice(2, 4);
@@ -97,16 +90,28 @@ export const Service = () => {
         mm.add("(min-width: 1024px)", () => {
             // Set initial hidden states
             gsap.set('.service-h2-line-1, .service-h2-line-2', { y: "100%" });
-            gsap.set('.service-title-right-0, .service-title-right-1', { x: 100 });
-            gsap.set('.service-title-left-0, .service-title-left-1', { x: -100 });
-            gsap.set('.service-subtitle-text-right-0, .service-subtitle-text-right-1', { x: 100 });
-            gsap.set('.service-subtitle-text-left-0, .service-subtitle-text-left-1', { x: -100 });
-            gsap.set('.service-arrow-right-0, .service-arrow-right-1, .service-arrow-left-0, .service-arrow-left-1', { scale: 0 });
+            // Add opacity: 0 to sliding text elements
+            gsap.set('.service-title-right-0, .service-title-right-1', { x: 100, opacity: 0 });
+            gsap.set('.service-title-left-0, .service-title-left-1', { x: -100, opacity: 0 });
+            gsap.set('.service-subtitle-text-right-0, .service-subtitle-text-right-1', { x: 100, opacity: 0 });
+            gsap.set('.service-subtitle-text-left-0, .service-subtitle-text-left-1', { x: -100, opacity: 0 });
+            gsap.set('.service-arrow-right-0, .service-arrow-right-1, .service-arrow-left-0, .service-arrow-left-1', { scale: 0, opacity: 0 });
+            
+            // New lines initial state (removed set, using fromTo in timeline)
+            // gsap.set('.left-side-line, .right-side-line', { scaleY: 0, transformOrigin: 'top' });
+            // gsap.set('.service-headline-line', { scaleX: 0, transformOrigin: 'left' });
+            // Mini lines initial state
+            // gsap.set('.left-side-mini-line', { scaleX: 0, transformOrigin: 'left' });
+            // gsap.set('.right-side-mini-line', { scaleX: 0, transformOrigin: 'right' });
+            
+            // Service Item Lines initial state (scaleX + opacity + visibility for first-paint hide)
+            gsap.set('.service-line-left-0, .service-line-left-1', { scaleX: 0, transformOrigin: 'left', opacity: 0, visibility: 'hidden' });
+            gsap.set('.service-line-right-0, .service-line-right-1', { scaleX: 0, transformOrigin: 'right', opacity: 0, visibility: 'hidden' });
 
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: serviceRef.current,
-                    start: "top 100%",
+                    start: "top 75%",
                     end: "bottom 99%",
                     scrub: true,
                     invalidateOnRefresh: true
@@ -114,37 +119,72 @@ export const Service = () => {
                 defaults: { ease: "none" }
             });
 
-            // h2 mask animation with stagger
-            tl.to('.service-h2-line-1', { y: 0 }, 0);
-            tl.to('.service-h2-line-2', { y: 0 }, 0.1);
+            // 1. Left and Right lines descend (using clipPath)
+            tl.fromTo('.left-side-line, .right-side-line', 
+                { clipPath: 'inset(0 0 100% 0)' }, 
+                { clipPath: 'inset(0 0 0% 0)', duration: 1 }, 
+                0
+            );
 
-            // right[0] title (right-to-left)
-            tl.to('.service-title-right-0', { x: 0 }, 0.4);
-            // right[0] subtitle text (right-to-left)
-            tl.to('.service-subtitle-text-right-0', { x: 0 }, 0.5);
-            // right[0] arrow (scale) - last for right[0]
-            tl.to('.service-arrow-right-0', { scale: 1 }, 0.7);
+            // 2. Main text "We offer full digital"
+            tl.to('.service-h2-line-1', { y: 0 }, 0.4);
 
-            // left[0] title (left-to-right) - starts after right[0] arrow
-            tl.to('.service-title-left-0', { x: 0 }, 0.5);
-            // left[0] subtitle text (left-to-right)
-            tl.to('.service-subtitle-text-left-0', { x: 0 }, 0.6);
-            // left[0] arrow (scale) - last for left[0]
-            tl.to('.service-arrow-left-0', { scale: 1 }, 0.7);
+            // 3. Line below it AND mini lines
+            tl.fromTo('.service-headline-line', 
+                { scaleX: 0, transformOrigin: 'left' }, 
+                { scaleX: 1 }, 
+                0.5
+            );
+            
+            // Mini lines: Left grows from left, Right grows from right
+            tl.fromTo('.left-side-mini-line', 
+                { clipPath: 'inset(0 100% 0 0)' }, 
+                { clipPath: 'inset(0 0 0 0)' }, 
+                0.55
+            );
+            tl.fromTo('.right-side-mini-line', 
+                { clipPath: 'inset(0 0 0 100%)' }, 
+                { clipPath: 'inset(0 0 0 0)' }, 
+                0.55
+            );
 
-            // right[1] title (right-to-left)
-            tl.to('.service-title-right-1', { x: 0 }, 0.8);
-            // right[1] subtitle text (right-to-left)
-            tl.to('.service-subtitle-text-right-1', { x: 0 }, 0.9);
-            // right[1] arrow (scale) - last for right[1]
-            tl.to('.service-arrow-right-1', { scale: 1 }, 1.0);
+            // 4. "services" text
+            tl.to('.service-h2-line-2', { y: 0 }, 0.6);
 
-            // left[1] title (left-to-right)
-            tl.to('.service-title-left-1', { x: 0 }, 1.1);
-            // left[1] subtitle text (left-to-right)
-            tl.to('.service-subtitle-text-left-1', { x: 0 }, 1.2);
-            // left[1] arrow (scale) - last overall
-            tl.to('.service-arrow-left-1', { scale: 1 }, 1.3);
+            // Items sequence (shifted to start after 0.8)
+            // right[0] title (right-to-left + fade in)
+            tl.to('.service-title-right-0', { x: 0, opacity: 1 }, 0.9);
+            // right[0] subtitle text (right-to-left + fade in)
+            tl.to('.service-subtitle-text-right-0', { x: 0, opacity: 1 }, 1.0);
+            // right[0] arrow (scale + opacity)
+            tl.to('.service-arrow-right-0', { scale: 1, opacity: 1 }, 1.2);
+
+            // left[0] title (left-to-right + fade in) - starts after right[0] arrow
+            tl.to('.service-title-left-0', { x: 0, opacity: 1 }, 1.0);
+            // left[0] subtitle text (left-to-right + fade in)
+            tl.to('.service-subtitle-text-left-0', { x: 0, opacity: 1 }, 1.1);
+            // left[0] arrow (scale + opacity)
+            tl.to('.service-arrow-left-0', { scale: 1, opacity: 1 }, 1.2);
+
+            // right[1] title (right-to-left + fade in)
+            tl.to('.service-title-right-1', { x: 0, opacity: 1 }, 1.3);
+            // right[1] subtitle text (right-to-left + fade in)
+            tl.to('.service-subtitle-text-right-1', { x: 0, opacity: 1 }, 1.4);
+            // right[1] arrow (scale + opacity)
+            tl.to('.service-arrow-right-1', { scale: 1, opacity: 1 }, 1.5);
+
+            // left[1] title (left-to-right + fade in)
+            tl.to('.service-title-left-1', { x: 0, opacity: 1 }, 1.6);
+            // left[1] subtitle text (left-to-right + fade in)
+            tl.to('.service-subtitle-text-left-1', { x: 0, opacity: 1 }, 1.7);
+            // left[1] arrow (scale + opacity)
+            tl.to('.service-arrow-left-1', { scale: 1, opacity: 1 }, 1.8);
+
+            // Service item lines: grow over a scroll range (fromTo + duration so they don’t “pop”)
+            tl.fromTo('.service-line-right-0', { scaleX: 0, transformOrigin: 'right', opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.6, onStart: function() { (this.targets()[0] as HTMLElement).style.setProperty('visibility', 'visible', 'important'); } }, 1.25);
+            tl.fromTo('.service-line-left-0', { scaleX: 0, transformOrigin: 'left', opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.6, onStart: function() { (this.targets()[0] as HTMLElement).style.setProperty('visibility', 'visible', 'important'); } }, 1.55);
+            tl.fromTo('.service-line-right-1', { scaleX: 0, transformOrigin: 'right', opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.6, onStart: function() { (this.targets()[0] as HTMLElement).style.setProperty('visibility', 'visible', 'important'); } }, 1.75);
+            tl.fromTo('.service-line-left-1', { scaleX: 0, transformOrigin: 'left', opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.6, onStart: function() { (this.targets()[0] as HTMLElement).style.setProperty('visibility', 'visible', 'important'); } }, 1.95);
 
             // Scroll-out timeline - scrubs with scroll position when scrolling past section
             const scrollOutTl = gsap.timeline({
@@ -158,30 +198,40 @@ export const Service = () => {
                 defaults: { ease: "none" }
             });
 
-            // Reverse order: last appeared → first appeared
+            // Reverse order: last appeared → first appeared (lines shrink + opacity 0)
             // left[1] (last)
-            scrollOutTl.to('.service-arrow-left-1', { scale: 0 }, 0);
-            scrollOutTl.to('.service-subtitle-text-left-1', { x: -100 }, 0.05);
-            scrollOutTl.to('.service-title-left-1', { x: -100 }, 0.1);
+            scrollOutTl.to('.service-arrow-left-1', { scale: 0, opacity: 0 }, 0);
+            scrollOutTl.to('.service-subtitle-text-left-1', { x: -100, opacity: 0 }, 0.05);
+            scrollOutTl.fromTo('.service-line-left-1', { scaleX: 1, opacity: 1 }, { scaleX: 0, opacity: 0, duration: 0.08, onComplete: function() { (this.targets()[0] as HTMLElement).style.setProperty('visibility', 'hidden', 'important'); } }, 0.02);
+            scrollOutTl.to('.service-title-left-1', { x: -100, opacity: 0 }, 0.1);
 
             // right[1]
-            scrollOutTl.to('.service-arrow-right-1', { scale: 0 }, 0.2);
-            scrollOutTl.to('.service-subtitle-text-right-1', { x: 100 }, 0.25);
-            scrollOutTl.to('.service-title-right-1', { x: 100 }, 0.3);
+            scrollOutTl.to('.service-arrow-right-1', { scale: 0, opacity: 0 }, 0.2);
+            scrollOutTl.to('.service-subtitle-text-right-1', { x: 100, opacity: 0 }, 0.25);
+            scrollOutTl.fromTo('.service-line-right-1', { scaleX: 1, opacity: 1 }, { scaleX: 0, opacity: 0, duration: 0.08, onComplete: function() { (this.targets()[0] as HTMLElement).style.setProperty('visibility', 'hidden', 'important'); } }, 0.22);
+            scrollOutTl.to('.service-title-right-1', { x: 100, opacity: 0 }, 0.3);
 
             // left[0]
-            scrollOutTl.to('.service-arrow-left-0', { scale: 0 }, 0.4);
-            scrollOutTl.to('.service-subtitle-text-left-0', { x: -100 }, 0.45);
-            scrollOutTl.to('.service-title-left-0', { x: -100 }, 0.5);
+            scrollOutTl.to('.service-arrow-left-0', { scale: 0, opacity: 0 }, 0.4);
+            scrollOutTl.to('.service-subtitle-text-left-0', { x: -100, opacity: 0 }, 0.45);
+            scrollOutTl.fromTo('.service-line-left-0', { scaleX: 1, opacity: 1 }, { scaleX: 0, opacity: 0, duration: 0.08, onComplete: function() { (this.targets()[0] as HTMLElement).style.setProperty('visibility', 'hidden', 'important'); } }, 0.42);
+            scrollOutTl.to('.service-title-left-0', { x: -100, opacity: 0 }, 0.5);
 
             // right[0]
-            scrollOutTl.to('.service-arrow-right-0', { scale: 0 }, 0.6);
-            scrollOutTl.to('.service-subtitle-text-right-0', { x: 100 }, 0.65);
-            scrollOutTl.to('.service-title-right-0', { x: 100 }, 0.7);
+            scrollOutTl.to('.service-arrow-right-0', { scale: 0, opacity: 0 }, 0.6);
+            scrollOutTl.to('.service-subtitle-text-right-0', { x: 100, opacity: 0 }, 0.65);
+            scrollOutTl.fromTo('.service-line-right-0', { scaleX: 1, opacity: 1 }, { scaleX: 0, opacity: 0, duration: 0.08, onComplete: function() { (this.targets()[0] as HTMLElement).style.setProperty('visibility', 'hidden', 'important'); } }, 0.62);
+            scrollOutTl.to('.service-title-right-0', { x: 100, opacity: 0 }, 0.7);
 
-            // h2 (first appeared)
+            // h2 lines & mini lines
             scrollOutTl.to('.service-h2-line-2', { y: "-100%" }, 0.8);
+            scrollOutTl.to('.left-side-mini-line', { clipPath: 'inset(0 100% 0 0)' }, 0.85);
+            scrollOutTl.to('.right-side-mini-line', { clipPath: 'inset(0 0 0 100%)' }, 0.85);
+            scrollOutTl.to('.service-headline-line', { scaleX: 0 }, 0.85);
             scrollOutTl.to('.service-h2-line-1', { y: "-100%" }, 0.9);
+            
+            // Side lines
+            scrollOutTl.to('.left-side-line, .right-side-line', { clipPath: 'inset(0 0 100% 0)' }, 1.0);
         });
 
         // Mobile / tablet: mask animation, left side first then right side
@@ -190,7 +240,7 @@ export const Service = () => {
             gsap.set('.service-h2-line-1, .service-h2-line-2', { y: "100%" });
             gsap.set('.service-title-left-0, .service-title-left-1, .service-title-right-0, .service-title-right-1', { y: "100%" });
             gsap.set('.service-subtitle-text-left-0, .service-subtitle-text-left-1, .service-subtitle-text-right-0, .service-subtitle-text-right-1', { y: "100%" });
-            gsap.set('.service-arrow-right-0, .service-arrow-right-1, .service-arrow-left-0, .service-arrow-left-1', { scale: 0 });
+            gsap.set('.service-arrow-right-0, .service-arrow-right-1, .service-arrow-left-0, .service-arrow-left-1', { scale: 0, opacity: 0 });
 
             const tl = gsap.timeline({
                 scrollTrigger: {
@@ -210,20 +260,20 @@ export const Service = () => {
             // LEFT side first (top then bottom)
             tl.to('.service-title-left-0', { y: 0 }, 0.4);
             tl.to('.service-subtitle-text-left-0', { y: 0 }, 0.5);
-            tl.to('.service-arrow-left-0', { scale: 1 }, 0.6);
+            tl.to('.service-arrow-left-0', { scale: 1, opacity: 1 }, 0.6);
 
             tl.to('.service-title-left-1', { y: 0 }, 0.8);
             tl.to('.service-subtitle-text-left-1', { y: 0 }, 0.9);
-            tl.to('.service-arrow-left-1', { scale: 1 }, 1.0);
+            tl.to('.service-arrow-left-1', { scale: 1, opacity: 1 }, 1.0);
 
             // RIGHT side afterwards (top then bottom)
             tl.to('.service-title-right-0', { y: 0 }, 1.2);
             tl.to('.service-subtitle-text-right-0', { y: 0 }, 1.3);
-            tl.to('.service-arrow-right-0', { scale: 1 }, 1.4);
+            tl.to('.service-arrow-right-0', { scale: 1, opacity: 1 }, 1.4);
 
             tl.to('.service-title-right-1', { y: 0 }, 1.6);
             tl.to('.service-subtitle-text-right-1', { y: 0 }, 1.7);
-            tl.to('.service-arrow-right-1', { scale: 1 }, 1.8);
+            tl.to('.service-arrow-right-1', { scale: 1, opacity: 1 }, 1.8);
 
             // Scroll-out: reverse order of appearance
             const scrollOutTl = gsap.timeline({
@@ -238,19 +288,19 @@ export const Service = () => {
             });
 
             // reverse order: right[1] → right[0] → left[1] → left[0] → h2
-            scrollOutTl.to('.service-arrow-right-1', { scale: 0 }, 0);
+            scrollOutTl.to('.service-arrow-right-1', { scale: 0, opacity: 0 }, 0);
             scrollOutTl.to('.service-subtitle-text-right-1', { y: "-100%" }, 0.05);
             scrollOutTl.to('.service-title-right-1', { y: "-100%" }, 0.1);
 
-            scrollOutTl.to('.service-arrow-right-0', { scale: 0 }, 0.2);
+            scrollOutTl.to('.service-arrow-right-0', { scale: 0, opacity: 0 }, 0.2);
             scrollOutTl.to('.service-subtitle-text-right-0', { y: "-100%" }, 0.25);
             scrollOutTl.to('.service-title-right-0', { y: "-100%" }, 0.3);
 
-            scrollOutTl.to('.service-arrow-left-1', { scale: 0 }, 0.4);
+            scrollOutTl.to('.service-arrow-left-1', { scale: 0, opacity: 0 }, 0.4);
             scrollOutTl.to('.service-subtitle-text-left-1', { y: "-100%" }, 0.45);
             scrollOutTl.to('.service-title-left-1', { y: "-100%" }, 0.5);
 
-            scrollOutTl.to('.service-arrow-left-0', { scale: 0 }, 0.6);
+            scrollOutTl.to('.service-arrow-left-0', { scale: 0, opacity: 0 }, 0.6);
             scrollOutTl.to('.service-subtitle-text-left-0', { y: "-100%" }, 0.65);
             scrollOutTl.to('.service-title-left-0', { y: "-100%" }, 0.7);
 
@@ -280,21 +330,35 @@ export const Service = () => {
                     </div>
                     <div className='services-container flex justify-between w-[100%] items-start'>
                         <div className="left-side-offers relative w-[50%] flex flex-col gap-[200px]">
-                            <div className="absolute left-[0] top-[27%] bottom-0 w-[40px] h-[1px] bg-[#8b8a8a52] z-0" aria-hidden />
-                            {leftSideServices.map((service, index) => (
-                                <div key={index} className={index === 0 ? 'mt-[100px]' : '' }>
-                                    <ServiceItem {...service} side="left" index={index} />
+                            <div className="absolute left-side-mini-line left-[0] top-[27%] bottom-0 w-[40px] h-[1px] bg-[#8b8a8a52] z-0" aria-hidden />
+                            <div className="relative mt-[100px]">
+                                <ServiceItem {...leftSideServices[0]} side="left" index={0} isOpen={openId === 'left-0'} onToggle={() => setOpenId(openId === 'left-0' ? null : 'left-0')} />
+                                <div className="absolute left-0 w-full h-[1px] overflow-hidden transition-[bottom] duration-300 ease-in-out" style={{ bottom: openId === 'left-0' ? LINE_OPEN_BOTTOM : LINE_CLOSED_BOTTOM }} aria-hidden>
+                                    <div className="w-full h-full bg-[#8b8a8a52] service-line-left-0 scale-x-0 origin-left" />
                                 </div>
-                            ))}
+                            </div>
+                            <div className="relative">
+                                <ServiceItem {...leftSideServices[1]} side="left" index={1} isOpen={openId === 'left-1'} onToggle={() => setOpenId(openId === 'left-1' ? null : 'left-1')} />
+                                <div className="absolute left-0 w-full h-[1px] overflow-hidden transition-[bottom] duration-300 ease-in-out" style={{ bottom: openId === 'left-1' ? LINE_OPEN_BOTTOM : LINE_CLOSED_BOTTOM }} aria-hidden>
+                                    <div className="w-full h-full bg-[#8b8a8a52] service-line-left-1 scale-x-0 origin-left" />
+                                </div>
+                            </div>
                         </div>
                         
                         <div className="right-side-offers relative w-[50%] flex flex-col gap-[200px] items-end">
                             <div className="absolute right-side-mini-line right-[0] top-[12%] bottom-0 w-[40px] h-[1px] bg-[#8b8a8a52] z-0" aria-hidden />
-                            {rightSideServices.map((service, index) => (
-                                <div key={index}>
-                                    <ServiceItem {...service} side="right" index={index} />
+                            <div className="relative w-full">
+                                <ServiceItem {...rightSideServices[0]} side="right" index={0} isOpen={openId === 'right-0'} onToggle={() => setOpenId(openId === 'right-0' ? null : 'right-0')} />
+                                <div className="absolute left-0 w-full h-[1px] overflow-hidden transition-[bottom] duration-300 ease-in-out" style={{ bottom: openId === 'right-0' ? LINE_OPEN_BOTTOM : LINE_CLOSED_BOTTOM }} aria-hidden>
+                                    <div className="w-full h-full bg-[#8b8a8a52] service-line-right-0 scale-x-0 origin-right" />
                                 </div>
-                            ))}
+                            </div>
+                            <div className="relative w-full">
+                                <ServiceItem {...rightSideServices[1]} side="right" index={1} isOpen={openId === 'right-1'} onToggle={() => setOpenId(openId === 'right-1' ? null : 'right-1')} />
+                                <div className="absolute left-0 w-full h-[1px] overflow-hidden transition-[bottom] duration-300 ease-in-out" style={{ bottom: openId === 'right-1' ? LINE_OPEN_BOTTOM : LINE_CLOSED_BOTTOM }} aria-hidden>
+                                    <div className="w-full h-full bg-[#8b8a8a52] service-line-right-1 scale-x-0 origin-right" />
+                                </div>
+                            </div>
                         </div>
                         
                     </div>
