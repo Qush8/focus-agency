@@ -83,8 +83,9 @@ export const About = () => {
         gsap.set('.about-arrow-0, .about-arrow-1, .about-arrow-2', { scale: 0 });
         gsap.set('.about-number-0, .about-number-1, .about-number-2', { y: "100%" });
 
-        // Lines initial state (clipPath for vertical, scaleX for horizontal)
-        gsap.set('.section-about .left-side-line, .section-about .right-side-line', { clipPath: 'inset(0 0 100% 0)' });
+        // Lines initial state (vertical lines: inner div scaleY 0 = grow from top)
+        gsap.set('.section-about .left-side-line-inner, .section-about .right-side-line-inner', { scaleY: 0, transformOrigin: 'top' });
+        gsap.set('.section-about .about-left-inner-line', { scaleY: 0, transformOrigin: 'top' });
         gsap.set('.top-about-line', { scaleX: 0, transformOrigin: 'left' });
         gsap.set('.bottom-about-line', { scaleX: 0, transformOrigin: 'left' });
         gsap.set('.about-right-line-0, .about-right-line-1', { scaleX: 0, transformOrigin: 'right' });
@@ -92,59 +93,49 @@ export const About = () => {
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: aboutRef.current,
-                start: "top 99%",
-                end: "bottom 80%",
+                start: "top 82%",
+                end: "bottom 85%",
                 scrub: true,
                 invalidateOnRefresh: true
             },
             defaults: { ease: "none" }
         });
 
-        // Vertical lines descend (clipPath)
-        tl.fromTo('.section-about .left-side-line, .section-about .right-side-line',
-            { clipPath: 'inset(0 0 100% 0)' },
-            { clipPath: 'inset(0 0 0 0)', duration: 0.6 },
+        // 1) პირველ რიგში — ვერტიკალური ხაზები scaleY-ით ზემოდან ქვემოთ
+        tl.fromTo('.section-about .left-side-line-inner, .section-about .right-side-line-inner',
+            { scaleY: 0, transformOrigin: 'top' },
+            { scaleY: 1, duration: 0.9, ease: 'power2.inOut' },
             0
         );
 
-        // Borders
-        tl.to('.about-border-main, .about-border-left, .about-border-item-0, .about-border-item-1, .about-border-item-2', { opacity: 1 }, 0);
+        // 2) მათ შემდეგ — borders, top line, inner line, content
+        tl.to('.about-border-main, .about-border-left, .about-border-item-0, .about-border-item-1, .about-border-item-2', { opacity: 1 }, 0.35);
+        tl.fromTo('.top-about-line', { scaleX: 0, transformOrigin: 'left' }, { scaleX: 1, duration: 0.4 }, 0.35);
+        tl.fromTo('.section-about .about-left-inner-line', { scaleY: 0, transformOrigin: 'top' }, { scaleY: 1, duration: 0.8 }, 0.4);
 
-        // Top horizontal line (scaleX from left)
-        tl.fromTo('.top-about-line', { scaleX: 0, transformOrigin: 'left' }, { scaleX: 1, duration: 0.4 }, 0.2);
+        tl.to('.about-h2-text', { y: 0 }, 0.5);
+        tl.to('.about-button', { scale: 1 }, 0.55);
 
-        // Left side h2 and button - appear faster
-        tl.to('.about-h2-text', { y: 0 }, 0.4);
-        tl.to('.about-button', { scale: 1 }, 0.5);
+        tl.to('.about-title-0', { x: 0 }, 0.45);
+        tl.to('.about-subtitle-0', { x: 0 }, 0.5);
+        tl.to('.about-number-0', { y: 0 }, 0.55);
+        tl.to('.about-arrow-0', { scale: 1 }, 0.5);
 
-        // Right side item[0] title + subtitle
-        tl.to('.about-title-0', { x: 0 }, 0.1);
-        tl.to('.about-subtitle-0', { x: 0 }, 0.2);
+        tl.fromTo('.about-right-line-0', { scaleX: 0, transformOrigin: 'right' }, { scaleX: 1, duration: 0.35 }, 0.6);
 
-        // Right side item[0] number then arrow - appear earlier
-        tl.to('.about-number-0', { y: 0 }, 0.3);
-        tl.to('.about-arrow-0', { scale: 1 }, 0.15);
-
-        // Right horizontal line 0 (after item 0 arrow)
-        tl.fromTo('.about-right-line-0', { scaleX: 0, transformOrigin: 'right' }, { scaleX: 1, duration: 0.35 }, 0.35);
-
-        // 1s delay, then item[1] (starts at 1.15 = 0.15 + 1s)
-        tl.to('.about-title-1', { x: 0 }, 0.5);
-        tl.to('.about-subtitle-1', { x: 0 }, 0.6);
-        tl.to('.about-number-1', { y: 0 }, 0.7);
+        tl.to('.about-title-1', { x: 0 }, 0.65);
+        tl.to('.about-subtitle-1', { x: 0 }, 0.7);
+        tl.to('.about-number-1', { y: 0 }, 0.75);
         tl.to('.about-arrow-1', { scale: 1 }, 0.8);
 
-        // Right horizontal line 1 (after item 1 arrow)
-        tl.fromTo('.about-right-line-1', { scaleX: 0, transformOrigin: 'right' }, { scaleX: 1, duration: 0.35 }, 0.85);
+        tl.fromTo('.about-right-line-1', { scaleX: 0, transformOrigin: 'right' }, { scaleX: 1, duration: 0.35 }, 0.9);
 
-        // 1s delay, then item[2] (starts at 2.15 = 1.15 + 1s)
-        tl.to('.about-title-2', { x: 0 }, 0.7);
-        tl.to('.about-subtitle-2', { x: 0 }, 0.8);
-        tl.to('.about-number-2', { y: 0 }, 0.9);
-        tl.to('.about-arrow-2', { scale: 1 }, 0.9);
+        tl.to('.about-title-2', { x: 0 }, 0.85);
+        tl.to('.about-subtitle-2', { x: 0 }, 0.9);
+        tl.to('.about-number-2', { y: 0 }, 0.95);
+        tl.to('.about-arrow-2', { scale: 1 }, 0.95);
 
-        // Bottom horizontal line last (starts later, after all content)
-        tl.fromTo('.bottom-about-line', { scaleX: 0, transformOrigin: 'left' }, { scaleX: 1, duration: 0.5 }, 1.05);
+        tl.fromTo('.bottom-about-line', { scaleX: 0, transformOrigin: 'left' }, { scaleX: 1, duration: 0.5 }, 1.1);
 
         // Scroll-out timeline (reverse line animations when section exits viewport)
         const scrollOutTl = gsap.timeline({
@@ -162,20 +153,28 @@ export const About = () => {
         scrollOutTl.to('.about-right-line-1', { scaleX: 0, duration: 0.08 }, 0.05);
         scrollOutTl.to('.about-right-line-0', { scaleX: 0, duration: 0.08 }, 0.1);
         scrollOutTl.to('.top-about-line', { scaleX: 0, duration: 0.1 }, 0.15);
-        scrollOutTl.to('.section-about .left-side-line, .section-about .right-side-line', { clipPath: 'inset(0 0 100% 0)', duration: 0.2 }, 0.2);
+        scrollOutTl.to('.section-about .left-side-line-inner, .section-about .right-side-line-inner', { scaleY: 0, duration: 0.5 }, 0.2);
+        scrollOutTl.to('.section-about .about-left-inner-line', { scaleY: 0, duration: 0.6 }, 0.2);
 
     }, { scope: aboutRef });
 
     return (
         <section ref={aboutRef} id="about" className="section-about relative w-full flex justify-between bg-[black]">
-        <div className='left-side-line w-[1px] h-[100%] bg-[#FFFFFF33] absolute left-[31px] z-[100] top-[0px]'></div>
-        <div className='right-side-line w-[1px] h-[100%] bg-[#FFFFFF33] absolute right-[31px] z-[100] top-[0px]'></div>
+        <div className='left-side-line w-[1px] h-[100%] absolute left-[31px] z-[100] top-[0px] overflow-hidden' aria-hidden>
+            <div className='left-side-line-inner w-full h-full bg-[#FFFFFF33] origin-top' />
+        </div>
+        <div className='right-side-line w-[1px] h-[100%] absolute right-[31px] z-[100] top-[0px] overflow-hidden' aria-hidden>
+            <div className='right-side-line-inner w-full h-full bg-[#FFFFFF33] origin-top' />
+        </div>
        
             <div className={`about-container w-[100%] relative`}>
             <div className="top-about-line w-[100%] absolute top-[0] left-[0] right-[0] h-[1px] bg-[#FFFFFF33] overflow-hidden" aria-hidden></div>
            
                 <div className="w-[100%] flex  about-border-main">
-                    <div className="left-side-about w-[40%] border border-r-[#FFFFFF33] flex justify-center flex-col items-start pr-[50px] pl-[40px] about-border-left">
+                    <div className="left-side-about w-[40%]  relative flex justify-center flex-col items-start pr-[50px] pl-[40px] about-border-left">
+                        <div className="absolute top-[0] right-[0] w-[1px] h-full overflow-hidden" aria-hidden>
+                            <div className="about-left-inner-line w-full h-full bg-[#FFFFFF33] origin-top" aria-hidden />
+                        </div>
                         <h2 className="text-[96px] font-bold text-[#FFFFFFF0] leading-none">
                             <div className="overflow-hidden block h-fit py-1">
                                 <span className="about-h2-text block pb-1">{t.about.title}</span>

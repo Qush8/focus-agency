@@ -427,9 +427,14 @@ nav .language-links a:hover::after {
 }
 
 /* About section lines: initial state until GSAP scroll (avoids flash on first load) */
-.section-about .left-side-line,
-.section-about .right-side-line {
-  clip-path: inset(0 0 100% 0);
+.section-about .left-side-line-inner,
+.section-about .right-side-line-inner {
+  transform: scaleY(0);
+  transform-origin: top;
+}
+.section-about .about-left-inner-line {
+  transform: scaleY(0);
+  transform-origin: top;
 }
 .section-about .top-about-line,
 .section-about .bottom-about-line {
