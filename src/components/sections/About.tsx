@@ -21,7 +21,8 @@ const AboutItem: React.FC<AboutItemProps> = ({ number, title, subtitle, descript
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className={`w-[100%] h-[300px] flex pl-[30px] pt-[30px] pb-[30px] gap-[5px] about-border-item-${index}`}>
+        <div className={`w-[100%] h-[300px] flex pl-[30px] pt-[30px] pb-[30px] gap-[5px] about-border-item-${index} relative`}>
+            <div className='linee '></div>
             <div className="">
                 <p className={`text-[32px] font-bold text-[#FFFFFFE5] about-number-${index}`}>{number}</p>
             </div>
@@ -53,7 +54,7 @@ const AboutItem: React.FC<AboutItemProps> = ({ number, title, subtitle, descript
                             transition={{ duration: 0.3, ease: "easeInOut" }}
                             className="overflow-hidden"
                         >
-                            <div className="pt-[30px] text-[24px] font-light text-[#FFFFFFCF] leading-relaxed max-w-[90%]">
+                            <div className="text-about-description pt-[30px] text-[24px] font-light text-[#FFFFFFCF] leading-relaxed max-w-[90%]">
                                 {description}
                             </div>
                         </motion.div>
@@ -166,32 +167,52 @@ export const About = () => {
         <div className='right-side-line w-[1px] h-[100%] absolute right-[10px] md:right-[31px] z-[100] top-[0px] overflow-hidden' aria-hidden>
             <div className='right-side-line-inner w-full h-full bg-[#FFFFFF33] origin-top' />
         </div>
+       {/* <div className='mobile-top-line absolute w-[100%] h-[1px] bg-[#FFFFFF33]'></div> */}
+
+       {/* <div className='mobile-top-line absolute w-[100%] h-[1px] bottom-[1%] bg-[#FFFFFF33]'></div>
+       <div className='mobile-top-line absolute w-[100%] h-[1px] bottom-[25%] bg-[#FFFFFF33]'></div>
+       <div className='mobile-top-line absolute w-[100%] h-[1px] bottom-[50%] bg-[#FFFFFF33]'></div>
+       <div className='mobile-top-line absolute w-[100%] h-[1px] bottom-[68%] bg-[#FFFFFF33]'></div> */}
+
+
+
+
        
             <div className={`about-container w-[100%] relative`}>
             <div className="top-about-line w-[100%] absolute top-[0] left-[0] right-[0] h-[1px] bg-[#FFFFFF33] overflow-hidden" aria-hidden></div>
-           
+            <div className='mobile-line-top '></div>
                 <div className="w-[100%] flex  about-border-main">
                     <div className="left-side-about w-[40%]  relative flex justify-center flex-col items-start pr-[50px] pl-[40px] about-border-left">
                         <div className="absolute top-[0] right-[0] w-[1px] h-full overflow-hidden" aria-hidden>
                             <div className="about-left-inner-line w-full h-full bg-[#FFFFFF33] origin-top" aria-hidden />
                         </div>
+
+                       
+                        
                         <h2 className="text-[96px] font-bold text-[#FFFFFFF0] leading-none">
                             <div className="overflow-hidden block h-fit py-1">
                                 <span className="about-h2-text block pb-1">{t.about.title}</span>
                             </div>
                         </h2>
+                        
                         <div className="about-button w-full flex justify-center mt-[46px]">
                             <Button css={'gradient-border w-[261px] h-[49px] bg-[#000000]'} text={t.about.cta} onClick={() => {}} />
                         </div>
                     </div>
-                    <div className="right-side-about w-[60%] flex flex-col ">
-                        {aboutItems.map((item, index) => (
-                            <AboutItem key={index} {...item} index={index} />
-                        ))}
-                    </div>
+                    
+                    {/* <div className='linee w-[100%] h-[1px] bg-[#FFFFFF33]'></div> */}
+                        <div className="right-side-about w-[60%] flex flex-col ">
+                            {aboutItems.map((item, index) => (
+                                <AboutItem key={index} {...item} index={index} />
+                            ))}
+                        </div>
+                    
                 </div>
-            <div className="bottom-about-line w-[100%] absolute bottom-[0] left-[0] right-[0] h-[1px] bg-[#FFFFFF33] overflow-hidden" aria-hidden></div>
-            </div>
+                {/* <div className='mobile-title-top-line aboslute w-[100%] h-[1px] bg-[#FFFFFF33]'></div> */}
+                <div className="bottom-about-line w-[100%] absolute bottom-[0] left-[0] right-[0] h-[1px] bg-[#FFFFFF33] overflow-hidden" aria-hidden></div>
+                </div>
+            <div className='mobile-linee-bottom '></div>
+
 
             <div className="about-right-line-0 w-[59.3%] h-[1px] bg-[#FFFFFF33] top-[39%] absolute right-[0] overflow-hidden" aria-hidden></div>
             <div className="about-right-line-1 w-[59.3%] h-[1px] bg-[#FFFFFF33] top-[70%] absolute right-[0] overflow-hidden" aria-hidden></div>

@@ -1378,6 +1378,55 @@ nav .language-links a:hover::after {
   }
 
 
+  /* 430px — about-section: ყველა ხაზი გარდა left-side-line-inner და right-side-line-inner */
+  .section-about .top-about-line,
+  .section-about .about-left-inner-line,
+  .section-about .bottom-about-line,
+  .section-about .about-right-line-0,
+  .section-about .about-right-line-1 {
+    display: none !important;
+  }
+
+  .section-about .about-container .mobile-line-top {
+
+    width: 100%;
+    height: 1px;
+    background-color: #8b8a8a52;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+  }
+  .section-about .mobile-linee-bottom {
+    width: 100%;
+    height: 1px;
+    background-color: #8b8a8a52;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+
+  .section-about .right-side-about .linee {
+
+    width: 100%;
+    height: 1px;
+    background-color: #8b8a8a52;
+    position: absolute;
+    top: 0;
+    right: 0;
+   }
+
+  .section-about .left-side-about {
+
+    border-bottom: none!important;
+  }
+
+  .section-about .right-side-about .text-about-description {
+    font-size: 14px!important;
+    padding-top: 15px!important;
+  }
+
+
 
 }
 
