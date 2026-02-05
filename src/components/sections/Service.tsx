@@ -241,6 +241,12 @@ export const Service = () => {
             gsap.set('.service-title-left-0, .service-title-left-1, .service-title-right-0, .service-title-right-1', { y: "100%" });
             gsap.set('.service-subtitle-text-left-0, .service-subtitle-text-left-1, .service-subtitle-text-right-0, .service-subtitle-text-right-1', { y: "100%" });
             gsap.set('.service-arrow-right-0, .service-arrow-right-1, .service-arrow-left-0, .service-arrow-left-1', { scale: 0, opacity: 0 });
+            
+            // Mobile Lines Initial States
+            gsap.set('.left-side-line, .right-side-line', { scaleY: 0, transformOrigin: 'top' });
+            gsap.set('.mobile-headline-line', { scaleX: 0, transformOrigin: 'left' });
+            gsap.set('.mobile-line-left-0, .mobile-line-left-1', { scaleX: 0, transformOrigin: 'left' });
+            gsap.set('.mobile-line-right-0, .mobile-line-right-1', { scaleX: 0, transformOrigin: 'right' });
 
             const tl = gsap.timeline({
                 scrollTrigger: {
@@ -253,27 +259,37 @@ export const Service = () => {
                 defaults: { ease: "none" }
             });
 
+            // Vertical lines grow first
+            tl.to('.left-side-line, .right-side-line', { scaleY: 1, duration: 0.5 }, 0);
+
             // h2 mask animation with stagger
             tl.to('.service-h2-line-1', { y: 0 }, 0);
             tl.to('.service-h2-line-2', { y: 0 }, 0.1);
+            
+            // Headline line grows
+            tl.to('.mobile-headline-line', { scaleX: 1, duration: 0.5 }, 0.2);
 
             // LEFT side first (top then bottom)
             tl.to('.service-title-left-0', { y: 0 }, 0.4);
             tl.to('.service-subtitle-text-left-0', { y: 0 }, 0.5);
             tl.to('.service-arrow-left-0', { scale: 1, opacity: 1 }, 0.6);
+            tl.to('.mobile-line-left-0', { scaleX: 1, duration: 0.5 }, 0.6);
 
             tl.to('.service-title-left-1', { y: 0 }, 0.8);
             tl.to('.service-subtitle-text-left-1', { y: 0 }, 0.9);
             tl.to('.service-arrow-left-1', { scale: 1, opacity: 1 }, 1.0);
+            tl.to('.mobile-line-left-1', { scaleX: 1, duration: 0.5 }, 1.0);
 
             // RIGHT side afterwards (top then bottom)
             tl.to('.service-title-right-0', { y: 0 }, 1.2);
             tl.to('.service-subtitle-text-right-0', { y: 0 }, 1.3);
             tl.to('.service-arrow-right-0', { scale: 1, opacity: 1 }, 1.4);
+            tl.to('.mobile-line-right-0', { scaleX: 1, duration: 0.5 }, 1.4);
 
             tl.to('.service-title-right-1', { y: 0 }, 1.6);
             tl.to('.service-subtitle-text-right-1', { y: 0 }, 1.7);
             tl.to('.service-arrow-right-1', { scale: 1, opacity: 1 }, 1.8);
+            tl.to('.mobile-line-right-1', { scaleX: 1, duration: 0.5 }, 1.8);
 
             // Scroll-out: reverse order of appearance
             const scrollOutTl = gsap.timeline({
@@ -288,24 +304,32 @@ export const Service = () => {
             });
 
             // reverse order: right[1] → right[0] → left[1] → left[0] → h2
+            scrollOutTl.to('.mobile-line-right-1', { scaleX: 0, duration: 0.6 }, 0);
             scrollOutTl.to('.service-arrow-right-1', { scale: 0, opacity: 0 }, 0);
             scrollOutTl.to('.service-subtitle-text-right-1', { y: "-100%" }, 0.05);
             scrollOutTl.to('.service-title-right-1', { y: "-100%" }, 0.1);
 
+            scrollOutTl.to('.mobile-line-right-0', { scaleX: 0, duration: 0.6 }, 0.2);
             scrollOutTl.to('.service-arrow-right-0', { scale: 0, opacity: 0 }, 0.2);
             scrollOutTl.to('.service-subtitle-text-right-0', { y: "-100%" }, 0.25);
             scrollOutTl.to('.service-title-right-0', { y: "-100%" }, 0.3);
 
+            scrollOutTl.to('.mobile-line-left-1', { scaleX: 0, duration: 0.6 }, 0.4);
             scrollOutTl.to('.service-arrow-left-1', { scale: 0, opacity: 0 }, 0.4);
             scrollOutTl.to('.service-subtitle-text-left-1', { y: "-100%" }, 0.45);
             scrollOutTl.to('.service-title-left-1', { y: "-100%" }, 0.5);
 
+            scrollOutTl.to('.mobile-line-left-0', { scaleX: 0, duration: 0.6 }, 0.6);
             scrollOutTl.to('.service-arrow-left-0', { scale: 0, opacity: 0 }, 0.6);
             scrollOutTl.to('.service-subtitle-text-left-0', { y: "-100%" }, 0.65);
             scrollOutTl.to('.service-title-left-0', { y: "-100%" }, 0.7);
 
+            scrollOutTl.to('.mobile-headline-line', { scaleX: 0, duration: 0.6 }, 0.8);
             scrollOutTl.to('.service-h2-line-2', { y: "-100%" }, 0.8);
             scrollOutTl.to('.service-h2-line-1', { y: "-100%" }, 0.9);
+            
+            // Vertical lines shrink last
+            scrollOutTl.to('.left-side-line, .right-side-line', { scaleY: 0, duration: 0.5 }, 1.0);
         });
 
         return () => {
@@ -329,7 +353,7 @@ export const Service = () => {
                         <div className='service-headline-line w-[50%] h-[1px] bg-[#8b8a8a52] absolute left-[0px] bottom-[-50px]'></div>
                     </div>
 
-                    <div className='mobile-line'></div>
+                    <div className='mobile-line mobile-headline-line'></div>
                     <div className='services-container flex justify-between w-[100%] items-start'>
                         <div className="left-side-offers relative w-[50%] flex flex-col gap-[200px]">
                             <div className="absolute left-side-mini-line left-[0] top-[27%] bottom-0 w-[40px] h-[1px] bg-[#8b8a8a52] z-0" aria-hidden />
@@ -338,14 +362,14 @@ export const Service = () => {
                                 <div className="absolute mini-lines left-0 w-full h-[1px] overflow-hidden transition-[bottom] duration-300 ease-in-out" style={{ bottom: openId === 'left-0' ? LINE_OPEN_BOTTOM : LINE_CLOSED_BOTTOM }} aria-hidden>
                                     <div className="w-full h-full bg-[#8b8a8a52] service-line-left-0 scale-x-0 origin-left" />
                                 </div>
-                                <div className='mobile-text-bottom-line'></div>
+                                <div className='mobile-text-bottom-line mobile-line-left-0'></div>
                             </div>
                             <div className="relative">
                                 <ServiceItem {...leftSideServices[1]} side="left" index={1} isOpen={openId === 'left-1'} onToggle={() => setOpenId(openId === 'left-1' ? null : 'left-1')} />
                                 <div className="absolute mini-lines left-0 w-full h-[1px] overflow-hidden transition-[bottom] duration-300 ease-in-out" style={{ bottom: openId === 'left-1' ? LINE_OPEN_BOTTOM : LINE_CLOSED_BOTTOM }} aria-hidden>
                                     <div className="w-full h-full bg-[#8b8a8a52] service-line-left-1 scale-x-0 origin-left" />
                                 </div>
-                                <div className='mobile-text-bottom-line'></div>
+                                <div className='mobile-text-bottom-line mobile-line-left-1'></div>
                             </div>
                         </div>
                         
@@ -356,14 +380,14 @@ export const Service = () => {
                                 <div className="absolute mini-lines left-0 w-full h-[1px] overflow-hidden transition-[bottom] duration-300 ease-in-out" style={{ bottom: openId === 'right-0' ? LINE_OPEN_BOTTOM : LINE_CLOSED_BOTTOM }} aria-hidden>
                                     <div className="w-full h-full bg-[#8b8a8a52] service-line-right-0 scale-x-0 origin-right" />
                                 </div>
-                                <div className='mobile-text-bottom-line'></div>
+                                <div className='mobile-text-bottom-line mobile-line-right-0'></div>
                             </div>
                             <div className="relative w-full">
                                 <ServiceItem {...rightSideServices[1]} side="right" index={1} isOpen={openId === 'right-1'} onToggle={() => setOpenId(openId === 'right-1' ? null : 'right-1')} />
                                 <div className="absolute mini-lines left-0 w-full h-[1px] overflow-hidden transition-[bottom] duration-300 ease-in-out" style={{ bottom: openId === 'right-1' ? LINE_OPEN_BOTTOM : LINE_CLOSED_BOTTOM }} aria-hidden>
                                     <div className="w-full h-full bg-[#8b8a8a52] service-line-right-1 scale-x-0 origin-right" />
                                 </div>
-                                <div className='mobile-text-bottom-line'></div>
+                                <div className='mobile-text-bottom-line mobile-line-right-1'></div>
                             </div>
                         </div>
                         

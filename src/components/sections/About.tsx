@@ -22,7 +22,7 @@ const AboutItem: React.FC<AboutItemProps> = ({ number, title, subtitle, descript
 
     return (
         <div className={`w-[100%] h-[300px] flex pl-[30px] pt-[30px] pb-[30px] gap-[5px] about-border-item-${index} relative`}>
-            <div className='linee '></div>
+            <div className={`linee mobile-about-item-line-${index}`}></div>
             <div className="">
                 <p className={`text-[32px] font-bold text-[#FFFFFFE5] about-number-${index}`}>{number}</p>
             </div>
@@ -75,88 +75,191 @@ export const About = () => {
     }));
 
     useGSAP(() => {
-        // Set initial hidden states
-        gsap.set('.about-border-main, .about-border-left, .about-border-item-0, .about-border-item-1, .about-border-item-2', { opacity: 0 });
-        gsap.set('.about-h2-text', { y: "100%" });
-        gsap.set('.about-button', { scale: 0 });
-        gsap.set('.about-title-0, .about-title-1, .about-title-2', { x: 100 });
-        gsap.set('.about-subtitle-0, .about-subtitle-1, .about-subtitle-2', { x: 100 });
-        gsap.set('.about-arrow-0, .about-arrow-1, .about-arrow-2', { scale: 0 });
-        gsap.set('.about-number-0, .about-number-1, .about-number-2', { y: "100%" });
+        const mm = gsap.matchMedia();
 
-        // Lines initial state (vertical lines: inner div scaleY 0 = grow from top)
-        gsap.set('.section-about .left-side-line-inner, .section-about .right-side-line-inner', { scaleY: 0, transformOrigin: 'top' });
-        gsap.set('.section-about .about-left-inner-line', { scaleY: 0, transformOrigin: 'top' });
-        gsap.set('.top-about-line', { scaleX: 0, transformOrigin: 'left' });
-        gsap.set('.bottom-about-line', { scaleX: 0, transformOrigin: 'left' });
-        gsap.set('.about-right-line-0, .about-right-line-1', { scaleX: 0, transformOrigin: 'right' });
-
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: aboutRef.current,
-                start: "top 82%",
-                end: "bottom 85%",
-                scrub: true,
-                invalidateOnRefresh: true
-            },
-            defaults: { ease: "none" }
+        // Desktop / large screens
+        mm.add("(min-width: 1024px)", () => {
+            // Set initial hidden states
+            gsap.set('.about-border-main, .about-border-left, .about-border-item-0, .about-border-item-1, .about-border-item-2', { opacity: 0 });
+            gsap.set('.about-h2-text', { y: "100%" });
+            gsap.set('.about-button', { scale: 0 });
+            gsap.set('.about-title-0, .about-title-1, .about-title-2', { x: 100 });
+            gsap.set('.about-subtitle-0, .about-subtitle-1, .about-subtitle-2', { x: 100 });
+            gsap.set('.about-arrow-0, .about-arrow-1, .about-arrow-2', { scale: 0 });
+            gsap.set('.about-number-0, .about-number-1, .about-number-2', { y: "100%" });
+    
+            // Lines initial state (vertical lines: inner div scaleY 0 = grow from top)
+            gsap.set('.section-about .left-side-line-inner, .section-about .right-side-line-inner', { scaleY: 0, transformOrigin: 'top' });
+            gsap.set('.section-about .about-left-inner-line', { scaleY: 0, transformOrigin: 'top' });
+            gsap.set('.top-about-line', { scaleX: 0, transformOrigin: 'left' });
+            gsap.set('.bottom-about-line', { scaleX: 0, transformOrigin: 'left' });
+            gsap.set('.about-right-line-0, .about-right-line-1', { scaleX: 0, transformOrigin: 'right' });
+    
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: aboutRef.current,
+                    start: "top 82%",
+                    end: "bottom 85%",
+                    scrub: true,
+                    invalidateOnRefresh: true
+                },
+                defaults: { ease: "none" }
+            });
+    
+            // 1) პირველ რიგში — ვერტიკალური ხაზები scaleY-ით ზემოდან ქვემოთ
+            tl.fromTo('.section-about .left-side-line-inner, .section-about .right-side-line-inner',
+                { scaleY: 0, transformOrigin: 'top' },
+                { scaleY: 1, duration: 0.9, ease: 'power2.inOut' },
+                0
+            );
+    
+            // 2) მათ შემდეგ — borders, top line, inner line, content
+            tl.to('.about-border-main, .about-border-left, .about-border-item-0, .about-border-item-1, .about-border-item-2', { opacity: 1 }, 0.35);
+            tl.fromTo('.top-about-line', { scaleX: 0, transformOrigin: 'left' }, { scaleX: 1, duration: 0.4 }, 0.35);
+            tl.fromTo('.section-about .about-left-inner-line', { scaleY: 0, transformOrigin: 'top' }, { scaleY: 1, duration: 0.8 }, 0.4);
+    
+            tl.to('.about-h2-text', { y: 0 }, 0.5);
+            tl.to('.about-button', { scale: 1 }, 0.55);
+    
+            tl.to('.about-title-0', { x: 0 }, 0.45);
+            tl.to('.about-subtitle-0', { x: 0 }, 0.5);
+            tl.to('.about-number-0', { y: 0 }, 0.55);
+            tl.to('.about-arrow-0', { scale: 1 }, 0.5);
+    
+            tl.fromTo('.about-right-line-0', { scaleX: 0, transformOrigin: 'right' }, { scaleX: 1, duration: 0.35 }, 0.6);
+    
+            tl.to('.about-title-1', { x: 0 }, 0.65);
+            tl.to('.about-subtitle-1', { x: 0 }, 0.7);
+            tl.to('.about-number-1', { y: 0 }, 0.75);
+            tl.to('.about-arrow-1', { scale: 1 }, 0.8);
+    
+            tl.fromTo('.about-right-line-1', { scaleX: 0, transformOrigin: 'right' }, { scaleX: 1, duration: 0.35 }, 0.9);
+    
+            tl.to('.about-title-2', { x: 0 }, 0.85);
+            tl.to('.about-subtitle-2', { x: 0 }, 0.9);
+            tl.to('.about-number-2', { y: 0 }, 0.95);
+            tl.to('.about-arrow-2', { scale: 1 }, 0.95);
+    
+            tl.fromTo('.bottom-about-line', { scaleX: 0, transformOrigin: 'left' }, { scaleX: 1, duration: 0.5 }, 1.1);
+    
+            // Scroll-out timeline (reverse line animations when section exits viewport)
+            const scrollOutTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: aboutRef.current,
+                    start: "bottom top",
+                    end: "+=800",
+                    scrub: true,
+                    invalidateOnRefresh: true
+                },
+                defaults: { ease: "none" }
+            });
+    
+            scrollOutTl.to('.bottom-about-line', { scaleX: 0, duration: 0.1 }, 0);
+            scrollOutTl.to('.about-right-line-1', { scaleX: 0, duration: 0.08 }, 0.05);
+            scrollOutTl.to('.about-right-line-0', { scaleX: 0, duration: 0.08 }, 0.1);
+            scrollOutTl.to('.top-about-line', { scaleX: 0, duration: 0.1 }, 0.15);
+            scrollOutTl.to('.section-about .left-side-line-inner, .section-about .right-side-line-inner', { scaleY: 0, duration: 0.5 }, 0.2);
+            scrollOutTl.to('.section-about .about-left-inner-line', { scaleY: 0, duration: 0.6 }, 0.2);
         });
 
-        // 1) პირველ რიგში — ვერტიკალური ხაზები scaleY-ით ზემოდან ქვემოთ
-        tl.fromTo('.section-about .left-side-line-inner, .section-about .right-side-line-inner',
-            { scaleY: 0, transformOrigin: 'top' },
-            { scaleY: 1, duration: 0.9, ease: 'power2.inOut' },
-            0
-        );
+        // Mobile / Tablet
+        mm.add("(max-width: 1023px)", () => {
+             // Initial states
+            gsap.set('.about-h2-text', { y: "100%" });
+            gsap.set('.about-button', { scale: 0 });
+            gsap.set('.about-title-0, .about-title-1, .about-title-2', { x: 100 });
+            gsap.set('.about-subtitle-0, .about-subtitle-1, .about-subtitle-2', { x: 100 });
+            gsap.set('.about-arrow-0, .about-arrow-1, .about-arrow-2', { scale: 0 });
+            gsap.set('.about-number-0, .about-number-1, .about-number-2', { y: "100%" });
+            
+            // Lines initial state
+            gsap.set('.section-about .left-side-line-inner, .section-about .right-side-line-inner', { scaleY: 0, transformOrigin: 'top' });
+            gsap.set('.mobile-about-top-line', { scaleX: 0, transformOrigin: 'left' });
+            gsap.set('.mobile-about-bottom-line', { scaleX: 0, transformOrigin: 'right' });
+            gsap.set('.mobile-about-item-line-0, .mobile-about-item-line-1, .mobile-about-item-line-2', { scaleX: 0, transformOrigin: 'left' });
 
-        // 2) მათ შემდეგ — borders, top line, inner line, content
-        tl.to('.about-border-main, .about-border-left, .about-border-item-0, .about-border-item-1, .about-border-item-2', { opacity: 1 }, 0.35);
-        tl.fromTo('.top-about-line', { scaleX: 0, transformOrigin: 'left' }, { scaleX: 1, duration: 0.4 }, 0.35);
-        tl.fromTo('.section-about .about-left-inner-line', { scaleY: 0, transformOrigin: 'top' }, { scaleY: 1, duration: 0.8 }, 0.4);
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: aboutRef.current,
+                    start: "top 80%",
+                    end: "bottom 90%",
+                    scrub: true,
+                    invalidateOnRefresh: true
+                },
+                defaults: { ease: "none" }
+            });
 
-        tl.to('.about-h2-text', { y: 0 }, 0.5);
-        tl.to('.about-button', { scale: 1 }, 0.55);
+            // 1. Vertical lines
+            tl.fromTo('.section-about .left-side-line-inner, .section-about .right-side-line-inner',
+                { scaleY: 0, transformOrigin: 'top' },
+                { scaleY: 1, duration: 0.5 },
+                0
+            );
 
-        tl.to('.about-title-0', { x: 0 }, 0.45);
-        tl.to('.about-subtitle-0', { x: 0 }, 0.5);
-        tl.to('.about-number-0', { y: 0 }, 0.55);
-        tl.to('.about-arrow-0', { scale: 1 }, 0.5);
+            // 2. Top line & Title
+            tl.fromTo('.mobile-about-top-line', { scaleX: 0 }, { scaleX: 1, duration: 0.4 }, 0.2);
+            tl.to('.about-h2-text', { y: 0 }, 0.3);
+            tl.to('.about-button', { scale: 1 }, 0.4);
 
-        tl.fromTo('.about-right-line-0', { scaleX: 0, transformOrigin: 'right' }, { scaleX: 1, duration: 0.35 }, 0.6);
+            // 3. Items sequence
+            // Item 0
+            tl.fromTo('.mobile-about-item-line-0', { scaleX: 0 }, { scaleX: 1, duration: 0.4 }, 0.4);
+            tl.to('.about-title-0', { x: 0 }, 0.5);
+            tl.to('.about-subtitle-0', { x: 0 }, 0.55);
+            tl.to('.about-number-0', { y: 0 }, 0.6);
+            tl.to('.about-arrow-0', { scale: 1 }, 0.6);
 
-        tl.to('.about-title-1', { x: 0 }, 0.65);
-        tl.to('.about-subtitle-1', { x: 0 }, 0.7);
-        tl.to('.about-number-1', { y: 0 }, 0.75);
-        tl.to('.about-arrow-1', { scale: 1 }, 0.8);
+            // Item 1
+            tl.fromTo('.mobile-about-item-line-1', { scaleX: 0 }, { scaleX: 1, duration: 0.4 }, 0.6);
+            tl.to('.about-title-1', { x: 0 }, 0.7);
+            tl.to('.about-subtitle-1', { x: 0 }, 0.75);
+            tl.to('.about-number-1', { y: 0 }, 0.8);
+            tl.to('.about-arrow-1', { scale: 1 }, 0.8);
 
-        tl.fromTo('.about-right-line-1', { scaleX: 0, transformOrigin: 'right' }, { scaleX: 1, duration: 0.35 }, 0.9);
+            // Item 2
+            tl.fromTo('.mobile-about-item-line-2', { scaleX: 0 }, { scaleX: 1, duration: 0.4 }, 0.8);
+            tl.to('.about-title-2', { x: 0 }, 0.9);
+            tl.to('.about-subtitle-2', { x: 0 }, 0.95);
+            tl.to('.about-number-2', { y: 0 }, 1.0);
+            tl.to('.about-arrow-2', { scale: 1 }, 1.0);
 
-        tl.to('.about-title-2', { x: 0 }, 0.85);
-        tl.to('.about-subtitle-2', { x: 0 }, 0.9);
-        tl.to('.about-number-2', { y: 0 }, 0.95);
-        tl.to('.about-arrow-2', { scale: 1 }, 0.95);
+            // Bottom line
+            tl.fromTo('.mobile-about-bottom-line', { scaleX: 0 }, { scaleX: 1, duration: 0.4 }, 1.1);
 
-        tl.fromTo('.bottom-about-line', { scaleX: 0, transformOrigin: 'left' }, { scaleX: 1, duration: 0.5 }, 1.1);
+             // Scroll-out timeline
+            const scrollOutTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: aboutRef.current,
+                    start: "bottom top",
+                    end: "+=800",
+                    scrub: true,
+                    invalidateOnRefresh: true
+                },
+                defaults: { ease: "none" }
+            });
 
-        // Scroll-out timeline (reverse line animations when section exits viewport)
-        const scrollOutTl = gsap.timeline({
-            scrollTrigger: {
-                trigger: aboutRef.current,
-                start: "bottom top",
-                end: "+=800",
-                scrub: true,
-                invalidateOnRefresh: true
-            },
-            defaults: { ease: "none" }
+            // Reverse order
+            scrollOutTl.to('.mobile-about-bottom-line', { scaleX: 0, duration: 0.9 }, 0);
+            
+            scrollOutTl.to('.mobile-about-item-line-2', { scaleX: 0, duration: 0.9 }, 0.1);
+            scrollOutTl.to('.about-title-2', { x: 100 }, 0.1);
+            
+            scrollOutTl.to('.mobile-about-item-line-1', { scaleX: 0, duration: 0.9 }, 0.2);
+            scrollOutTl.to('.about-title-1', { x: 100 }, 0.2);
+            
+            scrollOutTl.to('.mobile-about-item-line-0', { scaleX: 0, duration: 0.9 }, 0.3);
+            scrollOutTl.to('.about-title-0', { x: 100 }, 0.3);
+
+            scrollOutTl.to('.about-button', { scale: 0 }, 0.4);
+            scrollOutTl.to('.about-h2-text', { y: "100%" }, 0.4);
+            scrollOutTl.to('.mobile-about-top-line', { scaleX: 0, duration: 0.2 }, 0.5);
+            
+            scrollOutTl.to('.section-about .left-side-line-inner, .section-about .right-side-line-inner', { scaleY: 0, duration: 0.5 }, 0.6);
         });
 
-        scrollOutTl.to('.bottom-about-line', { scaleX: 0, duration: 0.1 }, 0);
-        scrollOutTl.to('.about-right-line-1', { scaleX: 0, duration: 0.08 }, 0.05);
-        scrollOutTl.to('.about-right-line-0', { scaleX: 0, duration: 0.08 }, 0.1);
-        scrollOutTl.to('.top-about-line', { scaleX: 0, duration: 0.1 }, 0.15);
-        scrollOutTl.to('.section-about .left-side-line-inner, .section-about .right-side-line-inner', { scaleY: 0, duration: 0.5 }, 0.2);
-        scrollOutTl.to('.section-about .about-left-inner-line', { scaleY: 0, duration: 0.6 }, 0.2);
-
+        return () => {
+            mm.revert();
+        };
     }, { scope: aboutRef });
 
     return (
@@ -180,7 +283,7 @@ export const About = () => {
        
             <div className={`about-container w-[100%] relative`}>
             <div className="top-about-line w-[100%] absolute top-[0] left-[0] right-[0] h-[1px] bg-[#FFFFFF33] overflow-hidden" aria-hidden></div>
-            <div className='mobile-line-top '></div>
+            <div className='mobile-line-top mobile-about-top-line'></div>
                 <div className="w-[100%] flex  about-border-main">
                     <div className="left-side-about w-[40%]  relative flex justify-center flex-col items-start pr-[50px] pl-[40px] about-border-left">
                         <div className="absolute top-[0] right-[0] w-[1px] h-full overflow-hidden" aria-hidden>
@@ -211,7 +314,7 @@ export const About = () => {
                 {/* <div className='mobile-title-top-line aboslute w-[100%] h-[1px] bg-[#FFFFFF33]'></div> */}
                 <div className="bottom-about-line w-[100%] absolute bottom-[0] left-[0] right-[0] h-[1px] bg-[#FFFFFF33] overflow-hidden" aria-hidden></div>
                 </div>
-            <div className='mobile-linee-bottom '></div>
+            <div className='mobile-linee-bottom mobile-about-bottom-line'></div>
 
 
             <div className="about-right-line-0 w-[59.3%] h-[1px] bg-[#FFFFFF33] top-[39%] absolute right-[0] overflow-hidden" aria-hidden></div>

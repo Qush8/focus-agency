@@ -1403,15 +1403,32 @@ nav .language-links a:hover::after {
   nav {
     padding-right: 0px!important;
   }
+  nav .for-logo {
+    width: 30%!important;
+  }
   .mobile-navigation {
     padding-right: 31px!important
   }
 
   .section-hero .first-text {
-    font-size: 24px!important
+    font-size: 24px!important;
+    margin-left: 20px; 
   }
-  .section-service {
 
+  .section-hero h1 {
+    /* font-size: 24px!important; */
+    margin-left: 20px; 
+  }
+ 
+  .section-hero .hero-button-wrapper {
+    margin-left: 20px;
+  }
+
+  .section-hero .icons .left-side-icons {
+    margin-left: 20px;
+  }
+  .section-hero .icons .right-side-icons {
+    margin-right: 20px;
   }
   
   .section-service .service-headline-line {

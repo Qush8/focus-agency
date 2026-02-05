@@ -246,7 +246,7 @@ export const Navbar = () => {
         ref={navRef}
         className={`flex h-[125px] w-full max-w-[1920px] items-center justify-between px-4 md:px-8 max-[1024px]:px-5 transition-all duration-300 ${navBgClass}`}
       >
-        <div className="relative w-[15%] flex justify-center h-full shrink-0 items-center">
+        <div className="for-logo relative w-[15%] flex justify-center h-full shrink-0 items-center">
           <div
             className={`logo-left-line absolute left-[0] top-0 z-[100] h-[124px] w-[1px] transition-colors duration-300 ${borderColorClass}`}
             aria-hidden
