@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Button } from '../ui/Button';
 import { useLanguage } from '@/context/LanguageContext';
+import GalaxyAnimation from './GalaxyAnimation';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -83,12 +84,12 @@ export const Hero = () => {
     <section ref={heroRef} id="hero" className="section-hero relative w-full flex flex-col items-start bg-[black] h-[100vh] ">
        <div className='left-side-line w-[1px] h-[100%] bg-[#FFFFFF33] absolute left-[10px] md:left-[31px] z-[100] top-[0px]'></div>
 
-          <div className="text-[white] text-[48px] line-height-[100px] font-light tracking-normal">
+          <div className="text-[white] text-[48px] line-height-[100px] font-light tracking-normal z-[20]">
             <div className="first-text overflow-hidden block h-fit py-1">
               <span className="first-text-span hero-text-inner block pb-1">{t.hero.line1}</span>
             </div>
           </div>
-          <h1 className="text-[white]">
+          <h1 className="text-[white] z-[20]">
             <div>
               <div className="overflow-hidden block h-fit py-1">
                 <span className="hero-heading-inner block pb-1">{t.hero.line2}</span>
@@ -109,10 +110,10 @@ export const Hero = () => {
               </div>
             </div>
           </h1>
-          <div className="hero-button-wrapper hero-button mt-[44px]">
+          <div className="hero-button-wrapper hero-button mt-[44px] z-[20] ">
             <Button css={'gradient-border w-[261px] h-[49px] bg-[#000000] '} text={t.hero.cta} onClick={() => {console.log('clicked')}} />
           </div>
-          <div className='icons flex justify-between w-[100%] mt-[198px] '>
+          <div className='icons flex justify-between w-[100%] mt-[198px] z-[20] '>
             <div className='left-side-icons w-[40%] flex justify-start gap-[24px]'>
                 <SocialIcon icon="/icons/tweet.svg" className="left-icon" />
                 <SocialIcon icon="/icons/insta.svg" className="left-icon" />
@@ -124,6 +125,8 @@ export const Hero = () => {
             </div>
           </div>
       <div className='right-side-line w-[1px] h-[100%] bg-[#FFFFFF33] absolute right-[10px] md:right-[31px] z-[100] top-[0px]'></div>
+
+      <GalaxyAnimation />
 
     </section>
   );

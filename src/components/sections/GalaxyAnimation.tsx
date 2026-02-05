@@ -82,10 +82,10 @@ const GalaxyAnimation = () => {
 
     // Galaxy Parameters
     const parameters = {
-      count: 10000,
-      size: 0.003,
-      radius: 3.13,
-      branches: 20,
+      count: 30000,
+      size: 0.1,
+      radius: 9,
+      branches: 10,
       randomness: 2,
       randomnessPower: 1,
       insideColor: "#000000",
@@ -235,7 +235,7 @@ const GalaxyAnimation = () => {
   return (
     <div 
       ref={containerRef} 
-      className="absolute top-0 left-0 w-full h-full z-0 overflow-hidden bg-black"
+      className="absolute top-[0] left-[0] w-[100%] h-[100vh] z-0 overflow-hidden bg-black"
     />
   );
 };
