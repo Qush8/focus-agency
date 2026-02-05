@@ -82,14 +82,14 @@ const GalaxyAnimation = () => {
 
     // Galaxy Parameters
     const parameters = {
-      count: 20000,
-      size: 0.02,
-      radius: 4,
-      branches: 5,
-      randomness: 0.3,
-      randomnessPower: 4,
-      insideColor: "#ed7b4d",
-      outsideColor: "#4657de",
+      count: 10000,
+      size: 0.003,
+      radius: 3.13,
+      branches: 20,
+      randomness: 2,
+      randomnessPower: 1,
+      insideColor: "#000000",
+      outsideColor: "#ededed",
     };
 
     let geometry: THREE.BufferGeometry | null = null;
