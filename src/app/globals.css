@@ -1321,6 +1321,66 @@ nav .language-links a:hover::after {
   }
 }
 
+@media screen and (max-width: 430px) {
+
+  .section-service {
+
+  }
+  
+  .section-service .service-headline-line {
+    display: none !important;
+  }
+  .section-service .services-container {
+
+  }
+  .section-service .service-content .mobile-line {
+    width : 100%;
+    height : 1px;
+    background-color: #8b8a8a52;
+    margin-top: 20px;
+  }
+
+   .left-side-mini-line {
+    display: none!important;
+  }
+
+  .mini-lines {
+    display: none!important;
+  }
+  
+  .services-container .left-side-offers .left-side-mini-line{
+    display: none!important
+  }
+  
+  .services-container .right-side-offers .right-side-mini-line{
+    display: none!important
+  }
+
+  .services-container .left-side-offers .mobile-text-bottom-line{
+    width: 100%;
+    height: 1px;
+    background-color: #8b8a8a52;
+    margin-top: 30px;
+  }
+  .services-container .right-side-offers .mobile-text-bottom-line{
+    width: 100%;
+    height: 1px;
+    background-color: #8b8a8a52;
+    margin-top: 30px;
+  }
+
+  .services-container .left-side-offers .margin-top{
+    margin-top:10px;
+  }
+
+  .services-container .right-side-offers{
+    margin-top:0px!important;
+  }
+
+
+
+}
+
 /* Lenis Smooth Scroll */
 html.lenis {
   height: auto;

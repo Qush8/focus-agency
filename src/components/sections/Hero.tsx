@@ -79,7 +79,7 @@ export const Hero = () => {
 
   return (
     <section ref={heroRef} id="hero" className="section-hero relative w-full flex flex-col items-start bg-[black] h-[100vh] ">
-       <div className='left-side-line w-[1px] h-[100%] bg-[#FFFFFF33] absolute left-[31px] z-[100] top-[0px]'></div>
+       <div className='left-side-line w-[1px] h-[100%] bg-[#FFFFFF33] absolute left-[10px] md:left-[31px] z-[100] top-[0px]'></div>
 
           <div className="text-[white] text-[48px] line-height-[100px] font-light tracking-normal">
             <div className="overflow-hidden block h-fit py-1">
@@ -121,7 +121,7 @@ export const Hero = () => {
               <SocialIcon icon="/icons/pause.svg" size={15} className="right-icon" />
             </div>
           </div>
-      <div className='right-side-line w-[1px] h-[100%] bg-[#FFFFFF33] absolute right-[31px] z-[100] top-[0px]'></div>
+      <div className='right-side-line w-[1px] h-[100%] bg-[#FFFFFF33] absolute right-[10px] md:right-[31px] z-[100] top-[0px]'></div>
 
     </section>
   );

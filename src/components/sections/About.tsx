@@ -160,10 +160,10 @@ export const About = () => {
 
     return (
         <section ref={aboutRef} id="about" className="section-about relative w-full flex justify-between bg-[black]">
-        <div className='left-side-line w-[1px] h-[100%] absolute left-[31px] z-[100] top-[0px] overflow-hidden' aria-hidden>
+        <div className='left-side-line w-[1px] h-[100%] absolute left-[10px] md:left-[31px] z-[100] top-[0px] overflow-hidden' aria-hidden>
             <div className='left-side-line-inner w-full h-full bg-[#FFFFFF33] origin-top' />
         </div>
-        <div className='right-side-line w-[1px] h-[100%] absolute right-[31px] z-[100] top-[0px] overflow-hidden' aria-hidden>
+        <div className='right-side-line w-[1px] h-[100%] absolute right-[10px] md:right-[31px] z-[100] top-[0px] overflow-hidden' aria-hidden>
             <div className='right-side-line-inner w-full h-full bg-[#FFFFFF33] origin-top' />
         </div>
        

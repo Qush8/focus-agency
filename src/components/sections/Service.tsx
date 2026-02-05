@@ -315,7 +315,7 @@ export const Service = () => {
 
     return (
         <section ref={serviceRef} id="services" className="section-service w-full flex h-auto flex justify-between">
-            <div className='left-side-line w-[1px] h-[100%] bg-[#8b8a8a52] absolute left-[31px] z-[100] top-[0px]'></div>
+            <div className='left-side-line w-[1px] h-[100%] bg-[#8b8a8a52] absolute left-[10px] md:left-[31px] z-[100] top-[0px]'></div>
                 <div className="w-[100%] service-content relative">
                     <div className='for-headline w-[100%] relative  mb-[0px]'>
                         <h2 className="text-[96px] font-bold text-[#000000BD]">
@@ -328,20 +328,24 @@ export const Service = () => {
                         </h2>
                         <div className='service-headline-line w-[50%] h-[1px] bg-[#8b8a8a52] absolute left-[0px] bottom-[-50px]'></div>
                     </div>
+
+                    <div className='mobile-line'></div>
                     <div className='services-container flex justify-between w-[100%] items-start'>
                         <div className="left-side-offers relative w-[50%] flex flex-col gap-[200px]">
                             <div className="absolute left-side-mini-line left-[0] top-[27%] bottom-0 w-[40px] h-[1px] bg-[#8b8a8a52] z-0" aria-hidden />
-                            <div className="relative mt-[100px]">
+                            <div className="margin-top relative mt-[100px]">
                                 <ServiceItem {...leftSideServices[0]} side="left" index={0} isOpen={openId === 'left-0'} onToggle={() => setOpenId(openId === 'left-0' ? null : 'left-0')} />
-                                <div className="absolute left-0 w-full h-[1px] overflow-hidden transition-[bottom] duration-300 ease-in-out" style={{ bottom: openId === 'left-0' ? LINE_OPEN_BOTTOM : LINE_CLOSED_BOTTOM }} aria-hidden>
+                                <div className="absolute mini-lines left-0 w-full h-[1px] overflow-hidden transition-[bottom] duration-300 ease-in-out" style={{ bottom: openId === 'left-0' ? LINE_OPEN_BOTTOM : LINE_CLOSED_BOTTOM }} aria-hidden>
                                     <div className="w-full h-full bg-[#8b8a8a52] service-line-left-0 scale-x-0 origin-left" />
                                 </div>
+                                <div className='mobile-text-bottom-line'></div>
                             </div>
                             <div className="relative">
                                 <ServiceItem {...leftSideServices[1]} side="left" index={1} isOpen={openId === 'left-1'} onToggle={() => setOpenId(openId === 'left-1' ? null : 'left-1')} />
-                                <div className="absolute left-0 w-full h-[1px] overflow-hidden transition-[bottom] duration-300 ease-in-out" style={{ bottom: openId === 'left-1' ? LINE_OPEN_BOTTOM : LINE_CLOSED_BOTTOM }} aria-hidden>
+                                <div className="absolute mini-lines left-0 w-full h-[1px] overflow-hidden transition-[bottom] duration-300 ease-in-out" style={{ bottom: openId === 'left-1' ? LINE_OPEN_BOTTOM : LINE_CLOSED_BOTTOM }} aria-hidden>
                                     <div className="w-full h-full bg-[#8b8a8a52] service-line-left-1 scale-x-0 origin-left" />
                                 </div>
+                                <div className='mobile-text-bottom-line'></div>
                             </div>
                         </div>
                         
@@ -349,21 +353,23 @@ export const Service = () => {
                             <div className="absolute right-side-mini-line right-[0] top-[12%] bottom-0 w-[40px] h-[1px] bg-[#8b8a8a52] z-0" aria-hidden />
                             <div className="relative w-full">
                                 <ServiceItem {...rightSideServices[0]} side="right" index={0} isOpen={openId === 'right-0'} onToggle={() => setOpenId(openId === 'right-0' ? null : 'right-0')} />
-                                <div className="absolute left-0 w-full h-[1px] overflow-hidden transition-[bottom] duration-300 ease-in-out" style={{ bottom: openId === 'right-0' ? LINE_OPEN_BOTTOM : LINE_CLOSED_BOTTOM }} aria-hidden>
+                                <div className="absolute mini-lines left-0 w-full h-[1px] overflow-hidden transition-[bottom] duration-300 ease-in-out" style={{ bottom: openId === 'right-0' ? LINE_OPEN_BOTTOM : LINE_CLOSED_BOTTOM }} aria-hidden>
                                     <div className="w-full h-full bg-[#8b8a8a52] service-line-right-0 scale-x-0 origin-right" />
                                 </div>
+                                <div className='mobile-text-bottom-line'></div>
                             </div>
                             <div className="relative w-full">
                                 <ServiceItem {...rightSideServices[1]} side="right" index={1} isOpen={openId === 'right-1'} onToggle={() => setOpenId(openId === 'right-1' ? null : 'right-1')} />
-                                <div className="absolute left-0 w-full h-[1px] overflow-hidden transition-[bottom] duration-300 ease-in-out" style={{ bottom: openId === 'right-1' ? LINE_OPEN_BOTTOM : LINE_CLOSED_BOTTOM }} aria-hidden>
+                                <div className="absolute mini-lines left-0 w-full h-[1px] overflow-hidden transition-[bottom] duration-300 ease-in-out" style={{ bottom: openId === 'right-1' ? LINE_OPEN_BOTTOM : LINE_CLOSED_BOTTOM }} aria-hidden>
                                     <div className="w-full h-full bg-[#8b8a8a52] service-line-right-1 scale-x-0 origin-right" />
                                 </div>
+                                <div className='mobile-text-bottom-line'></div>
                             </div>
                         </div>
                         
                     </div>
                 </div>
-            <div className='right-side-line w-[1px] h-[100%] bg-[#8b8a8a52] absolute right-[31px] z-[100] top-[0px]'></div>
+            <div className='right-side-line w-[1px] h-[100%] bg-[#8b8a8a52] absolute right-[10px] md:right-[31px] z-[100] top-[0px]'></div>
         </section>
     )
 }
