@@ -1062,6 +1062,7 @@ nav .language-links a:hover::after {
   }
   .section-hero .left-side-icons {
     width: 75%!important;
+    border-radius: 2px;
   }
 
  

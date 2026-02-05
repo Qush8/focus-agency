@@ -16,7 +16,7 @@ interface SocialIconProps {
 }
 
 const SocialIcon = ({ icon, size = 20, className = '' }: SocialIconProps) => (
-  <div className={`social-icon-wrapper w-[44px] h-[44px] border border-[#464646] rounded-lg flex items-center justify-center hover:border-[#F43E46] transition-[border-color] duration-300 group cursor-pointer bg-black ${className}`}>
+  <div className={`social-icon-wrapper w-[44px] h-[44px] border border-[#464646] rounded-[2px] flex items-center justify-center hover:border-[#F43E46] transition-[border-color] duration-300 group cursor-pointer bg-black ${className}`}>
     <img 
       src={icon} 
       alt="" 
@@ -114,7 +114,7 @@ export const Hero = () => {
             <Button css={'gradient-border w-[261px] h-[49px] bg-[#000000] '} text={t.hero.cta} onClick={() => {console.log('clicked')}} />
           </div>
           <div className='icons flex justify-between w-[100%] mt-[198px] z-[20] '>
-            <div className='left-side-icons w-[40%] flex justify-start gap-[24px]'>
+            <div className='left-side-icons  w-[40%] flex justify-start gap-[24px]'>
                 <SocialIcon icon="/icons/tweet.svg" className="left-icon" />
                 <SocialIcon icon="/icons/insta.svg" className="left-icon" />
                 <SocialIcon icon="/icons/face.svg" className="left-icon" />
