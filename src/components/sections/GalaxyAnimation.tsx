@@ -2,6 +2,8 @@
 
 import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 // Shaders
 const vertexShader = `
@@ -54,6 +56,15 @@ void main()
 
 const GalaxyAnimation = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    gsap.to(containerRef.current, {
+      opacity: 1,
+      duration: 2.5,
+      ease: "power2.out",
+      delay: 0.2
+    });
+  }, { scope: containerRef });
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -187,6 +198,14 @@ const GalaxyAnimation = () => {
 
     generateGalaxy();
 
+    // Mouse interaction
+    const mouse = { x: 0, y: 0 };
+    const handleMouseMove = (event: MouseEvent) => {
+      mouse.x = (event.clientX / window.innerWidth) * 3 - 1;
+      mouse.y = -(event.clientY / window.innerHeight) * 1 + 1;
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+
     // Animation Loop
     const clock = new THREE.Clock();
 
@@ -197,8 +216,9 @@ const GalaxyAnimation = () => {
         material.uniforms.uTime.value = elapsedTime;
       }
 
-      // Optional: slight rotation or camera movement
-      // scene.rotation.y = elapsedTime * 0.05;
+      // Rotate galaxy based on mouse
+      scene.rotation.y = elapsedTime * 0.05 + mouse.x * 0.5;
+      scene.rotation.x = mouse.y * 0.5;
 
       renderer.render(scene, camera);
       requestAnimationFrame(animate);
@@ -221,6 +241,7 @@ const GalaxyAnimation = () => {
     // Cleanup
     return () => {
       window.removeEventListener("resize", handleResize);
+      window.removeEventListener("mousemove", handleMouseMove);
       
       if (containerRef.current && containerRef.current.contains(renderer.domElement)) {
         containerRef.current.removeChild(renderer.domElement);
@@ -235,7 +256,7 @@ const GalaxyAnimation = () => {
   return (
     <div 
       ref={containerRef} 
-      className="absolute top-[0] left-[0] w-[100%] h-[100vh] z-0 overflow-hidden bg-black"
+      className="absolute top-[0] left-[0] w-[100%] h-[100vh] z-0 overflow-hidden bg-black opacity-0"
     />
   );
 };
