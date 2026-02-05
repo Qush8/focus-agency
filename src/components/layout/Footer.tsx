@@ -37,7 +37,7 @@ export const Footer = () => {
         name: 'email',
     },
     {
-        icon: '/icons/face.svg',
+        icon: '/icons/telegram.svg',
         type: 'text',
         value: value.message,
         onChange: (e: React.ChangeEvent<HTMLInputElement>) => setValue({ ...value, message: e.target.value }),
