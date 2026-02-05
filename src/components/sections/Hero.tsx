@@ -56,11 +56,13 @@ export const Hero = () => {
       stagger: 0.4
     }, 0.1);
 
-    // Button disappears (after text)
+    // Button disappears (after text) — opacity only
     scrollOutTl.to('.hero-button-wrapper', {
-      scale: 0,
-      opacity: 0
-    }, 1);
+      opacity: 1,
+      scale: 1,
+      duration: 0.4,
+      delay: 0.15
+    }, 1.2);
 
     // Left icons disappear with stagger (as they appeared with stagger)
     scrollOutTl.to('.left-icon', {

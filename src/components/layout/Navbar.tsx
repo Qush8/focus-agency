@@ -378,49 +378,49 @@ export const Navbar = () => {
         <div
           ref={mobileMenuPanelRef}
           id="mobile-menu-panel"
-          className="fixed left-[0] bottom-0 z-50 flex flex-col overflow-hidden shadow-2xl  px-6 pb-8 top-[125px] flex gap-[20px] pt-[30px] pb-[30px] "
+          className="fixed  bg-[white] left-[0] bottom-0 z-50 flex flex-col overflow-hidden shadow-2xl px-6 pb-8 top-[125px] flex gap-[20px] pt-[30px] pb-[30px] h-[100%] "
           role="dialog"
           aria-modal="true"
           aria-label="Navigation menu"
         >
-          <nav className="" onClick={(e) => e.stopPropagation()}>
-            <div className='flex flex-col  gap-[20px] '>
+          <nav className="mobile-navigation h-[80%] w-full  " onClick={(e) => e.stopPropagation()}>
+            <div className='flex flex-col justify-center items-[center] gap-[50px] mt-[30px] '>
               
            
             <a
               href="#about"
-              className="mobile-menu-link text-[14px] text-[white] transition-colors hover:text-white"
+              className="mobile-menu-link text-[14px] text-[white] transition-colors hover:text-white flex justify-center "
               onClick={() => handleLinkClick('weAre')}
             >
               <div className="inline-block h-fit overflow-hidden py-1">
-                <span className="nav-item-inner block pb-1">{t.navbar.weAre}</span>
+                <span className="nav-item-inner block pb-1 text-[18px] ">{t.navbar.weAre}</span>
               </div>
             </a>
             <a
               href="#services"
-              className="mobile-menu-link text-[14px] text-[white] transition-colors hover:text-white"
+              className="mobile-menu-link text-[14px] text-[white] transition-colors hover:text-white flex justify-center "
               onClick={() => handleLinkClick('services')}
             >
               <div className="inline-block h-fit overflow-hidden py-1">
-                <span className="nav-item-inner block pb-1">{t.navbar.services}</span>
+                <span className="nav-item-inner block pb-1 text-[18px]">{t.navbar.services}</span>
               </div>
             </a>
             <a
               href="#hero"
-              className="mobile-menu-link text-[14px] text-[white] transition-colors hover:text-white"
+              className="mobile-menu-link text-[14px] text-[white] transition-colors hover:text-white flex justify-center"
               onClick={() => handleLinkClick('blog')}
             >
               <div className="inline-block h-fit overflow-hidden py-1">
-                <span className="nav-item-inner block pb-1">{t.navbar.blog}</span>
+                <span className="nav-item-inner block pb-1 text-[18px]">{t.navbar.blog}</span>
               </div>
             </a>
             <a
               href="#footer"
-              className="mobile-menu-link text-[14px] text-[white] transition-colors hover:text-white"
+              className="mobile-menu-link text-[14px] text-[white] transition-colors hover:text-white flex justify-center"
               onClick={() => handleLinkClick('contact')}
             >
               <div className="inline-block h-fit overflow-hidden py-1">
-                <span className="nav-item-inner block pb-1">{t.navbar.contact}</span>
+                <span className="nav-item-inner block pb-1 text-[18px]">{t.navbar.contact}</span>
               </div>
             </a>
             </div>

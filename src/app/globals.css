@@ -267,6 +267,32 @@ nav .language-links a:hover::after {
   filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2768%) hue-rotate(338deg) brightness(99%) contrast(92%);
 }
 
+/* Mobile menu panel (Navbar) */
+/* #mobile-menu-panel,
+.mobile-menu-panel {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 125px;
+  bottom: 0;
+  top: 125px;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 30px;
+ 
+  padding-right: 0px!important;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+
+.mobile-menu-panel nav{
+  width: 100%!important;
+
+  height: 80%!important;
+} */
+
 .section-hero > h2 {
   font-size: 48px;
   font-weight: 300;
@@ -934,8 +960,7 @@ nav .language-links a:hover::after {
 @media screen and (max-width: 767px) {
   /* header section <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
   nav {
-    padding-left: 20px;
-    padding-right: 20px;
+    /* padding-left/right მოხსნილი — მიშლიდა ხელს */
   }
 
   nav .logo {
@@ -1325,7 +1350,21 @@ nav .language-links a:hover::after {
   }
 }
 
+/* Mobile menu panel (Navbar) */
+
+.mobile-navigation > div > a:first-child {
+  margin-left: 0px!important;
+  margin-right: 0px!important;
+}
+
 @media screen and (max-width: 430px) {
+
+  nav {
+    padding-right: 0px!important;
+  }
+  .mobile-navigation {
+    padding-right: 31px!important
+  }
 
   .section-hero .first-text {
     font-size: 24px!important
