@@ -282,7 +282,7 @@ export const Navbar = () => {
         </div>
 
         {/* Languages + Hamburger row */}
-        <div className="relative w-[15%] flex justify-center gap-[20px] shrink-0 items-center gap-6">
+        <div className="relative w-[15%] mobile-right-side flex justify-center gap-[20px] shrink-0 items-center gap-6">
           <div className=" flex h-full shrink-0 items-center">
             <div
               className="languages-left-line absolute left-[0px] top-0 z-[100] h-[124px] w-[1px] bg-[#FFFFFF33]"

@@ -82,8 +82,8 @@ export const Hero = () => {
        <div className='left-side-line w-[1px] h-[100%] bg-[#FFFFFF33] absolute left-[10px] md:left-[31px] z-[100] top-[0px]'></div>
 
           <div className="text-[white] text-[48px] line-height-[100px] font-light tracking-normal">
-            <div className="overflow-hidden block h-fit py-1">
-              <span className="hero-text-inner block pb-1">{t.hero.line1}</span>
+            <div className="first-text overflow-hidden block h-fit py-1">
+              <span className="first-text-span hero-text-inner block pb-1">{t.hero.line1}</span>
             </div>
           </div>
           <h1 className="text-[white]">

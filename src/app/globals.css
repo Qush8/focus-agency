@@ -942,6 +942,9 @@ nav .language-links a:hover::after {
     width: 70px;
     height: 70px;
   }
+  nav .mobile-right-side {
+    width: 30%!important;
+  }
 
   nav .nav-links {
    
@@ -950,6 +953,7 @@ nav .language-links a:hover::after {
   nav .language-links {
   
   }
+
   
 
   nav > div:nth-child(2) {
@@ -1323,6 +1327,9 @@ nav .language-links a:hover::after {
 
 @media screen and (max-width: 430px) {
 
+  .section-hero .first-text {
+    font-size: 24px!important
+  }
   .section-service {
 
   }
@@ -1424,6 +1431,10 @@ nav .language-links a:hover::after {
   .section-about .right-side-about .text-about-description {
     font-size: 14px!important;
     padding-top: 15px!important;
+  }
+
+  nav .mobile-right-side {
+    width: 40%!important;
   }
 
 
