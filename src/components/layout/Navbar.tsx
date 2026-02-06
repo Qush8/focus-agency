@@ -126,13 +126,16 @@ export const Navbar = () => {
     const overlay = mobileMenuOverlayRef.current;
     if (!panel || !overlay) return;
     
-    // Initial set
+    // Initial set: full-width panel, fade-in only (no width animation)
     gsap.set(panel, { 
-      width: 0, 
+      opacity: 0,
+      pointerEvents: 'none',
       overflow: 'hidden',
       boxShadow: '0 18px 45px rgba(0, 0, 0, 0.1)'
     });
     gsap.set(overlay, { opacity: 0, pointerEvents: 'none' });
+    const linkInners = panel.querySelectorAll('.mobile-menu-link-inner');
+    gsap.set(linkInners, { y: '100%' });
     mobileMenuInitialized.current = true;
   }, []);
 
@@ -169,22 +172,20 @@ export const Navbar = () => {
         ease: 'power2.out',
       });
       gsap.to(panel, {
-        width: '100%',
-        duration: 0.35,
+        opacity: 1,
+        pointerEvents: 'auto',
+        duration: 0.3,
         ease: 'power2.out',
       });
-      const links = panel.querySelectorAll('.mobile-menu-link');
-      gsap.fromTo(
-        links,
-        { clipPath: 'inset(0 0 100% 0)' },
-        {
-          clipPath: 'inset(0 0 0% 0)',
-          duration: 0.4,
-          stagger: 0.08,
-          delay: 0.15,
-          ease: 'power2.out',
-        },
-      );
+      const linkInners = panel.querySelectorAll('.mobile-menu-link-inner');
+      gsap.set(linkInners, { y: '100%' });
+      gsap.to(linkInners, {
+        y: 0,
+        duration: 0.45,
+        stagger: 0.07,
+        delay: 0.35,
+        ease: 'power2.out',
+      });
     } else {
       gsap.to(overlay, {
         opacity: 0,
@@ -193,9 +194,14 @@ export const Navbar = () => {
         ease: 'power2.out',
       });
       gsap.to(panel, {
-        width: 0,
-        duration: 0.35,
+        opacity: 0,
+        pointerEvents: 'none',
+        duration: 0.25,
         ease: 'power2.out',
+        onComplete: () => {
+          const linkInners = mobileMenuPanelRef.current?.querySelectorAll('.mobile-menu-link-inner');
+          if (linkInners?.length) gsap.set(linkInners, { y: '100%' });
+        },
       });
     }
   }, [isMobileMenuOpen]);
@@ -453,7 +459,7 @@ export const Navbar = () => {
         <div
           ref={mobileMenuPanelRef}
           id="mobile-menu-panel"
-          className="fixed bg-[white] left-[0] bottom-0 z-50 flex flex-col overflow-hidden shadow-2xl px-6 pb-8 top-[125px] flex gap-[20px] pt-[30px] pb-[30px] h-[100%] "
+          className="fixed inset-x-0 bottom-0 top-[125px] z-50 flex w-full flex-col overflow-hidden bg-[white] px-6 pb-8 pt-[30px] left-[0] h-[100vh] shadow-2xl"
           role="dialog"
           aria-modal="true"
           aria-label="Navigation menu"
@@ -467,8 +473,8 @@ export const Navbar = () => {
               className={`mobile-menu-link text-[14px] transition-colors flex justify-center ${isLightText ? 'text-[#FFFFFF] hover:text-[#FFFFFF]' : 'text-[#000000] hover:text-[#000000]/70'}`}
               onClick={() => handleLinkClick('weAre')}
             >
-              <div className="inline-block h-fit overflow-hidden py-1">
-                <span className="nav-item-inner block pb-1 text-[18px] ">{t.navbar.weAre}</span>
+              <div className="overflow-hidden block h-fit py-1">
+                <span className="mobile-menu-link-inner block pb-1 text-[18px]">{t.navbar.weAre}</span>
               </div>
             </a>
             <a
@@ -476,8 +482,8 @@ export const Navbar = () => {
               className={`mobile-menu-link text-[14px] transition-colors flex justify-center ${isLightText ? 'text-[#FFFFFF] hover:text-[#FFFFFF]' : 'text-[#000000] hover:text-[#000000]/70'}`}
               onClick={() => handleLinkClick('services')}
             >
-              <div className="inline-block h-fit overflow-hidden py-1">
-                <span className="nav-item-inner block pb-1 text-[18px]">{t.navbar.services}</span>
+              <div className="overflow-hidden block h-fit py-1">
+                <span className="mobile-menu-link-inner block pb-1 text-[18px]">{t.navbar.services}</span>
               </div>
             </a>
             <a
@@ -485,8 +491,8 @@ export const Navbar = () => {
               className={`mobile-menu-link text-[14px] transition-colors flex justify-center ${isLightText ? 'text-[#FFFFFF] hover:text-[#FFFFFF]' : 'text-[#000000] hover:text-[#000000]/70'}`}
               onClick={() => handleLinkClick('blog')}
             >
-              <div className="inline-block h-fit overflow-hidden py-1">
-                <span className="nav-item-inner block pb-1 text-[18px]">{t.navbar.blog}</span>
+              <div className="overflow-hidden block h-fit py-1">
+                <span className="mobile-menu-link-inner block pb-1 text-[18px]">{t.navbar.blog}</span>
               </div>
             </a>
             <a
@@ -494,8 +500,8 @@ export const Navbar = () => {
               className={`mobile-menu-link text-[14px] transition-colors flex justify-center ${isLightText ? 'text-[#FFFFFF] hover:text-[#FFFFFF]' : 'text-[#000000] hover:text-[#000000]/70'}`}
               onClick={() => handleLinkClick('contact')}
             >
-              <div className="inline-block h-fit overflow-hidden py-1">
-                <span className="nav-item-inner block pb-1 text-[18px]">{t.navbar.contact}</span>
+              <div className="overflow-hidden block h-fit py-1">
+                <span className="mobile-menu-link-inner block pb-1 text-[18px]">{t.navbar.contact}</span>
               </div>
             </a>
             </div>
