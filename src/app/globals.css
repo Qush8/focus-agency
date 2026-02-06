@@ -615,7 +615,7 @@ nav .language-links a:hover::after {
   /* section hero <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
   .section-hero {
       padding-left: 70px;
-      padding-top: 150px;
+      padding-top: 180px!important;
       padding-right: 70px;
   }
  
@@ -626,6 +626,7 @@ nav .language-links a:hover::after {
 
   .section-hero .icons {
     margin-top: 55px;
+    bottom: 80px!important;
   }
 
   .section-hero > h2 {
@@ -843,6 +844,9 @@ nav .language-links a:hover::after {
   nav > div:nth-child(2) a {
     margin-right: 40px;
   }
+  nav > div:last-child a:first-child {
+    margin-right: 35px;
+  }
 
   /* section hero <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
   .section-hero {
@@ -863,6 +867,11 @@ nav .language-links a:hover::after {
   .section-hero > h2 {
     font-size: 28px;
     line-height: 45px;
+  }
+
+  .mobile-right-side {
+    width: 30%;
+    padding-left: 40px;
   }
 
   /* Service sections <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
@@ -1444,9 +1453,14 @@ nav .language-links a:hover::after {
   nav .for-logo {
     width: 30%!important;
   }
+  nav .logo {
+    width: 40px!important;
+  }
   .mobile-navigation {
     padding-right: 31px!important
   }
+
+ 
 
   .section-hero {
     padding-left: 26px!important;
@@ -1574,11 +1588,15 @@ nav .language-links a:hover::after {
   }
 
   nav .mobile-right-side {
-    width: 40%!important;
+    width: 70%!important;
     gap: 5px!important;
   }
 
+  nav .mobile-right-side .languages-left-line  {
 
+    display: none!important;
+    background: none!important;
+  }
 
 }
 

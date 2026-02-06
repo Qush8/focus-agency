@@ -419,7 +419,7 @@ export const Navbar = () => {
             </span>
           </button> */}
           
-          <div className="hidden max-[767px]:block">
+          <div className="hidden max-[1025px]:block">
             <HamburgerMenu
               isOpen={isMobileMenuOpen}
               onToggle={handleToggleMobileMenu}
