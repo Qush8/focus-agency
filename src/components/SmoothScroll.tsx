@@ -63,11 +63,23 @@ export const SmoothScroll = ({ children }: SmoothScrollProps) => {
       }
     };
 
+    const handleLenisStop = () => {
+      lenis.stop();
+    };
+
+    const handleLenisStart = () => {
+      lenis.start();
+    };
+
     document.addEventListener('click', handleAnchorClick);
+    window.addEventListener('lenis:stop', handleLenisStop);
+    window.addEventListener('lenis:start', handleLenisStart);
 
     return () => {
       lenis.destroy();
       document.removeEventListener('click', handleAnchorClick);
+      window.removeEventListener('lenis:stop', handleLenisStop);
+      window.removeEventListener('lenis:start', handleLenisStart);
     };
   }, []);
 

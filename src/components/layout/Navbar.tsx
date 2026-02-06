@@ -227,6 +227,24 @@ export const Navbar = () => {
     });
   }, [isMobileMenuOpen]);
 
+  // Prevent scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      window.dispatchEvent(new CustomEvent('lenis:stop'));
+    } else {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      window.dispatchEvent(new CustomEvent('lenis:start'));
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      window.dispatchEvent(new CustomEvent('lenis:start'));
+    };
+  }, [isMobileMenuOpen]);
+
   const handleToggleMobileMenu = () => {
     setIsMobileMenuOpen((prev) => !prev);
   };
@@ -410,11 +428,12 @@ export const Navbar = () => {
         className={`fixed inset-0 z-40 min-[1025px]:hidden ${isMobileMenuOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}
         aria-hidden={!isMobileMenuOpen}
         id="mobile-menu"
+        style={{ overscrollBehavior: 'none' }}
       >
         <div
           ref={mobileMenuOverlayRef}
           className="fixed inset-0 bg-black/90 backdrop-blur-md"
-          style={{ opacity: 0, pointerEvents: 'none' }}
+          style={{ opacity: 0, pointerEvents: 'none', touchAction: 'none' }}
           onClick={handleCloseMobileMenu}
           onKeyDown={(e) => {
             if (e.key === 'Escape') handleCloseMobileMenu();
