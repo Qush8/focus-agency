@@ -153,39 +153,44 @@ nav {
   padding-right: 31px;
   padding-left: 31px!important;
   background-color: rgba(255, 255, 255, 0);
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
+}
+
+/* Background overlays — opacity transition for smooth color change (no jump) */
+nav .navbar-bg-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+nav .navbar-bg-black {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 100%);
+  opacity: 0;
+}
+nav .navbar-bg-white {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.8) 100%);
+  opacity: 0;
+}
+nav[data-theme="black"] .navbar-bg-black {
+  opacity: 1;
+}
+nav[data-theme="white"] .navbar-bg-white {
+  opacity: 1;
 }
 
 nav.navbar-white {
-    /* White gradient: Top to bottom */
-    background: linear-gradient(
-        to bottom, 
-        rgba(255, 255, 255, 1) 0%, 
-        rgba(255, 255, 255, 0.8) 100%
-    );
-    
-    /* Blur effect */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    
-    /* Border matching original request */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 nav.navbar-black {
-    /* Black gradient: Top to bottom */
-    background: linear-gradient(
-        to bottom, 
-        rgba(0, 0, 0, 1) 0%, 
-        rgba(0, 0, 0, 0.8) 100%
-    );
-    
-    /* Blur effect */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    
-    /* Border */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 nav .logo-left-line {
@@ -202,30 +207,30 @@ nav .mobile-right-side .languages-right-line{
   }
 } */
 
-nav > div:first-child {
+nav > .for-logo {
   flex: 0 0 auto;
 }
 
-nav > div:nth-child(2) {
+nav > .nav-links {
   flex: 1;
   justify-content: end;
   padding-right: 100px;
 }
 
-nav > div:nth-child(2) a {
+nav > .nav-links a {
   margin-right: 71px;
 }
 
-nav > div:nth-child(2) a:last-child {
+nav > .nav-links a:last-child {
   margin-right: 0;
 }
 
-nav > div:last-child {
+nav > .mobile-right-side {
   flex: 0 0 auto;
   /* justify-content: flex-end; */
 }
 
-nav > div:last-child a:first-child {
+nav > .mobile-right-side a:first-child {
   margin-right: 51px;
 }
 
@@ -844,14 +849,14 @@ nav .language-links a:hover::after {
     padding-right: 50px;
   }
 
-  nav > div:nth-child(2) {
+  nav > .nav-links {
     padding-right: 150px;
   }
 
-  nav > div:nth-child(2) a {
+  nav > .nav-links a {
     margin-right: 40px;
   }
-  nav > div:last-child a:first-child {
+  nav > .mobile-right-side a:first-child {
     margin-right: 35px;
   }
 
@@ -1075,21 +1080,21 @@ nav .language-links a:hover::after {
 
   
 
-  nav > div:nth-child(2) {
+  nav > .nav-links {
     padding-right: 0;
     justify-content: start;
   }
 
-  nav > div:nth-child(2) a {
+  nav > .nav-links a {
     margin-right: 15px;
     font-size: 10px!important;
   }
 
-  nav > div:last-child a:first-child {
+  nav > .mobile-right-side a:first-child {
     margin-right: 15px;
   }
 
-  nav > div:last-child a {
+  nav > .mobile-right-side a {
     font-size: 10px!important;
   }
 

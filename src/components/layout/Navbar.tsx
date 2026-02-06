@@ -269,14 +269,17 @@ export const Navbar = () => {
     <div className="fixed for-navbar-fixed w-[100%] top-0 left-0 right-0 z-50 flex  justify-center overflow-x-hidden">
       <nav
         ref={navRef}
-        className={`flex h-[125px] w-full max-w-[1920px] items-center justify-between px-4 md:px-8 max-[1024px]:px-5 transition-all duration-300 ${navBgClass}`}
+        data-theme={navTheme}
+        className={`relative flex h-[125px] w-full max-w-[1920px] items-center justify-between px-4 md:px-8 max-[1024px]:px-5 ${navBgClass}`}
       >
+        <div className="navbar-bg-overlay navbar-bg-black" aria-hidden />
+        <div className="navbar-bg-overlay navbar-bg-white" aria-hidden />
         <div className="for-logo relative w-[15%] flex justify-center h-full shrink-0 items-center">
           <div
-            className={`logo-left-line absolute left-[0] top-0 z-[100] h-[124px] w-[1px] transition-colors duration-300 ${borderColorClass}`}
+            className={`logo-left-line absolute left-[0] top-0 z-[100] h-[124px] w-[1px] transition-colors duration-[0.4s] ${borderColorClass}`}
             aria-hidden
           />
-          <div className={`logo flex shrink-0 items-center text-xl font-bold transition-colors duration-300 ${textColorClass}`}>
+          <div className={`logo flex shrink-0 items-center text-xl font-bold transition-colors duration-[0.4s] ${textColorClass}`}>
             <svg
               width="70px"
               height="100px"
@@ -286,7 +289,7 @@ export const Navbar = () => {
               className="h-full w-auto"
             >
               <path
-                className="logo-f transition-colors duration-300"
+                className="logo-f transition-colors duration-[0.4s]"
                 d="M34.632 54.472H15.048V76H5.832V23.368H38.376V31.864H15.048V46.192H34.632V54.472Z"
                 fill={logoFill}
               />
@@ -301,7 +304,7 @@ export const Navbar = () => {
             </svg>
           </div>
           <div
-            className={`logo-right-line absolute right-[0] top-0 z-[100] h-[124px] w-[1px] transition-colors duration-300 ${borderColorClass}`}
+            className={`logo-right-line absolute right-[0] top-0 z-[100] h-[124px] w-[1px] transition-colors duration-[0.4s] ${borderColorClass}`}
             aria-hidden
           />
         </div>
@@ -310,7 +313,7 @@ export const Navbar = () => {
         <div className="nav-links hidden min-[1025px]:flex h-full items-center gap-6">
           <a
             href="#about"
-            className={`text-12 transition-colors duration-300 ${textColorClass} ${hoverColorClass} ${activeLink === 'weAre' ? 'active' : ''}`}
+            className={`text-12 transition-colors duration-[0.4s] ${textColorClass} ${hoverColorClass} ${activeLink === 'weAre' ? 'active' : ''}`}
             onClick={() => handleLinkClick('weAre')}
           >
             <div className="inline-block h-fit overflow-hidden py-1">
@@ -319,7 +322,7 @@ export const Navbar = () => {
           </a>
           <a
             href="#services"
-            className={`text-12 transition-colors duration-300 ${textColorClass} ${hoverColorClass} ${activeLink === 'services' ? 'active' : ''}`}
+            className={`text-12 transition-colors duration-[0.4s] ${textColorClass} ${hoverColorClass} ${activeLink === 'services' ? 'active' : ''}`}
             onClick={() => handleLinkClick('services')}
           >
             <div className="inline-block h-fit overflow-hidden py-1">
@@ -328,7 +331,7 @@ export const Navbar = () => {
           </a>
           <a
             href="#hero"
-            className={`text-12 transition-colors duration-300 ${textColorClass} ${hoverColorClass} ${activeLink === 'blog' ? 'active' : ''}`}
+            className={`text-12 transition-colors duration-[0.4s] ${textColorClass} ${hoverColorClass} ${activeLink === 'blog' ? 'active' : ''}`}
             onClick={() => handleLinkClick('blog')}
           >
             <div className="inline-block h-fit overflow-hidden py-1">
@@ -337,7 +340,7 @@ export const Navbar = () => {
           </a>
           <a
             href="#footer"
-            className={`text-12 transition-colors duration-300 ${textColorClass} ${hoverColorClass} ${activeLink === 'contact' ? 'active' : ''}`}
+            className={`text-12 transition-colors duration-[0.4s] ${textColorClass} ${hoverColorClass} ${activeLink === 'contact' ? 'active' : ''}`}
             onClick={() => handleLinkClick('contact')}
           >
             <div className="inline-block h-fit overflow-hidden py-1">
@@ -350,14 +353,14 @@ export const Navbar = () => {
         <div className="relative w-[15%] mobile-right-side flex justify-center gap-[20px] shrink-0 items-center gap-6">
           <div className=" flex h-full shrink-0 items-center">
             <div
-              className={`languages-left-line absolute left-[0px] top-0 z-[100] h-[124px] w-[1px] transition-colors duration-300 ${borderColorClass}`}
+              className={`languages-left-line absolute left-[0px] top-0 z-[100] h-[124px] w-[1px] transition-colors duration-[0.4s] ${borderColorClass}`}
               aria-hidden
             />
             <div className="language-links h-full flex items-center">
               <a
                 href="#"
                 onClick={(e) => { e.preventDefault(); setLanguage('ka'); }}
-                className={`text-12 transition-colors duration-300 ${
+                className={`text-12 transition-colors duration-[0.4s] ${
                   language === 'ka' 
                     ? (isLightText ? '!text-[#FFFFFF8F] font-bold' : '!text-[#0000008F] font-bold')
                     : (isLightText ? '!text-[#FFFFFF]' : '!text-[#000000]/60')
@@ -370,7 +373,7 @@ export const Navbar = () => {
               <a
                 href="#"
                 onClick={(e) => { e.preventDefault(); setLanguage('en'); }}
-                className={`text-12 transition-colors duration-300 ${
+                className={`text-12 transition-colors duration-[0.4s] ${
                   language === 'en'
                     ? (isLightText ? '!text-[#FFFFFF8F] font-bold' : '!text-[#0000008F] font-bold')
                     : (isLightText ? '!text-[#FFFFFF]' : '!text-[#000000]/60')
@@ -382,7 +385,7 @@ export const Navbar = () => {
               </a>
             </div>
             <div
-              className={`languages-right-line absolute right-[0px] top-0 z-[100] h-[124px] w-[1px] transition-colors duration-300 ${borderColorClass}`}
+              className={`languages-right-line absolute right-[0px] top-0 z-[100] h-[124px] w-[1px] transition-colors duration-[0.4s] ${borderColorClass}`}
               aria-hidden
             />
           </div>
@@ -435,7 +438,7 @@ export const Navbar = () => {
       </nav>
 
      
-      <div className={`navbar-bottom-line w-[100%] h-[1px] absolute bottom-[0px] left-0 transition-colors duration-300 ${borderColorClass}`}></div>
+      <div className={`navbar-bottom-line w-[100%] h-[1px] absolute bottom-[0px] left-0 transition-colors duration-[0.4s] ${borderColorClass}`}></div>
 
       {/* Mobile menu: overlay + side panel, always in DOM on mobile for exit animation */}
       <div
@@ -470,7 +473,7 @@ export const Navbar = () => {
            
             <a
               href="#about"
-              className={`mobile-menu-link text-[14px] transition-colors flex justify-center ${isLightText ? 'text-[#FFFFFF] hover:text-[#FFFFFF]' : 'text-[#000000] hover:text-[#000000]/70'}`}
+              className={`mobile-menu-link text-[14px] transition-colors duration-[0.4s] flex justify-center ${isLightText ? 'text-[#FFFFFF] hover:text-[#FFFFFF]' : 'text-[#000000] hover:text-[#000000]/70'}`}
               onClick={() => handleLinkClick('weAre')}
             >
               <div className="overflow-hidden block h-fit py-1">
@@ -479,7 +482,7 @@ export const Navbar = () => {
             </a>
             <a
               href="#services"
-              className={`mobile-menu-link text-[14px] transition-colors flex justify-center ${isLightText ? 'text-[#FFFFFF] hover:text-[#FFFFFF]' : 'text-[#000000] hover:text-[#000000]/70'}`}
+              className={`mobile-menu-link text-[14px] transition-colors duration-[0.4s] flex justify-center ${isLightText ? 'text-[#FFFFFF] hover:text-[#FFFFFF]' : 'text-[#000000] hover:text-[#000000]/70'}`}
               onClick={() => handleLinkClick('services')}
             >
               <div className="overflow-hidden block h-fit py-1">
@@ -488,7 +491,7 @@ export const Navbar = () => {
             </a>
             <a
               href="#hero"
-              className={`mobile-menu-link text-[14px] transition-colors flex justify-center ${isLightText ? 'text-[#FFFFFF] hover:text-[#FFFFFF]' : 'text-[#000000] hover:text-[#000000]/70'}`}
+              className={`mobile-menu-link text-[14px] transition-colors duration-[0.4s] flex justify-center ${isLightText ? 'text-[#FFFFFF] hover:text-[#FFFFFF]' : 'text-[#000000] hover:text-[#000000]/70'}`}
               onClick={() => handleLinkClick('blog')}
             >
               <div className="overflow-hidden block h-fit py-1">
@@ -497,7 +500,7 @@ export const Navbar = () => {
             </a>
             <a
               href="#footer"
-              className={`mobile-menu-link text-[14px] transition-colors flex justify-center ${isLightText ? 'text-[#FFFFFF] hover:text-[#FFFFFF]' : 'text-[#000000] hover:text-[#000000]/70'}`}
+              className={`mobile-menu-link text-[14px] transition-colors duration-[0.4s] flex justify-center ${isLightText ? 'text-[#FFFFFF] hover:text-[#FFFFFF]' : 'text-[#000000] hover:text-[#000000]/70'}`}
               onClick={() => handleLinkClick('contact')}
             >
               <div className="overflow-hidden block h-fit py-1">
