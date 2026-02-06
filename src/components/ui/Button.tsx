@@ -16,7 +16,7 @@ export const Button : React.FC<ButtonProps> = ({ text, onClick, css = '', galaxy
             <div className={`for-button-animation relative group ${galaxyMode &&  'pt-[20px] pb-[15px]'}`}>
 
                 {galaxyMode && (
-                <div className='w-[15px] h-[15px] absolute left-[30%] top-[25px] rounded-full shadow-[0_0_20px_10px_rgba(255,255,255,0.9)] z-[-1] transition-all duration-300 ease-in-out group-hover:left-[70%]'></div>
+                <div className='w-[15px] h-[15px] absolute left-[30%] top-[25px] rounded-full shadow-[0_0_20px_10px_rgba(255,255,255,0.9)] z-[-1] transition-all duration-300 ease-in-out group-hover:left-[80%]'></div>
                 )}
 
                 <button className={`flex cursor-[pointer] items-center justify-center gap-[9px] text-[black] px-6 py-3 font-medium ${css} text-[white] group-hover:text-[#F43E46] `} onClick={onClick}>

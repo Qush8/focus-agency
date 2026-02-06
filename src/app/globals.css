@@ -393,7 +393,16 @@ nav .language-links a:hover::after {
   border: 1px solid transparent;
   background: 
     linear-gradient(#000, #000) padding-box,
-    linear-gradient(to right, #464646, #F43E46, #464646) border-box;
+    linear-gradient(to right, rgba(70, 70, 70, 0.5) 50%, rgba(244, 62, 70, 0.5) 70%, rgba(70, 70, 70, 0.5) 90%) top left / 100% 51% border-box no-repeat,
+    linear-gradient(to right, rgba(70, 70, 70, 0.5) 10%, rgba(244, 62, 70, 0.5) 30%, rgba(70, 70, 70, 0.5) 50%) bottom left / 100% 51% border-box no-repeat;
+  transition: background 0.5s ease-in-out;
+}
+
+.gradient-border:hover {
+  background: 
+    linear-gradient(#000, #000) padding-box,
+    linear-gradient(to right, #464646 50%, #F43E46 70%, #464646 90%) top left / 100% 51% border-box no-repeat,
+    linear-gradient(to right, #464646 10%, #F43E46 30%, #464646 50%) bottom left / 100% 51% border-box no-repeat;
 }
 .section-service {
   padding-bottom: 200px!important;
