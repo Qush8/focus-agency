@@ -57,107 +57,74 @@ export const Footer = () => {
     gsap.set('.copyright-up-line, .copyright-down-line', { scaleX: 0, transformOrigin: 'center' });
     gsap.set('.copyright-text', { y: "100%" });
 
-    // Detect mobile/tablet viewport once on mount (content plays when footer top enters viewport)
-    const isMobileOrTablet =
-      typeof window !== 'undefined' &&
-      window.matchMedia &&
-      window.matchMedia('(max-width: 1024px)').matches;
+    // Scrub: progress = scroll position → scroll up and content starts disappearing immediately
+    const tweenDuration = 0.45;
+    const stagger = 0.08;
 
-    // Second Timeline: Remaining content
-    // Desktop (>1024px): იწყება როცა footer-ის bottom შეეხება viewport-ის bottom-ს
-    // Mobile/Tablet (≤1024px): footer-ის top viewport-ის 85%-ში შესვლისას (უფრო გვიან)
-    const autoPlayTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: footerRef.current,
-        start: isMobileOrTablet ? 'top 82%' : 'bottom bottom',
-        toggleActions: "play reverse play reverse",
-        invalidateOnRefresh: true
-      },
-      defaults: { duration: 0.6, ease: "power2.out" }
-    });
-
-    // First Timeline: Top line and h2 - scrubs with scroll, but waits for autoPlayTl to reverse before reversing
-    const scrubTl = gsap.timeline({
+    const footerTl = gsap.timeline({
       scrollTrigger: {
         trigger: footerRef.current,
         start: "top 90%",
-        end: "bottom bottom",
+        end: "top 60%",
         scrub: true,
-        invalidateOnRefresh: true,
-        onLeaveBack: () => {
-          // If autoPlayTl has content visible (progress > 0), reverse it first
-          if (autoPlayTl.progress() > 0) {
-            // Temporarily disable scrub to prevent immediate reverse
-            const scrubTrigger = scrubTl.scrollTrigger;
-            if (scrubTrigger) {
-              scrubTrigger.disable();
-            }
-            // Reverse autoPlayTl first
-            autoPlayTl.reverse();
-            // After autoPlayTl finishes reversing, re-enable scrubTl
-            autoPlayTl.eventCallback("onReverseComplete", () => {
-              if (scrubTrigger) {
-                scrubTrigger.enable();
-                scrubTrigger.refresh();
-              }
-            });
-          }
-        }
+        invalidateOnRefresh: true
       },
-      defaults: { ease: "none" }
+      defaults: { duration: tweenDuration, ease: "power2.out" }
     });
 
-    // Top line
-    scrubTl.to('.footer-line-top', { scaleX: 1 }, 0);
-    // Left h2 - mask animation
-    scrubTl.to('.footer-h2-text', { y: 0 }, 0.1);
 
-    // Form message[0]
-    autoPlayTl.to('.footer-form-message-0', { x: 0, opacity: 1 }, 0);
-    // Form input[0]
-    autoPlayTl.to('.footer-form-input-0', { x: 0, opacity: 1 }, 0.1);
 
-    // Form message[1]
-    autoPlayTl.to('.footer-form-message-1', { x: 0, opacity: 1 }, 0.2);
-    // Form input[1]
-    autoPlayTl.to('.footer-form-input-1', { x: 0, opacity: 1 }, 0.3);
 
-    // Form message[2]
-    autoPlayTl.to('.footer-form-message-2', { x: 0, opacity: 1 }, 0.4);
-    // Form input[2]
-    autoPlayTl.to('.footer-form-input-2', { x: 0, opacity: 1 }, 0.5);
 
-    // Right side "Call us anytime"
-    autoPlayTl.to('.footer-call-us-text', { y: 0 }, 0.6);
-    // Phone number
-    autoPlayTl.to('.footer-phone-number', { y: 0 }, 0.7);
-    // "You're welcome to visit us"
-    autoPlayTl.to('.footer-visit-us-text', { y: 0 }, 0.8);
-    // "Tbilisi, Saburtalo"
-    autoPlayTl.to('.footer-tbilisi-text', { y: 0 }, 0.9);
-    // "Alexandre Kazbegi st N24"
-    autoPlayTl.to('.footer-address-text', { y: 0 }, 1.0);
-    // "Connect with us by email"
-    autoPlayTl.to('.footer-connect-text', { y: 0 }, 1.1);
-    // Email
-    autoPlayTl.to('.footer-email-text', { y: 0 }, 1.2);
-    // "Home"
-    autoPlayTl.to('.footer-home-text', { y: 0 }, 1.3);
-    // "We are"
-    autoPlayTl.to('.footer-link-we-are', { y: 0 }, 1.4);
-    // "Service"
-    autoPlayTl.to('.footer-link-service', { y: 0 }, 1.5);
-    // "Blog"
-    autoPlayTl.to('.footer-link-blog', { y: 0 }, 1.6);
-    // "Contact"
-    autoPlayTl.to('.footer-link-contact', { y: 0 }, 1.7);
+    // 1. Top line
 
-    // Copyright up line
-    autoPlayTl.to('.copyright-up-line', { scaleX: 1 }, 1.8);
-    // Copyright text
-    autoPlayTl.to('.copyright-text', { y: 0 }, 1.9);
-    // Copyright down line
-    autoPlayTl.to('.copyright-down-line', { scaleX: 1 }, 2.0);
+    const footerLineDuration = 200;
+    const footerContentDuration = 300;
+    const footerRighContentDuration = 600;
+    const rightSideStagger = 10;
+
+    const formDelay = 1200;
+    const rightContentDelay = 1500;
+    footerTl.to('.footer-line-top', { scaleX: 1, ease: "power2.out", duration: footerLineDuration }, 0);
+    // 2. h2 "Have a question?"
+    footerTl.to('.footer-h2-text', { y: 0 , duration: 250}, 350);
+    // 3. Form — messages and inputs one after another
+    footerTl.to('.footer-form-message-0', { x: 0, opacity: 1, duration: footerContentDuration },formDelay);
+    footerTl.to('.footer-form-input-0', { x: 0, opacity: 1, duration: footerContentDuration }, formDelay + 100);
+    footerTl.to('.footer-form-message-1', { x: 0, opacity: 1, duration: footerContentDuration }, formDelay + 200);
+    footerTl.to('.footer-form-input-1', { x: 0, opacity: 1, duration: footerContentDuration }, formDelay + 300);
+    footerTl.to('.footer-form-message-2', { x: 0, opacity: 1, duration: footerContentDuration }, formDelay + 400);
+    footerTl.to('.footer-form-input-2', { x: 0, opacity: 1, duration: footerContentDuration }, formDelay + 500);
+    // 4. Contact block — one after another
+    footerTl.to('.footer-call-us-text', { y: 0 , duration: footerRighContentDuration }, rightContentDelay);
+    footerTl.to('.footer-phone-number', { y: 0 , duration : footerRighContentDuration }, rightContentDelay + 100);
+    footerTl.to('.footer-visit-us-text', { y: 0 , duration: footerRighContentDuration }, rightContentDelay + 200);
+    footerTl.to('.footer-tbilisi-text', { y: 0 , duration: footerRighContentDuration }, rightContentDelay + 300);
+    footerTl.to('.footer-address-text', { y: 0 , duration: footerRighContentDuration }, rightContentDelay + 400);
+    footerTl.to('.footer-connect-text', { y: 0 , duration: footerRighContentDuration }, rightContentDelay + 500);
+    footerTl.to('.footer-email-text', { y: 0 , duration: footerRighContentDuration }, rightContentDelay + 600);
+    footerTl.to('.footer-home-text', { y: 0 , duration: footerRighContentDuration }, rightContentDelay + 700);
+    footerTl.to('.footer-link-we-are', { y: 0 , duration: footerRighContentDuration }, rightContentDelay + 800);
+    footerTl.to('.footer-link-service', { y: 0 , duration: footerRighContentDuration }, rightContentDelay + 900);
+    footerTl.to('.footer-link-blog', { y: 0 , duration: footerRighContentDuration }, rightContentDelay + 1000);
+    footerTl.to('.footer-link-contact', { y: 0 , duration: footerRighContentDuration }, rightContentDelay + 1100);
+
+    // Copyright — separate timeline so its delay/duration does not affect main content speed
+    const copyrightStagger = 0.08;
+    const copyrightDuration = 1.2;
+    const copyrightTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: footerRef.current,
+        start: "top 85%",
+        end: "bottom bottom",
+        scrub: true,
+        invalidateOnRefresh: true
+      },
+      defaults: { duration: copyrightDuration, ease: "power2.out" }
+    });
+    copyrightTl.to('.copyright-up-line', { scaleX: 1 }, 0);
+    copyrightTl.to('.copyright-text', { y: 0 }, copyrightStagger);
+    copyrightTl.to('.copyright-down-line', { scaleX: 1 }, copyrightStagger * 2);
 
   }, { scope: footerRef });
 

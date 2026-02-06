@@ -2,6 +2,10 @@
 
 import { useLayoutEffect } from 'react';
 import Lenis from 'lenis';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface SmoothScrollProps {
   children: React.ReactNode;
@@ -30,17 +34,34 @@ export const SmoothScroll = ({ children }: SmoothScrollProps) => {
       infinite: false,
     });
 
+    // ScrollTrigger uses Lenis scroll position so scrub animations follow scroll and stop when scroll stops
+    ScrollTrigger.scrollerProxy(document.body, {
+      scrollTop: (value) => {
+        if (value !== undefined) {
+          lenis.scrollTo(value, { immediate: true });
+        }
+        return lenis.scroll;
+      },
+      getBoundingClientRect: () => ({
+        top: 0,
+        left: 0,
+        width: window.innerWidth,
+        height: window.innerHeight,
+      }),
+    });
+
+    lenis.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.lagSmoothing(0);
+    const tickerCallback = (time: number) => {
+      lenis.raf(time * 1000);
+    };
+    gsap.ticker.add(tickerCallback);
+
     // Ensure Lenis scroll happens after instance is ready
     requestAnimationFrame(() => {
       lenis.scrollTo(0, { immediate: true });
     });
-
-    const raf = (time: number) => {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    };
-
-    requestAnimationFrame(raf);
 
     const handleAnchorClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
@@ -76,6 +97,9 @@ export const SmoothScroll = ({ children }: SmoothScrollProps) => {
     window.addEventListener('lenis:start', handleLenisStart);
 
     return () => {
+      gsap.ticker.remove(tickerCallback);
+      lenis.off('scroll', ScrollTrigger.update);
+      ScrollTrigger.scrollerProxy(document.body, {});
       lenis.destroy();
       document.removeEventListener('click', handleAnchorClick);
       window.removeEventListener('lenis:stop', handleLenisStop);

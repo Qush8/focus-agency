@@ -54,6 +54,7 @@
   font-weight: normal;
   font-style: normal;
   font-display: swap;
+  font-family: var(--font-noto-georgian), sans-serif;
 }
 
 body.lang-ka {
@@ -96,11 +97,17 @@ body {
   font-family: 'Satoshi', sans-serif;
   width: 100%;
   overflow-x: hidden;
+  background-color: #FFFFFF;
   
 }
 
 body.lang-ka {
-  font-family: 'NinoMT', sans-serif;
+  font-family: var(--font-noto-georgian), sans-serif;
+}
+
+body.lang-ka h1,
+body.lang-ka h2 {
+  font-family: 'Satoshi', sans-serif;
 }
 
 .for-navbar-fixed {
