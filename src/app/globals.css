@@ -874,6 +874,10 @@ nav .language-links a:hover::after {
     padding-left: 40px;
   }
 
+  nav .mobile-right-side .language-links {
+    margin-top: 3px;
+  }
+
   /* Service sections <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
   .section-service {
     /* padding-left: 50px;
@@ -1051,6 +1055,9 @@ nav .language-links a:hover::after {
     width: 30%!important;
   }
 
+  nav .mobile-right-side .language-links {
+    margin-top: 2px!important;
+  }
   nav .nav-links {
    
   }
@@ -1590,7 +1597,9 @@ nav .language-links a:hover::after {
   nav .mobile-right-side {
     width: 70%!important;
     gap: 5px!important;
+    padding-left: 100px!important;
   }
+ 
 
   nav .mobile-right-side .languages-left-line  {
 
