@@ -58,12 +58,12 @@ export const Hero = () => {
     }, 0.1);
 
     // Button disappears (after text) — opacity only
-    scrollOutTl.to('.hero-button-wrapper', {
-      opacity: 1,
-      scale: 1,
+    scrollOutTl.to('.hero-button-inner', {
+      y: "-100%",
+      opacity: 0,
       duration: 0.4,
       delay: 0.15
-    }, 1.2);
+    }, 0.9);
 
     // Left icons disappear with stagger (as they appeared with stagger)
     scrollOutTl.to('.left-icon', {
@@ -77,6 +77,15 @@ export const Hero = () => {
       scale: 0,
       opacity: 0
     }, 1.5);
+
+    // Entrance animation for button
+    gsap.from(".hero-button-inner", {
+      y: "100%",
+      opacity: 0,
+      duration: 0.8,
+      ease: "power4.out",
+      delay: 0.6
+    });
 
   }, { scope: heroRef });
 
@@ -110,8 +119,10 @@ export const Hero = () => {
               </div>
             </div>
           </h1>
-          <div className="hero-button-wrapper hero-button mt-[44px] z-[20] ">
-            <Button css={'gradient-border w-[261px] h-[49px] bg-[#000000] '} text={t.hero.cta} onClick={() => {console.log('clicked')}} />
+          <div className="hero-button-wrapper hero-button mt-[44px] z-[20] overflow-hidden">
+            <div className="hero-button-inner">
+              <Button css={'gradient-border w-[261px] h-[49px] bg-[#000000] '} text={t.hero.cta} onClick={() => {console.log('clicked')}} />
+            </div>
           </div>
           <div className='icons flex justify-between w-[100%] mt-[198px] z-[20] '>
             <div className='left-side-icons  w-[40%] flex justify-start gap-[24px]'>

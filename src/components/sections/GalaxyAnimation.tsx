@@ -21,7 +21,7 @@ void main()
 
     float angle = atan(modelPosition.x, modelPosition.z);
     float distanceToCenter = length(modelPosition.xz);
-    float angleOffset = (1.0 / distanceToCenter) * uTime * 0.2;
+    float angleOffset = (1.0 / distanceToCenter) * uTime * 0.05;
     angle += angleOffset;
     modelPosition.x = cos(angle) * distanceToCenter;
     modelPosition.z = sin(angle) * distanceToCenter;
@@ -201,8 +201,8 @@ const GalaxyAnimation = () => {
     // Mouse interaction
     const mouse = { x: 0, y: 0 };
     const handleMouseMove = (event: MouseEvent) => {
-      mouse.x = (event.clientX / window.innerWidth) * 3 - 1;
-      mouse.y = -(event.clientY / window.innerHeight) * 1 + 1;
+      mouse.x = (event.clientX / window.innerWidth) * 0.2 - 1;
+      mouse.y = -(event.clientY / window.innerHeight) * 0.2 + 1;
     };
     window.addEventListener("mousemove", handleMouseMove);
 
@@ -217,7 +217,7 @@ const GalaxyAnimation = () => {
       }
 
       // Rotate galaxy based on mouse
-      scene.rotation.y = elapsedTime * 0.05 + mouse.x * 0.5;
+      scene.rotation.y = elapsedTime * 0.01 + mouse.x * 0.5;
       scene.rotation.x = mouse.y * 0.5;
 
       renderer.render(scene, camera);
