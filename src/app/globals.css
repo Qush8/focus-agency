@@ -103,6 +103,10 @@ body.lang-ka {
   font-family: 'NinoMT', sans-serif;
 }
 
+.for-navbar-fixed {
+ width: 1920px;
+}
+
 @media screen and (max-width: 1024px) {
   html {
     overflow-x: hidden;
@@ -593,9 +597,12 @@ nav .language-links a:hover::after {
 @media screen and (max-width: 1700px) and (min-width: 900px) {
 
   /* header section */
+  .for-navbar-fixed {
+    width: 100%!important;
+   }
   nav {
     padding-left: 70px;
-    padding-right: 70px;
+    /* padding-right: 70px; */
   }
   nav .nav-links a {
     font-size: 16px!important;
@@ -788,6 +795,9 @@ nav .language-links a:hover::after {
 }
 
 @media screen and (max-width: 1440px) and (max-height: 900px) {
+  .for-navbar-fixed {
+    width: 100%!important;
+   }
   .section-hero {
     padding-left: 70px;
     padding-top: 180px;
@@ -799,6 +809,9 @@ nav .language-links a:hover::after {
 
 }
 @media screen and (max-width: 1280px) and (max-height: 800px) {
+  .for-navbar-fixed {
+    width: 100%!important;
+   }
   .section-hero {
     padding-left: 70px;
     padding-top: 150px;
@@ -813,6 +826,9 @@ nav .language-links a:hover::after {
 /* TABLET version ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ******  TABLET VERSION */
 @media screen and (max-width: 1024px) and (min-width: 768px) {
   /* header section <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+  .for-navbar-fixed {
+    width: 100%!important;
+   }
   nav {
     padding-left: 50px;
     padding-right: 50px;
@@ -1009,6 +1025,9 @@ nav .language-links a:hover::after {
 /* MOBILE VERSION ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ******  MOBILE VERSION */
 @media screen and (max-width: 767px) {
   /* header section <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+  .for-navbar-fixed {
+    width: 100%!important;
+   }
   nav {
     /* padding-left/right მოხსნილი — მიშლიდა ხელს */
   }
@@ -1409,6 +1428,9 @@ nav .language-links a:hover::after {
 }
 
 @media screen and (max-width: 430px) {
+  .for-navbar-fixed {
+    width: 100%!important;
+   }
 
   nav {
     padding-right: 0px!important;
@@ -1424,6 +1446,7 @@ nav .language-links a:hover::after {
     font-size: 24px!important;
     margin-left: 20px; 
   }
+
 
   .section-hero h1 {
     /* font-size: 24px!important; */
@@ -1542,6 +1565,7 @@ nav .language-links a:hover::after {
 
   nav .mobile-right-side {
     width: 40%!important;
+    gap: 5px!important;
   }
 
 

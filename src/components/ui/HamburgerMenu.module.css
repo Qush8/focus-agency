@@ -1,0 +1,218 @@
+.hamburglar {
+  --color: #fff;
+  --bg-color: #158fef;
+  --animation-speed: 0.6s;
+  --scale: 0.6;
+
+  transform: scale(var(--scale));
+  margin: 0;
+  position: relative;
+  display: block;
+  width: 68px;
+  height: 68px;
+  background: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+.pathBurger {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 68px;
+  width: 68px;
+  /* Use local mask */
+  mask: url(#hamburglar-mask);
+  -webkit-mask: url(#hamburglar-mask);
+  /* Fallback or alternative if needed, but local SVG mask is preferred */
+  /* -webkit-mask-box-image: url(https://raygun.io/upload/mask.svg); */
+}
+
+.animatePath {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 68px;
+  height: 68px;
+}
+
+.pathRotation {
+  height: 34px;
+  width: 34px;
+  margin: 34px 34px 0 0;
+  transform: rotate(0deg);
+  transform-origin: 100% 0;
+}
+
+.pathRotation:before {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 34px;
+  margin: 0 4px 0 0;
+  background: var(--color);
+}
+
+@keyframes rotateOut {
+  0% { transform: rotate(0deg); }
+  40% { transform: rotate(180deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes rotateIn {
+  0% { transform: rotate(360deg); }
+  40% { transform: rotate(180deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.hamburglar.isOpen .path {
+  animation: dashIn var(--animation-speed) linear normal forwards;
+}
+
+.hamburglar.isOpen .animatePath {
+  animation: rotateIn var(--animation-speed) linear normal forwards;
+}
+
+.hamburglar.isClosed .path {
+  animation: dashOut var(--animation-speed) linear normal forwards;
+}
+
+.hamburglar.isClosed .animatePath {
+  animation: rotateOut var(--animation-speed) linear normal forwards;
+}
+
+.path {
+  stroke-dasharray: 240;
+  stroke-dashoffset: 240;
+  stroke-linejoin: round;
+}
+
+@keyframes dashIn {
+  0% { stroke-dashoffset: 240; }
+  40% { stroke-dashoffset: 240; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes dashOut {
+  0% { stroke-dashoffset: 0; }
+  40% { stroke-dashoffset: 240; }
+  100% { stroke-dashoffset: 240; }
+}
+
+.burgerIcon {
+  position: absolute;
+  padding: 20px 16px;
+  height: 68px;
+  width: 68px;
+}
+
+.burgerContainer {
+  position: relative;
+  height: 28px;
+  width: 36px;
+}
+
+.burgerBunTop,
+.burgerBunBot,
+.burgerFilling {
+  position: absolute;
+  display: block;
+  height: 4px;
+  width: 36px;
+  border-radius: 2px;
+  background: var(--color);
+}
+
+.burgerBunTop {
+  top: 0;
+  transform-origin: 34px 2px;
+}
+
+.burgerBunBot {
+  bottom: 0;
+  transform-origin: 34px 2px;
+}
+
+.burgerFilling {
+  top: 12px;
+}
+
+.burgerRing {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 68px;
+  height: 68px;
+}
+
+.svgRing {
+  width: 68px;
+  height: 68px;
+}
+
+.hamburglar.isOpen .burgerBunTop {
+  animation: bunTopOut var(--animation-speed) linear normal forwards;
+}
+
+.hamburglar.isOpen .burgerBunBot {
+  animation: bunBotOut var(--animation-speed) linear normal forwards;
+}
+
+.hamburglar.isClosed .burgerBunTop {
+  animation: bunTopIn var(--animation-speed) linear normal forwards;
+}
+
+.hamburglar.isClosed .burgerBunBot {
+  animation: bunBotIn var(--animation-speed) linear normal forwards;
+}
+
+@keyframes bunTopOut {
+  0% { left: 0; top: 0; transform: rotate(0deg); }
+  20% { left: 0; top: 0; transform: rotate(15deg); }
+  80% { left: -5px; top: 0; transform: rotate(-60deg); }
+  100% { left: -5px; top: 1px; transform: rotate(-45deg); }
+}
+
+@keyframes bunBotOut {
+  0% { left: 0; transform: rotate(0deg); }
+  20% { left: 0; transform: rotate(-15deg); }
+  80% { left: -5px; transform: rotate(60deg); }
+  100% { left: -5px; transform: rotate(45deg); }
+}
+
+@keyframes bunTopIn {
+  0% { left: -5px; top: 1px; transform: rotate(-45deg); }
+  20% { left: -5px; top: 0; transform: rotate(-60deg); }
+  80% { left: 0; top: 0; transform: rotate(15deg); }
+  100% { left: 0; top: 0; transform: rotate(0deg); }
+}
+
+@keyframes bunBotIn {
+  0% { left: -5px; transform: rotate(45deg); }
+  20% { left: -5px; bottom: 0; transform: rotate(60deg); }
+  80% { left: 0; bottom: 0; transform: rotate(-15deg); }
+  100% { left: 0; transform: rotate(0deg); }
+}
+
+.hamburglar.isOpen .burgerFilling {
+  animation: burgerFillOut var(--animation-speed) linear normal forwards;
+}
+
+.hamburglar.isClosed .burgerFilling {
+  animation: burgerFillIn var(--animation-speed) linear normal forwards;
+}
+
+@keyframes burgerFillIn {
+  0% { width: 0; left: 36px; }
+  40% { width: 0; left: 40px; }
+  80% { width: 36px; left: -6px; }
+  100% { width: 36px; left: 0px; }
+}
+
+@keyframes burgerFillOut {
+  0% { width: 36px; left: 0px; }
+  20% { width: 42px; left: -6px; }
+  40% { width: 0; left: 40px; }
+  100% { width: 0; left: 36px; }
+}

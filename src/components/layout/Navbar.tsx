@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import '../../app/globals.css';
 import { useLanguage } from '@/context/LanguageContext';
+import HamburgerMenu from '../ui/HamburgerMenu';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -259,7 +260,7 @@ export const Navbar = () => {
   };
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 flex w-full justify-center overflow-x-hidden">
+    <div className="fixed for-navbar-fixed top-0 left-0 right-0 z-50 flex w-full justify-center overflow-x-hidden">
       <nav
         ref={navRef}
         className={`flex h-[125px] w-full max-w-[1920px] items-center justify-between px-4 md:px-8 max-[1024px]:px-5 transition-all duration-300 ${navBgClass}`}
@@ -381,7 +382,7 @@ export const Navbar = () => {
           </div>
 
           {/* Hamburger: ≤ 1024px */}
-          <button
+          {/* <button
             type="button"
             className="flex min-[1025px]:hidden h-[25px] w-[25px] rounded-[3px] shrink-0 items-center justify-center border-0 bg-[#F43E46] outline-none transition-colors duration-200 focus:outline-none"
             aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
@@ -416,7 +417,14 @@ export const Navbar = () => {
                 <line x1="19" y1="5" x2="5" y2="19" stroke="white" strokeWidth="2" strokeLinecap="round" />
               </svg>
             </span>
-          </button>
+          </button> */}
+          
+          <div className="hidden max-[767px]:block">
+            <HamburgerMenu
+              isOpen={isMobileMenuOpen}
+              onToggle={handleToggleMobileMenu}
+            />
+          </div>
         </div>
       </nav>
 
