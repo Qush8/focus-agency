@@ -260,7 +260,7 @@ export const Navbar = () => {
   };
 
   return (
-    <div className="fixed for-navbar-fixed top-0 left-0 right-0 z-50 flex w-full justify-center overflow-x-hidden">
+    <div className="fixed for-navbar-fixed w-[100%] top-0 left-0 right-0 z-50 flex  justify-center overflow-x-hidden">
       <nav
         ref={navRef}
         className={`flex h-[125px] w-full max-w-[1920px] items-center justify-between px-4 md:px-8 max-[1024px]:px-5 transition-all duration-300 ${navBgClass}`}

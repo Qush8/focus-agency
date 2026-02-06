@@ -92,6 +92,7 @@ export const Hero = () => {
   return (
     <section ref={heroRef} id="hero" className="section-hero relative w-full flex flex-col items-start bg-[black] h-[100vh] ">
        <div className='left-side-line w-[1px] h-[100%] bg-[#FFFFFF33] absolute left-[10px] md:left-[31px] z-[100] top-[0px]'></div>
+       
 
           <div className="text-[white] text-[48px] line-height-[100px] font-light tracking-normal z-[20]">
             <div className="first-text overflow-hidden block h-fit py-1">
