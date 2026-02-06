@@ -1478,6 +1478,7 @@ nav .language-links a:hover::after {
 
   .section-hero {
     padding-left: 26px!important;
+    padding-top: 200px!important;
   }
 
   .section-hero .first-text {
@@ -1490,9 +1491,17 @@ nav .language-links a:hover::after {
     /* font-size: 24px!important; */
     margin-left: 20px; 
   }
+  .section-hero .hero-button{
+    margin-top: 0px!important;
+  }
  
   .section-hero .hero-button-wrapper {
     margin-left: 20px;
+  }
+  .section-hero .hero-button-wrapper button {
+    width: 150px!important;
+    height: 30px!important;
+    font-size: 9px!important;
   }
 
   .section-hero .icons .left-side-icons {
@@ -1614,6 +1623,49 @@ nav .language-links a:hover::after {
     background: none!important;
   }
 
+}
+
+@media screen and (min-width: 375px) {
+
+  nav .mobile-right-side {
+    padding-left: 20px!important;
+  }
+  nav .logo {
+    width: 40px!important;
+    height: 60px!important;
+  }
+
+  .section-hero {
+    padding-top: 200px!important;
+  }
+  .section-hero .first-text {
+    font-size: 16px!important;
+    margin-left: 20px; 
+  }
+  .section-hero h1 {
+    margin-left: 20px; 
+    font-size: 20px!important;
+  }
+  .section-hero .hero-button-wrapper {
+    margin-left: 20px;
+  }
+  
+  .section-hero icons {
+    width: 80%!important
+  }
+  .section-hero .icons .left-side-icons {
+    margin-left: 20px;
+    
+  }
+  .section-hero .icons .left-side-icons .social-icon-wrapper ,.section-hero .icons .right-side-icons .social-icon-wrapper {
+    width: 38px!important;
+    height: 38px!important;
+  }
+  .section-hero .icons .right-side-icons {
+    margin-right: 26px;
+  }
+
+ 
 }
 
 /* Lenis Smooth Scroll */
