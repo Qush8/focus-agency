@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,9 +20,10 @@ export const metadata: Metadata = {
     description: "we are best in the world for landing page",
     url: "https://landing_f.com",
     siteName: "landing_f",
-   
-  }
+  },
 };
+
+import { LanguageProvider } from '@/context/LanguageContext';
 
 export default function RootLayout({
   children,
@@ -34,11 +33,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar />
-        {children}
-        <Footer />
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

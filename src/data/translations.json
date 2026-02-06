@@ -1,0 +1,206 @@
+{
+  "en": {
+    "entry": {
+      "brand": "FocusAgency",
+      "enterSound": "ENTER WITH SOUND",
+      "enterSilent": "ENTER WITHOUT SOUND",
+      "slogan": {
+        "line1": "WHERE DESIGN MEETS DEVELOPMENT -",
+        "line2": "CREATING DIGITAL EXPERIENCES WITH",
+        "line3": "EMOTION, CLARITY, AND CRAFT."
+      }
+    },
+    "hero": {
+      "line1": "Increase your sales",
+      "line2": "Increase your sales and",
+      "line3": "brand awareness with",
+      "line4_prefix": "the ",
+      "line4_brand": "FocusAgency",
+      "line4_suffix": " team",
+      "cta": "SCHEDULE A MEETING"
+    },
+    "services": {
+      "title": "We offer full digital",
+      "subtitle": "services",
+      "items": [
+        {
+          "title": "Social Media Marketing",
+          "subtitle": "Content creation and advertising",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        },
+        {
+          "title": "Social Media Marketing",
+          "subtitle": "Content creation and advertising",
+          "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        },
+        {
+          "title": "Social Media Marketing",
+          "subtitle": "Content creation and advertising",
+          "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
+        },
+        {
+          "title": "Social Media Marketing",
+          "subtitle": "Content creation and advertising",
+          "description": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet."
+        }
+      ]
+    },
+    "about": {
+      "title": "Flow to work",
+      "cta": "SCHEDULE A MEETING",
+      "items": [
+        {
+          "title": "Initial Consultation",
+          "subtitle": "Desktop Publishing Software Like",
+          "description": "Letraset sheets containing Lorem Ipsum passages , and more recentlu with desktop publishing"
+        },
+        {
+          "title": "Strategy Development and Implementation",
+          "subtitle": "Desktop Publishing Software Like",
+          "description": "Letraset sheets containing Lorem Ipsum passages , and more recentlu with desktop publishing"
+        },
+        {
+          "title": "Review and Final Refinement",
+          "subtitle": "Desktop Publishing Software Like",
+          "description": "Letraset sheets containing Lorem Ipsum passages , and more recentlu with desktop publishing"
+        }
+      ]
+    },
+    "navbar": {
+      "weAre": "We are",
+      "services": "Services",
+      "blog": "Blog",
+      "contact": "Contact",
+      "ka": "ქარ",
+      "en": "ENG"
+    },
+    "footer": {
+      "question": "Have a question?",
+      "callUs": "Call us anytime",
+      "visitUs": "You're welcome to visit us",
+      "address": {
+        "city": "Tbilisi, Saburtalo",
+        "street": "Alexandre Kazbegi st N24"
+      },
+      "connect": "Connect with us by email",
+      "home": "Home",
+      "nav": {
+        "weAre": "We are",
+        "service": "Service",
+        "blog": "Blog",
+        "contact": "Contact"
+      },
+      "form": {
+        "namePlaceholder": "Name",
+        "nameError": "PLEASE ENTER YOUR FULL NAME",
+        "emailPlaceholder": "@Email",
+        "emailError": "PLEASE ENTER YOUR EMAIL ADDRESS",
+        "messagePlaceholder": "Message",
+        "messageError": "SHOOT A MESSAGE"
+      },
+      "copyright": "2026 created by Systemctl"
+    }
+  },
+  "ka": {
+    "entry": {
+      "brand": "FocusAgency",
+      "enterSound": "შესვლა ხმით",
+      "enterSilent": "შესვლა უხმოდ",
+      "slogan": {
+        "line1": "სადაც დიზაინი ხვდება დეველოპმენტს -",
+        "line2": "ვქმნით ციფრულ გამოცდილებას",
+        "line3": "ემოციით, სიცხადით და ოსტატობით."
+      }
+    },
+    "hero": {
+      "line1": "გაზარდეთ გაყიდვები",
+      "line2": "გაზარდეთ გაყიდვები და",
+      "line3": "ბრენდის ცნობადობა",
+      "line4_prefix": "",
+      "line4_brand": "FocusAgency",
+      "line4_suffix": "-ის გუნდთან ერთად",
+      "cta": "დაგეგმეთ შეხვედრა"
+    },
+    "services": {
+      "title": "ჩვენ გთავაზობთ სრულ ციფრულ",
+      "subtitle": "სერვისებს",
+      "items": [
+        {
+          "title": "სოციალური მედია მარკეტინგი",
+          "subtitle": "კონტენტის შექმნა და რეკლამირება",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        },
+        {
+          "title": "სოციალური მედია მარკეტინგი",
+          "subtitle": "კონტენტის შექმნა და რეკლამირება",
+          "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        },
+        {
+          "title": "სოციალური მედია მარკეტინგი",
+          "subtitle": "კონტენტის შექმნა და რეკლამირება",
+          "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
+        },
+        {
+          "title": "სოციალური მედია მარკეტინგი",
+          "subtitle": "კონტენტის შექმნა და რეკლამირება",
+          "description": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet."
+        }
+      ]
+    },
+    "about": {
+      "title": "მუშაობის პროცესი",
+      "cta": "დაგეგმეთ შეხვედრა",
+      "items": [
+        {
+          "title": "პირველადი კონსულტაცია",
+          "subtitle": "დესკტოპ პაბლიშინგის პროგრამები",
+          "description": "Letraset sheets containing Lorem Ipsum passages , and more recentlu with desktop publishing"
+        },
+        {
+          "title": "სტრატეგიის შემუშავება და იმპლემენტაცია",
+          "subtitle": "დესკტოპ პაბლიშინგის პროგრამები",
+          "description": "Letraset sheets containing Lorem Ipsum passages , and more recentlu with desktop publishing"
+        },
+        {
+          "title": "განხილვა და საბოლოო დახვეწა",
+          "subtitle": "დესკტოპ პაბლიშინგის პროგრამები",
+          "description": "Letraset sheets containing Lorem Ipsum passages , and more recentlu with desktop publishing"
+        }
+      ]
+    },
+    "navbar": {
+      "weAre": "ჩვენ შესახებ",
+      "services": "სერვისები",
+      "blog": "ბლოგი",
+      "contact": "კონტაქტი",
+      "ka": "ქარ",
+      "en": "ENG"
+    },
+    "footer": {
+      "question": "გაქვთ შეკითხვა?",
+      "callUs": "დაგვიკავშირდით ნებისმიერ დროს",
+      "visitUs": "გვეწვიეთ",
+      "address": {
+        "city": "თბილისი, საბურთალო",
+        "street": "ალექსანდრე ყაზბეგის გამზ. N24"
+      },
+      "connect": "მოგვწერეთ ელ-ფოსტაზე",
+      "home": "მთავარი",
+      "nav": {
+        "weAre": "ჩვენ შესახებ",
+        "service": "სერვისები",
+        "blog": "ბლოგი",
+        "contact": "კონტაქტი"
+      },
+      "form": {
+        "namePlaceholder": "სახელი",
+        "nameError": "გთხოვთ შეიყვანოთ სრული სახელი",
+        "emailPlaceholder": "@ელ-ფოსტა",
+        "emailError": "გთხოვთ შეიყვანოთ ელ-ფოსტის მისამართი",
+        "messagePlaceholder": "შეტყობინება",
+        "messageError": "გაგზავნეთ შეტყობინება"
+      },
+      "copyright": "2026 შექმნილია Systemctl-ის მიერ"
+    }
+  }
+}
