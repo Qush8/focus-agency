@@ -339,7 +339,7 @@ export const Service = () => {
 
     return (
         <section ref={serviceRef} id="services" className="section-service w-full flex h-auto flex justify-between">
-            <div className='left-side-line w-[1px] h-[100%] bg-[#8b8a8a52] absolute left-[10px] md:left-[31px] z-[100] top-[0px]'></div>
+            <div className='left-side-line w-[1px] h-[100%] bg-[#8b8a8a52] absolute left-[31px] md:left-[31px] z-[100] top-[0px]'></div>
                 <div className="w-[100%] service-content relative">
                     <div className='for-headline w-[100%] relative  mb-[0px]'>
                         <h2 className="text-[96px] font-bold text-[#000000BD]">
@@ -393,7 +393,7 @@ export const Service = () => {
                         
                     </div>
                 </div>
-            <div className='right-side-line w-[1px] h-[100%] bg-[#8b8a8a52] absolute right-[10px] md:right-[31px] z-[100] top-[0px]'></div>
+            <div className='right-side-line w-[1px] h-[100%] bg-[#8b8a8a52] absolute right-[31px] md:right-[31px] z-[100] top-[0px]'></div>
         </section>
     )
 }
