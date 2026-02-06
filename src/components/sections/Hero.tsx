@@ -121,7 +121,12 @@ export const Hero = () => {
           </h1>
           <div className="hero-button-wrapper hero-button mt-[44px] z-[20] overflow-hidden">
             <div className="hero-button-inner">
-              <Button css={'gradient-border w-[261px] h-[49px] bg-[#000000] '} text={t.hero.cta} onClick={() => {console.log('clicked')}} />
+              <Button 
+                css={'gradient-border w-[261px] h-[49px] bg-[#000000] '} 
+                text={t.hero.cta} 
+                onClick={() => {console.log('clicked')}} 
+                galaxyMode={true} 
+              />
             </div>
           </div>
           <div className='icons flex justify-between w-[100%] mt-[198px] z-[20] '>
