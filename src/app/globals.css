@@ -561,6 +561,21 @@ nav .language-links a:hover::after {
   padding-left: 67px!important;
   padding-right: 67px!important;
 }
+
+.section-about .left-side-about h2{
+  z-index: 1;
+}
+.section-about .left-side-about h2 .background-line {
+  background-color: #e85b5b;
+  border-radius: 1px;
+  width: 46px;
+  height: 29px;
+  position: absolute;
+  top: 6px;
+  left: -2px;
+  z-index: -1;
+}
+
 #services h3 {
   font-weight: 400 !important;
   font-size: 76px;
@@ -676,6 +691,8 @@ nav .language-links a:hover::after {
     left: 60px;
   }
 
+ 
+
   .section-service .services-container .left-side-offers h3 {
     padding-left: 70px;
     padding-right: 70px;
@@ -749,6 +766,16 @@ nav .language-links a:hover::after {
   }
   .section-about .left-side-about p {
     font-size: 25px!important;
+  }
+  .section-about .left-side-about h2 .background-line {
+    z-index: -1;
+    background-color: #e85b5b;
+    border-radius: 1px;
+    width: 34px!important;
+    height: 19px!important;
+    position: absolute;
+    top: 6px!important;
+    left: 0!important;
   }
   .section-about .right-side-about h3 {
     font-size: 35px!important;
@@ -925,6 +952,18 @@ nav .language-links a:hover::after {
     position: absolute;
     top: 12px;
     left: 40px;
+  }
+
+  .section-about .left-side-about h2 .background-line {
+    z-index: -1;
+        background-color: #e85b5b;
+        border-radius: 1px;
+        width: 26px !important;
+        height: 15px !important;
+        position: absolute;
+        top: 12px!important;
+        left: 0;
+        top: 19px !important;
   }
 
   .section-service .for-headline h2 {
@@ -1191,6 +1230,18 @@ nav .language-links a:hover::after {
         left: 13px;
   }
 
+  .section-about .left-side-about h2 .background-line {
+    z-index: -1;
+    background-color: #e85b5b;
+    border-radius: 1px;
+    width: 15px!important;
+    height: 8px!important;
+    position: absolute;
+    top: 5px!important;
+    left: 6px!important;
+    transform: translateX(-50%)!important;
+  }
+
   /* mobile new version */
   .section-service .for-headline h2 {
     padding-left: 20px;
@@ -1355,6 +1406,7 @@ nav .language-links a:hover::after {
   .section-about .about-border-main {
     flex-direction: column !important;
   }
+
 
   .section-about > div {
     flex-direction: column!important;

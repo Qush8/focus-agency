@@ -290,12 +290,11 @@ export const About = () => {
                             <div className="about-left-inner-line w-full h-full bg-[#FFFFFF33] origin-top" aria-hidden />
                         </div>
 
-                       
-                        
-                        <h2 className="text-[96px] font-bold text-[#FFFFFFF0] leading-none">
+                        <h2 className="text-[96px] font-bold text-[#FFFFFFF0] leading-none relative">
                             <div className="overflow-hidden block h-fit py-1">
                                 <span className="about-h2-text block pb-1">{t.about.title}</span>
                             </div>
+                            <div className='background-line' aria-hidden></div>
                         </h2>
                         
                         <div className="about-button w-full flex justify-center mt-[46px]">
