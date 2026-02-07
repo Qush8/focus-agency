@@ -107,6 +107,7 @@ export const Service = () => {
             // Service Item Lines initial state (scaleX + opacity + visibility for first-paint hide)
             gsap.set('.service-line-left-0, .service-line-left-1', { scaleX: 0, transformOrigin: 'left', opacity: 0, visibility: 'hidden' });
             gsap.set('.service-line-right-0, .service-line-right-1', { scaleX: 0, transformOrigin: 'right', opacity: 0, visibility: 'hidden' });
+            gsap.set('.for-headline .background-line', { scaleX: 0, transformOrigin: 'left' });
 
             const tl = gsap.timeline({
                 scrollTrigger: {
@@ -150,6 +151,9 @@ export const Service = () => {
 
             // 4. "services" text
             tl.to('.service-h2-line-2', { y: 0 }, 0.6);
+
+            // 5. Background-line (red rectangle) slides in after text
+            tl.fromTo('.for-headline .background-line', { scaleX: 0, transformOrigin: 'left' }, { scaleX: 1 }, 0.55);
 
             // Items sequence (shifted to start after 0.8)
             // right[0] title (right-to-left + fade in)
@@ -228,6 +232,7 @@ export const Service = () => {
             scrollOutTl.to('.left-side-mini-line', { clipPath: 'inset(0 100% 0 0)' }, 0.85);
             scrollOutTl.to('.right-side-mini-line', { clipPath: 'inset(0 0 0 100%)' }, 0.85);
             scrollOutTl.to('.service-headline-line', { scaleX: 0 }, 0.85);
+            scrollOutTl.to('.for-headline .background-line', { scaleX: 0 }, 0.86);
             scrollOutTl.to('.service-h2-line-1', { y: "-100%" }, 0.9);
             
             // Side lines
@@ -241,6 +246,7 @@ export const Service = () => {
             gsap.set('.service-title-left-0, .service-title-left-1, .service-title-right-0, .service-title-right-1', { y: "100%" });
             gsap.set('.service-subtitle-text-left-0, .service-subtitle-text-left-1, .service-subtitle-text-right-0, .service-subtitle-text-right-1', { y: "100%" });
             gsap.set('.service-arrow-right-0, .service-arrow-right-1, .service-arrow-left-0, .service-arrow-left-1', { scale: 0, opacity: 0 });
+            gsap.set('.for-headline .background-line', { scaleX: 0, transformOrigin: 'left' });
             
             // Mobile Lines Initial States
             gsap.set('.left-side-line, .right-side-line', { scaleY: 0, transformOrigin: 'top' });
@@ -265,6 +271,7 @@ export const Service = () => {
             // h2 mask animation with stagger
             tl.to('.service-h2-line-1', { y: 0 }, 0);
             tl.to('.service-h2-line-2', { y: 0 }, 0.1);
+            tl.fromTo('.for-headline .background-line', { scaleX: 0 }, { scaleX: 1 }, 0.15);
             
             // Headline line grows
             tl.to('.mobile-headline-line', { scaleX: 1, duration: 0.5 }, 0.2);
@@ -325,6 +332,7 @@ export const Service = () => {
             scrollOutTl.to('.service-title-left-0', { y: "-100%" }, 0.7);
 
             scrollOutTl.to('.mobile-headline-line', { scaleX: 0, duration: 0.6 }, 0.8);
+            scrollOutTl.to('.for-headline .background-line', { scaleX: 0 }, 0.85);
             scrollOutTl.to('.service-h2-line-2', { y: "-100%" }, 0.8);
             scrollOutTl.to('.service-h2-line-1', { y: "-100%" }, 0.9);
             

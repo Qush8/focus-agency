@@ -94,6 +94,7 @@ export const About = () => {
             gsap.set('.top-about-line', { scaleX: 0, transformOrigin: 'left' });
             gsap.set('.bottom-about-line', { scaleX: 0, transformOrigin: 'left' });
             gsap.set('.about-right-line-0, .about-right-line-1', { scaleX: 0, transformOrigin: 'right' });
+            gsap.set('.section-about .left-side-about h2 .background-line', { scaleX: 0, transformOrigin: 'left' });
     
             const tl = gsap.timeline({
                 scrollTrigger: {
@@ -119,6 +120,7 @@ export const About = () => {
             tl.fromTo('.section-about .about-left-inner-line', { scaleY: 0, transformOrigin: 'top' }, { scaleY: 1, duration: 0.8 }, 0.4);
     
             tl.to('.about-h2-text', { y: 0 }, 0.5);
+            tl.fromTo('.section-about .left-side-about h2 .background-line', { scaleX: 0, transformOrigin: 'left' }, { scaleX: 1 }, 0.58);
             tl.to('.about-button', { scale: 1 }, 0.55);
     
             tl.to('.about-title-0', { x: 0 }, 0.45);
@@ -154,6 +156,7 @@ export const About = () => {
                 defaults: { ease: "none" }
             });
     
+            scrollOutTl.to('.section-about .left-side-about h2 .background-line', { scaleX: 0 }, 0.02);
             scrollOutTl.to('.bottom-about-line', { scaleX: 0, duration: 0.1 }, 0);
             scrollOutTl.to('.about-right-line-1', { scaleX: 0, duration: 0.08 }, 0.05);
             scrollOutTl.to('.about-right-line-0', { scaleX: 0, duration: 0.08 }, 0.1);
@@ -171,6 +174,7 @@ export const About = () => {
             gsap.set('.about-subtitle-0, .about-subtitle-1, .about-subtitle-2', { x: 100 });
             gsap.set('.about-arrow-0, .about-arrow-1, .about-arrow-2', { scale: 0 });
             gsap.set('.about-number-0, .about-number-1, .about-number-2', { y: "100%" });
+            gsap.set('.section-about .left-side-about h2 .background-line', { scaleX: 0, transformOrigin: 'left' });
             
             // Lines initial state
             gsap.set('.section-about .left-side-line-inner, .section-about .right-side-line-inner', { scaleY: 0, transformOrigin: 'top' });
@@ -199,6 +203,7 @@ export const About = () => {
             // 2. Top line & Title
             tl.fromTo('.mobile-about-top-line', { scaleX: 0 }, { scaleX: 1, duration: 0.4 }, 0.2);
             tl.to('.about-h2-text', { y: 0 }, 0.3);
+            tl.fromTo('.section-about .left-side-about h2 .background-line', { scaleX: 0 }, { scaleX: 1 }, 0.38);
             tl.to('.about-button', { scale: 1 }, 0.4);
 
             // 3. Items sequence
@@ -239,6 +244,7 @@ export const About = () => {
             });
 
             // Reverse order
+            scrollOutTl.to('.section-about .left-side-about h2 .background-line', { scaleX: 0 }, 0.02);
             scrollOutTl.to('.mobile-about-bottom-line', { scaleX: 0, duration: 0.9 }, 0);
             
             scrollOutTl.to('.mobile-about-item-line-2', { scaleX: 0, duration: 0.9 }, 0.1);
