@@ -463,6 +463,16 @@ nav .language-links a:hover::after {
   padding-left: 90px;
   padding-right: 90px;
 }
+.for-headline h2 .background-line {
+  width: 48px;
+  height: 29px;
+  background-color: #E85B5B;
+  top: 25px;
+  left: 75px;
+  border-radius: 1px;
+  position: absolute;
+  z-index: -1;
+}
 
 .section-service .services-container .left-side-offers h3 {
   padding-left: 90px;
@@ -655,6 +665,17 @@ nav .language-links a:hover::after {
     padding-left: 70px;
     padding-right: 70px;
   }
+  .for-headline h2 .background-line {
+    z-index: -1;
+    background-color: #e85b5b;
+    border-radius: 1px;
+    width: 40px;
+    height: 21px;
+    position: absolute;
+    top: 24px;
+    left: 60px;
+  }
+
   .section-service .services-container .left-side-offers h3 {
     padding-left: 70px;
     padding-right: 70px;
@@ -895,6 +916,17 @@ nav .language-links a:hover::after {
     /* padding-left: 50px;
     padding-right: 50px; */
   }
+  .for-headline h2 .background-line {
+    z-index: -1;
+    background-color: #e85b5b;
+    border-radius: 1px;
+    width: 36px;
+    height: 18px;
+    position: absolute;
+    top: 12px;
+    left: 40px;
+  }
+
   .section-service .for-headline h2 {
     padding-left: 50px;
     padding-right: 50px;
@@ -1147,6 +1179,18 @@ nav .language-links a:hover::after {
     justify-content: center!important;
     margin-bottom: 0px!important;
   }
+
+  .for-headline h2 .background-line {
+    z-index: -1;
+        background-color: #e85b5b;
+        border-radius: 1px;
+        width: 18px;
+        height: 10px;
+        position: absolute;
+        top: 6px;
+        left: 13px;
+  }
+
   /* mobile new version */
   .section-service .for-headline h2 {
     padding-left: 20px;

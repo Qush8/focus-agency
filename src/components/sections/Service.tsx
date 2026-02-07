@@ -342,13 +342,14 @@ export const Service = () => {
             <div className='left-side-line w-[1px] h-[100%] bg-[#8b8a8a52] absolute left-[31px] md:left-[31px] z-[100] top-[0px]'></div>
                 <div className="w-[100%] service-content relative">
                     <div className='for-headline w-[100%] relative  mb-[0px]'>
-                        <h2 className="text-[96px] font-bold text-[#000000BD]">
+                        <h2 className="text-[96px] font-bold text-[#000000BD] relative ">
                             <div className="overflow-hidden block h-fit py-1">
                                 <span className="service-h2-line-1 block pb-1">{t.services.title}</span>
                             </div>
                             <div className="overflow-hidden block h-fit py-1">
                                 <span className="service-h2-line-2 block pb-1">{t.services.subtitle}</span>
                             </div>
+                            <div className='background-line'></div>
                         </h2>
                         <div className='service-headline-line w-[50%] h-[1px] bg-[#8b8a8a52] absolute left-[0px] bottom-[-50px]'></div>
                     </div>
