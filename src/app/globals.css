@@ -632,7 +632,7 @@ nav .language-links a:hover::after {
 
 
 /* LEPTOP VERSION ****** ****** ****** ****** ****** ****** ******* ******* ****** ****** ****** ******* LEPTOP VERSION */
-@media screen and (max-width: 1700px) and (min-width: 900px) {
+@media screen and (max-width: 1700px) and (min-width: 700px) {
 
   /* header section */
   /* .for-navbar-fixed {
@@ -703,11 +703,11 @@ nav .language-links a:hover::after {
     z-index: -1;
     background-color: #e85b5b;
     border-radius: 1px;
-    width: 40px;
-    height: 21px;
+    width: 29px;
+    height: 16px;
     position: absolute;
-    top: 24px;
-    left: 60px;
+    top: 14px;
+    left: 61px;
   }
 
  
@@ -791,13 +791,13 @@ nav .language-links a:hover::after {
   }
   .section-about .left-side-about h2 .background-line {
     z-index: -1;
-    background-color: #e85b5b;
-    border-radius: 1px;
-    width: 34px!important;
-    height: 19px!important;
-    position: absolute;
-    top: 6px!important;
-    left: 0!important;
+        background-color: #e85b5b;
+        border-radius: 1px;
+        position: absolute;
+        width: 25px !important;
+        height: 16px !important;
+        top: 4px !important;
+        left: 0 !important;
   }
   .section-about .right-side-about h3 {
     font-size: 35px!important;
@@ -1021,28 +1021,28 @@ nav .language-links a:hover::after {
   }
 
   .section-service h2 {
-    font-size: 70px;
+    /* font-size: 70px; */
     line-height: 80px;
   }
 
   .section-service .left-side-offers h3 {
-    font-size: 40px!important;
+    /* font-size: 40px!important; */
   }
 
   .section-service .left-side-offers p {
-    font-size: 22px!important;
+    /* font-size: 22px!important; */
   }
 
   .section-service .right-side-offers h3 {
-    font-size: 40px!important;
+    /* font-size: 40px!important; */
   }
 
   .section-service .right-side-offers p {
-    font-size: 22px!important;
+    /* font-size: 22px!important; */
   }
 
   .services h3 {
-    font-size: 50px;
+    /* font-size: 50px; */
     line-height: 60px;
   }
 
@@ -1051,7 +1051,7 @@ nav .language-links a:hover::after {
     max-width: 80%!important;
   }
   .section-service .service-description-content p{
-    font-size: 14px!important;
+    /* font-size: 14px!important; */
   }
 
   /* about section <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
@@ -1067,20 +1067,20 @@ nav .language-links a:hover::after {
   }
 
   .section-about .left-side-about h2 {
-    font-size: 55px!important;
+    /* font-size: 55px!important; */
     line-height: 85px!important;
   }
 
   .section-about .left-side-about p {
-    font-size: 22px!important;
+    /* font-size: 22px!important; */
   }
 
   .section-about .right-side-about h3 {
-    font-size: 30px!important;
+    /* font-size: 30px!important; */
   }
 
   .section-about .right-side-about p {
-    font-size: 18px!important;
+    /* font-size: 18px!important; */
   }
 
   /* footer section <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
