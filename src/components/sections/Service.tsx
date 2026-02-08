@@ -108,6 +108,7 @@ export const Service = () => {
             gsap.set('.service-line-left-0, .service-line-left-1', { scaleX: 0, transformOrigin: 'left', opacity: 0, visibility: 'hidden' });
             gsap.set('.service-line-right-0, .service-line-right-1', { scaleX: 0, transformOrigin: 'right', opacity: 0, visibility: 'hidden' });
             gsap.set('.for-headline .background-line', { scaleX: 0, transformOrigin: 'left' });
+            gsap.set('.left-side-line, .right-side-line', { clipPath: 'inset(0 0 100% 0)' });
 
             const tl = gsap.timeline({
                 scrollTrigger: {
@@ -120,11 +121,11 @@ export const Service = () => {
                 defaults: { ease: "none" }
             });
 
-            // 1. Left and Right lines descend (using clipPath)
+            // 1. Left and Right lines descend (using clipPath) — last in sequence
             tl.fromTo('.left-side-line, .right-side-line', 
                 { clipPath: 'inset(0 0 100% 0)' }, 
                 { clipPath: 'inset(0 0 0% 0)', duration: 1 }, 
-                0
+                2.1
             );
 
             // 2. Main text "We offer full digital"
@@ -202,41 +203,40 @@ export const Service = () => {
                 defaults: { ease: "none" }
             });
 
-            // Reverse order: last appeared → first appeared (lines shrink + opacity 0)
-            // left[1] (last)
-            scrollOutTl.to('.service-arrow-left-1', { scale: 0, opacity: 0 }, 0);
-            scrollOutTl.to('.service-subtitle-text-left-1', { x: -100, opacity: 0 }, 0.05);
-            scrollOutTl.fromTo('.service-line-left-1', { scaleX: 1, opacity: 1 }, { scaleX: 0, opacity: 0, duration: 0.08, onComplete: function() { (this.targets()[0] as HTMLElement).style.setProperty('visibility', 'hidden', 'important'); } }, 0.02);
-            scrollOutTl.to('.service-title-left-1', { x: -100, opacity: 0 }, 0.1);
+            // Reverse order: side lines first (last to appear on scroll-in), then content
+            scrollOutTl.to('.left-side-line, .right-side-line', { clipPath: 'inset(0 0 100% 0)' }, 0);
+
+            // left[1] (last appeared before side lines)
+            scrollOutTl.to('.service-arrow-left-1', { scale: 0, opacity: 0 }, 0.1);
+            scrollOutTl.to('.service-subtitle-text-left-1', { x: -100, opacity: 0 }, 0.15);
+            scrollOutTl.fromTo('.service-line-left-1', { scaleX: 1, opacity: 1 }, { scaleX: 0, opacity: 0, duration: 0.08, onComplete: function() { (this.targets()[0] as HTMLElement).style.setProperty('visibility', 'hidden', 'important'); } }, 0.12);
+            scrollOutTl.to('.service-title-left-1', { x: -100, opacity: 0 }, 0.2);
 
             // right[1]
-            scrollOutTl.to('.service-arrow-right-1', { scale: 0, opacity: 0 }, 0.2);
-            scrollOutTl.to('.service-subtitle-text-right-1', { x: 100, opacity: 0 }, 0.25);
-            scrollOutTl.fromTo('.service-line-right-1', { scaleX: 1, opacity: 1 }, { scaleX: 0, opacity: 0, duration: 0.08, onComplete: function() { (this.targets()[0] as HTMLElement).style.setProperty('visibility', 'hidden', 'important'); } }, 0.22);
-            scrollOutTl.to('.service-title-right-1', { x: 100, opacity: 0 }, 0.3);
+            scrollOutTl.to('.service-arrow-right-1', { scale: 0, opacity: 0 }, 0.3);
+            scrollOutTl.to('.service-subtitle-text-right-1', { x: 100, opacity: 0 }, 0.35);
+            scrollOutTl.fromTo('.service-line-right-1', { scaleX: 1, opacity: 1 }, { scaleX: 0, opacity: 0, duration: 0.08, onComplete: function() { (this.targets()[0] as HTMLElement).style.setProperty('visibility', 'hidden', 'important'); } }, 0.32);
+            scrollOutTl.to('.service-title-right-1', { x: 100, opacity: 0 }, 0.4);
 
             // left[0]
-            scrollOutTl.to('.service-arrow-left-0', { scale: 0, opacity: 0 }, 0.4);
-            scrollOutTl.to('.service-subtitle-text-left-0', { x: -100, opacity: 0 }, 0.45);
-            scrollOutTl.fromTo('.service-line-left-0', { scaleX: 1, opacity: 1 }, { scaleX: 0, opacity: 0, duration: 0.08, onComplete: function() { (this.targets()[0] as HTMLElement).style.setProperty('visibility', 'hidden', 'important'); } }, 0.42);
-            scrollOutTl.to('.service-title-left-0', { x: -100, opacity: 0 }, 0.5);
+            scrollOutTl.to('.service-arrow-left-0', { scale: 0, opacity: 0 }, 0.5);
+            scrollOutTl.to('.service-subtitle-text-left-0', { x: -100, opacity: 0 }, 0.55);
+            scrollOutTl.fromTo('.service-line-left-0', { scaleX: 1, opacity: 1 }, { scaleX: 0, opacity: 0, duration: 0.08, onComplete: function() { (this.targets()[0] as HTMLElement).style.setProperty('visibility', 'hidden', 'important'); } }, 0.52);
+            scrollOutTl.to('.service-title-left-0', { x: -100, opacity: 0 }, 0.6);
 
             // right[0]
-            scrollOutTl.to('.service-arrow-right-0', { scale: 0, opacity: 0 }, 0.6);
-            scrollOutTl.to('.service-subtitle-text-right-0', { x: 100, opacity: 0 }, 0.65);
-            scrollOutTl.fromTo('.service-line-right-0', { scaleX: 1, opacity: 1 }, { scaleX: 0, opacity: 0, duration: 0.08, onComplete: function() { (this.targets()[0] as HTMLElement).style.setProperty('visibility', 'hidden', 'important'); } }, 0.62);
-            scrollOutTl.to('.service-title-right-0', { x: 100, opacity: 0 }, 0.7);
+            scrollOutTl.to('.service-arrow-right-0', { scale: 0, opacity: 0 }, 0.7);
+            scrollOutTl.to('.service-subtitle-text-right-0', { x: 100, opacity: 0 }, 0.75);
+            scrollOutTl.fromTo('.service-line-right-0', { scaleX: 1, opacity: 1 }, { scaleX: 0, opacity: 0, duration: 0.08, onComplete: function() { (this.targets()[0] as HTMLElement).style.setProperty('visibility', 'hidden', 'important'); } }, 0.72);
+            scrollOutTl.to('.service-title-right-0', { x: 100, opacity: 0 }, 0.8);
 
             // h2 lines & mini lines
-            scrollOutTl.to('.service-h2-line-2', { y: "-100%" }, 0.8);
-            scrollOutTl.to('.left-side-mini-line', { clipPath: 'inset(0 100% 0 0)' }, 0.85);
-            scrollOutTl.to('.right-side-mini-line', { clipPath: 'inset(0 0 0 100%)' }, 0.85);
-            scrollOutTl.to('.service-headline-line', { scaleX: 0 }, 0.85);
-            scrollOutTl.to('.for-headline .background-line', { scaleX: 0 }, 0.86);
-            scrollOutTl.to('.service-h2-line-1', { y: "-100%" }, 0.9);
-            
-            // Side lines
-            scrollOutTl.to('.left-side-line, .right-side-line', { clipPath: 'inset(0 0 100% 0)' }, 1.0);
+            scrollOutTl.to('.service-h2-line-2', { y: "-100%" }, 0.9);
+            scrollOutTl.to('.left-side-mini-line', { clipPath: 'inset(0 100% 0 0)' }, 0.95);
+            scrollOutTl.to('.right-side-mini-line', { clipPath: 'inset(0 0 0 100%)' }, 0.95);
+            scrollOutTl.to('.service-headline-line', { scaleX: 0 }, 0.95);
+            scrollOutTl.to('.for-headline .background-line', { scaleX: 0 }, 0.96);
+            scrollOutTl.to('.service-h2-line-1', { y: "-100%" }, 1.0);
         });
 
         // Mobile / tablet: mask animation, left side first then right side
@@ -265,8 +265,8 @@ export const Service = () => {
                 defaults: { ease: "none" }
             });
 
-            // Vertical lines grow first
-            tl.to('.left-side-line, .right-side-line', { scaleY: 1, duration: 0.5 }, 0);
+            // Vertical lines grow last
+            tl.to('.left-side-line, .right-side-line', { scaleY: 1, duration: 0.5 }, 2.0);
 
             // h2 mask animation with stagger
             tl.to('.service-h2-line-1', { y: 0 }, 0);
@@ -310,34 +310,33 @@ export const Service = () => {
                 defaults: { ease: "none" }
             });
 
-            // reverse order: right[1] → right[0] → left[1] → left[0] → h2
-            scrollOutTl.to('.mobile-line-right-1', { scaleX: 0, duration: 0.6 }, 0);
-            scrollOutTl.to('.service-arrow-right-1', { scale: 0, opacity: 0 }, 0);
-            scrollOutTl.to('.service-subtitle-text-right-1', { y: "-100%" }, 0.05);
-            scrollOutTl.to('.service-title-right-1', { y: "-100%" }, 0.1);
+            // reverse order: side lines first (last to appear), then right[1] → right[0] → left[1] → left[0] → h2
+            scrollOutTl.to('.left-side-line, .right-side-line', { scaleY: 0, duration: 0.5 }, 0);
 
-            scrollOutTl.to('.mobile-line-right-0', { scaleX: 0, duration: 0.6 }, 0.2);
-            scrollOutTl.to('.service-arrow-right-0', { scale: 0, opacity: 0 }, 0.2);
-            scrollOutTl.to('.service-subtitle-text-right-0', { y: "-100%" }, 0.25);
-            scrollOutTl.to('.service-title-right-0', { y: "-100%" }, 0.3);
+            scrollOutTl.to('.mobile-line-right-1', { scaleX: 0, duration: 0.6 }, 0.1);
+            scrollOutTl.to('.service-arrow-right-1', { scale: 0, opacity: 0 }, 0.1);
+            scrollOutTl.to('.service-subtitle-text-right-1', { y: "-100%" }, 0.15);
+            scrollOutTl.to('.service-title-right-1', { y: "-100%" }, 0.2);
 
-            scrollOutTl.to('.mobile-line-left-1', { scaleX: 0, duration: 0.6 }, 0.4);
-            scrollOutTl.to('.service-arrow-left-1', { scale: 0, opacity: 0 }, 0.4);
-            scrollOutTl.to('.service-subtitle-text-left-1', { y: "-100%" }, 0.45);
-            scrollOutTl.to('.service-title-left-1', { y: "-100%" }, 0.5);
+            scrollOutTl.to('.mobile-line-right-0', { scaleX: 0, duration: 0.6 }, 0.3);
+            scrollOutTl.to('.service-arrow-right-0', { scale: 0, opacity: 0 }, 0.3);
+            scrollOutTl.to('.service-subtitle-text-right-0', { y: "-100%" }, 0.35);
+            scrollOutTl.to('.service-title-right-0', { y: "-100%" }, 0.4);
 
-            scrollOutTl.to('.mobile-line-left-0', { scaleX: 0, duration: 0.6 }, 0.6);
-            scrollOutTl.to('.service-arrow-left-0', { scale: 0, opacity: 0 }, 0.6);
-            scrollOutTl.to('.service-subtitle-text-left-0', { y: "-100%" }, 0.65);
-            scrollOutTl.to('.service-title-left-0', { y: "-100%" }, 0.7);
+            scrollOutTl.to('.mobile-line-left-1', { scaleX: 0, duration: 0.6 }, 0.5);
+            scrollOutTl.to('.service-arrow-left-1', { scale: 0, opacity: 0 }, 0.5);
+            scrollOutTl.to('.service-subtitle-text-left-1', { y: "-100%" }, 0.55);
+            scrollOutTl.to('.service-title-left-1', { y: "-100%" }, 0.6);
 
-            scrollOutTl.to('.mobile-headline-line', { scaleX: 0, duration: 0.6 }, 0.8);
-            scrollOutTl.to('.for-headline .background-line', { scaleX: 0 }, 0.85);
-            scrollOutTl.to('.service-h2-line-2', { y: "-100%" }, 0.8);
-            scrollOutTl.to('.service-h2-line-1', { y: "-100%" }, 0.9);
-            
-            // Vertical lines shrink last
-            scrollOutTl.to('.left-side-line, .right-side-line', { scaleY: 0, duration: 0.5 }, 1.0);
+            scrollOutTl.to('.mobile-line-left-0', { scaleX: 0, duration: 0.6 }, 0.7);
+            scrollOutTl.to('.service-arrow-left-0', { scale: 0, opacity: 0 }, 0.7);
+            scrollOutTl.to('.service-subtitle-text-left-0', { y: "-100%" }, 0.75);
+            scrollOutTl.to('.service-title-left-0', { y: "-100%" }, 0.8);
+
+            scrollOutTl.to('.mobile-headline-line', { scaleX: 0, duration: 0.6 }, 0.9);
+            scrollOutTl.to('.for-headline .background-line', { scaleX: 0 }, 0.95);
+            scrollOutTl.to('.service-h2-line-2', { y: "-100%" }, 0.9);
+            scrollOutTl.to('.service-h2-line-1', { y: "-100%" }, 1.0);
         });
 
         return () => {
