@@ -647,11 +647,20 @@ nav .language-links a:hover::after {
     width: 50px!important;
     height: 70px!important;
   }
+  nav .nav-links {
+    padding-right: 50px!important;
+  }
   nav .nav-links a {
     font-size: 16px!important;
+    display: flex;
+    margin-right: 50px!important;
   }
   nav .language-links a {
     font-size: 16px!important;
+  }
+
+  nav .mobile-right-side a:first-child {
+    margin-right: 40px!important;
   }
 
   /* section hero <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
