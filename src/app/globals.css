@@ -666,7 +666,7 @@ nav .language-links a:hover::after {
   /* section hero <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
   .section-hero {
       padding-left: 70px;
-      padding-top: 180px!important;
+      padding-top: 140px!important;
       padding-right: 70px;
   }
  
@@ -675,16 +675,21 @@ nav .language-links a:hover::after {
     line-height: 90px;
   }
 
-  .section-hero .icons {
-    margin-top: 55px;
-    bottom: 80px!important;
-  }
+ 
 
   .section-hero > h2 {
     font-size: 32px;
     line-height: 50px;
   }
 
+  .section-hero .hero-button-wrapper {
+    margin-top: 30px!important;
+  }
+
+  .section-hero .icons {
+    margin-top: 55px;
+    bottom: 60px!important;
+  }
   /* Service sections <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  */
   .section-service .service-content {
     /* padding-left: 70px;
