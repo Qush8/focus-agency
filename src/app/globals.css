@@ -406,6 +406,10 @@ nav .language-links a:hover::after {
   color: #FFFFFF;
 }
 
+.section-hero .icons {
+  width : 86%;
+}
+
 .gradient-border {
   border: 1px solid transparent;
   background: 
@@ -1154,11 +1158,12 @@ nav .language-links a:hover::after {
    } */
   nav {
     /* padding-left/right მოხსნილი — მიშლიდა ხელს */
+    height: 90px!important;
   }
 
   nav .logo {
-    width: 70px;
-    height: 70px;
+    width: 50px;
+    /* height: 70px; */
   }
   nav .mobile-right-side {
     width: 30%!important;
@@ -1197,7 +1202,7 @@ nav .language-links a:hover::after {
 
   /* section hero <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
   .section-hero {
-    padding-left: 20px;
+    padding-left: 46px;
     padding-top: 200px;
     padding-right: 20px;
   }
@@ -1231,6 +1236,10 @@ nav .language-links a:hover::after {
   .section-hero > p {
     font-size: 20px;
     line-height: 30px;
+  }
+
+  .section-hero .icons {
+    width : 85%;
   }
 
   /* Service sections <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
@@ -1773,7 +1782,7 @@ nav .language-links a:hover::after {
 @media screen and (max-width: 375px) {
 
   nav .mobile-right-side {
-    padding-left: 20px!important;
+    padding-left: 60px!important;
   }
   nav .logo {
     width: 40px!important;
@@ -1800,7 +1809,7 @@ nav .language-links a:hover::after {
   }
   .section-hero .icons .left-side-icons {
     margin-left: 20px;
-    
+    gap: 21px!important;
   }
   .section-hero .icons .left-side-icons .social-icon-wrapper ,.section-hero .icons .right-side-icons .social-icon-wrapper {
     width: 38px!important;
