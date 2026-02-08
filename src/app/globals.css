@@ -738,13 +738,13 @@ nav .language-links a:hover::after {
     width: 100%;
   }
   .section-service h2 {
-    font-size: 85px;
+    font-size: 55px;
   }
   .section-service h3 {
-    font-size: 55px!important;
+    font-size: 35px!important;
   }
   .section-service  p {
-    font-size: 25px!important;
+    font-size: 20px!important;
   }
   /* .section-service .right-side-offers h3 {
     font-size: 55px!important;
@@ -781,7 +781,10 @@ nav .language-links a:hover::after {
     align-items: center!important;
   }
   .section-about .left-side-about h2 {
-    font-size: 75px!important;
+    font-size: 55px!important;
+  }
+  .section-about .left-side-about h2 .span {
+      font-size: 55px!important;
   }
   .section-about .left-side-about p {
     font-size: 25px!important;
@@ -801,6 +804,10 @@ nav .language-links a:hover::after {
   }
   .section-about .right-side-about p {
     font-size: 20px!important;
+  }
+
+  .section-about .right-side-about .text-about-description {
+    font-size: 18px!important;
   }
 
   /* .right-side-offers .right-side-title {
