@@ -1335,6 +1335,16 @@ nav .language-links a:hover::after {
     text-align: center!important;
   }
 
+  .section-service .service-arrow-left-0,
+  .section-service .service-arrow-left-1,
+  .section-service .service-arrow-right-0,
+  .section-service .service-arrow-right-1 {
+    width: 15px !important;
+    /* height: 16px !important; */
+    margin-top: 0 !important;
+    padding-top: 7px !important;
+  }
+
   .section-service .left-side-offers div.flex.cursor-pointer,
   .section-service .right-side-offers div.flex.cursor-pointer,
   .section-service .left-side-offers > div > div > div.flex,
@@ -1407,6 +1417,14 @@ nav .language-links a:hover::after {
     flex-direction: column !important;
   }
 
+  .section-about .about-arrow-0,
+  .section-about .about-arrow-1,
+  .section-about .about-arrow-2 {
+    width: 15px !important;
+    /* height: 16px !important; */
+    margin-top: 0 !important;
+    padding-top: 7px !important;
+  }
 
   .section-about > div {
     flex-direction: column!important;

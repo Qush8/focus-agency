@@ -42,14 +42,14 @@ const ServiceItem: React.FC<ServiceItemProps> = ({ title, subtitle, description,
                     {title}
                 </div>
             </h3>
-            <div className={`flex subtitle gap-[10px] cursor-pointer group service-subtitle-${side}-${index}`} onClick={onToggle}>
+            <div className={`flex items-center subtitle gap-[10px] cursor-pointer group service-subtitle-${side}-${index}`} onClick={onToggle}>
                 <p className={`text-[32px] text-[#000000AD] transition-colors duration-300 group-hover:text-[#000000] service-subtitle-text-${side}-${index}`}>
                     {subtitle}
                 </p>
                 <motion.img 
                     src="/icons/arrow.svg" 
                     alt="" 
-                    className={`w-[18px] h-[24px] mt-[15px] service-arrow-${side}-${index}`}
+                    className={`w-[18px] h-[24px] service-arrow-${side}-${index} mt-[8px]`}
                     animate={{ rotate: isOpen ? 45 : 0 }}
                     transition={{ duration: 0.3 }}
                 />
