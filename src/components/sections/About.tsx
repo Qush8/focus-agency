@@ -80,12 +80,13 @@ export const About = () => {
         // Desktop / large screens
         mm.add("(min-width: 1024px)", () => {
             // Set initial hidden states
-            gsap.set('.about-border-main, .about-border-left, .about-border-item-0, .about-border-item-1, .about-border-item-2', { opacity: 0 });
+            gsap.set('.about-left-content, .about-border-item-0, .about-border-item-1, .about-border-item-2', { opacity: 0 });
+            gsap.set('.section-about .about-left-inner-line', { opacity: 1 });
             gsap.set('.about-h2-text', { y: "100%" });
             gsap.set('.about-button-inner', { y: "100%" });
             gsap.set('.about-title-0, .about-title-1, .about-title-2', { x: 100 });
             gsap.set('.about-subtitle-0, .about-subtitle-1, .about-subtitle-2', { x: 100 });
-            gsap.set('.about-arrow-0, .about-arrow-1, .about-arrow-2', { scale: 0 });
+            gsap.set('.about-arrow-0, .about-arrow-1, .about-arrow-2', { scale: 0, opacity: 0 });
             gsap.set('.about-number-0, .about-number-1, .about-number-2', { y: "100%" });
     
             // Lines initial state (vertical lines: inner div scaleY 0 = grow from top)
@@ -99,23 +100,19 @@ export const About = () => {
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: aboutRef.current,
-                    start: "top 82%",
-                    end: "bottom 85%",
+                    start: "top 72%",
+                    end: "bottom 50%",
                     scrub: true,
                     invalidateOnRefresh: true
                 },
                 defaults: { ease: "none" }
             });
     
-            // 1) პირველ რიგში — ვერტიკალური ხაზები scaleY-ით ზემოდან ქვემოთ
-            tl.fromTo('.section-about .left-side-line-inner, .section-about .right-side-line-inner',
-                { scaleY: 0, transformOrigin: 'top' },
-                { scaleY: 1, duration: 0.9, ease: 'power2.inOut' },
-                0
-            );
-    
-            // 2) მათ შემდეგ — borders, top line, inner line, content
-            tl.to('.about-border-main, .about-border-left, .about-border-item-0, .about-border-item-1, .about-border-item-2', { opacity: 1 }, 0.35);
+            // 2) borders, top line, inner line, content
+            tl.to('.about-left-content', { opacity: 1 }, 0.35);
+            tl.to('.about-border-item-0', { opacity: 1 }, 0.42);
+            tl.to('.about-border-item-1', { opacity: 1 }, 0.62);
+            tl.to('.about-border-item-2', { opacity: 1 }, 0.8);
             tl.fromTo('.top-about-line', { scaleX: 0, transformOrigin: 'left' }, { scaleX: 1, duration: 0.4 }, 0.35);
             tl.fromTo('.section-about .about-left-inner-line', { scaleY: 0, transformOrigin: 'top' }, { scaleY: 1, duration: 0.8 }, 0.4);
     
@@ -126,23 +123,28 @@ export const About = () => {
             tl.to('.about-title-0', { x: 0 }, 0.45);
             tl.to('.about-subtitle-0', { x: 0 }, 0.5);
             tl.to('.about-number-0', { y: 0 }, 0.55);
-            tl.to('.about-arrow-0', { scale: 1 }, 0.5);
+            tl.to('.about-arrow-0', { scale: 1, opacity: 1 }, 0.5);
     
             tl.fromTo('.about-right-line-0', { scaleX: 0, transformOrigin: 'right' }, { scaleX: 1, duration: 0.35 }, 0.6);
     
             tl.to('.about-title-1', { x: 0 }, 0.65);
             tl.to('.about-subtitle-1', { x: 0 }, 0.7);
             tl.to('.about-number-1', { y: 0 }, 0.75);
-            tl.to('.about-arrow-1', { scale: 1 }, 0.8);
+            tl.to('.about-arrow-1', { scale: 1, opacity: 1 }, 0.8);
     
             tl.fromTo('.about-right-line-1', { scaleX: 0, transformOrigin: 'right' }, { scaleX: 1, duration: 0.35 }, 0.9);
     
             tl.to('.about-title-2', { x: 0 }, 0.85);
             tl.to('.about-subtitle-2', { x: 0 }, 0.9);
             tl.to('.about-number-2', { y: 0 }, 0.95);
-            tl.to('.about-arrow-2', { scale: 1 }, 0.95);
+            tl.to('.about-arrow-2', { scale: 1, opacity: 1 }, 0.95);
     
-            tl.fromTo('.bottom-about-line', { scaleX: 0, transformOrigin: 'left' }, { scaleX: 1, duration: 0.5 }, 1.1);
+            tl.fromTo('.bottom-about-line', { scaleX: 0, transformOrigin: 'left' }, { scaleX: 1, duration: 0.5 }, 0.7);
+            tl.fromTo('.section-about .left-side-line-inner, .section-about .right-side-line-inner',
+                { scaleY: 0, transformOrigin: 'top' },
+                { scaleY: 1, duration: 0.7, ease: 'power2.inOut' },
+                0.5
+            );
     
             // Scroll-out timeline (reverse line animations when section exits viewport)
             const scrollOutTl = gsap.timeline({
@@ -187,21 +189,14 @@ export const About = () => {
                 scrollTrigger: {
                     trigger: aboutRef.current,
                     start: "top 80%",
-                    end: "bottom 90%",
+                    end: "bottom 40%",
                     scrub: true,
                     invalidateOnRefresh: true
                 },
                 defaults: { ease: "none" }
             });
 
-            // 1. Vertical lines
-            tl.fromTo('.section-about .left-side-line-inner, .section-about .right-side-line-inner',
-                { scaleY: 0, transformOrigin: 'top' },
-                { scaleY: 1, duration: 0.5 },
-                0
-            );
-
-            // 2. Top line & Title
+            // Top line & Title
             tl.fromTo('.mobile-about-top-line', { scaleX: 0 }, { scaleX: 1, duration: 0.4 }, 0.2);
             tl.to('.about-h2-text', { y: 0 }, 0.3);
             tl.fromTo('.section-about .left-side-about h2 .background-line', { scaleX: 0 }, { scaleX: 1 }, 0.38);
@@ -231,6 +226,11 @@ export const About = () => {
 
             // Bottom line
             tl.fromTo('.mobile-about-bottom-line', { scaleX: 0 }, { scaleX: 1, duration: 0.4 }, 1.1);
+            tl.fromTo('.section-about .left-side-line-inner, .section-about .right-side-line-inner',
+                { scaleY: 0, transformOrigin: 'top' },
+                { scaleY: 1, duration: 0.5 },
+                1.2
+            );
 
              // Scroll-out timeline
             const scrollOutTl = gsap.timeline({
@@ -297,16 +297,18 @@ export const About = () => {
                             <div className="about-left-inner-line w-full h-full bg-[#FFFFFF33] origin-top" aria-hidden />
                         </div>
 
-                        <h2 className="text-[96px] font-bold text-[#FFFFFFF0] leading-none relative">
-                            <div className="overflow-hidden block h-fit py-1">
-                                <span className="about-h2-text block pb-1">{t.about.title}</span>
-                            </div>
-                            <div className='background-line' aria-hidden></div>
-                        </h2>
-                        
-                        <div className="about-button-wrapper about-button w-full flex justify-center mt-[46px] overflow-hidden">
-                            <div className="about-button-inner">
-                                <Button css={'gradient-border w-[261px] h-[49px] bg-[#000000]'} text={t.about.cta} onClick={() => {}} />
+                        <div className="about-left-content">
+                            <h2 className="text-[96px] font-bold text-[#FFFFFFF0] leading-none relative">
+                                <div className="overflow-hidden block h-fit py-1">
+                                    <span className="about-h2-text block pb-1">{t.about.title}</span>
+                                </div>
+                                <div className='background-line' aria-hidden></div>
+                            </h2>
+                            
+                            <div className="about-button-wrapper about-button w-full flex justify-center mt-[46px] overflow-hidden">
+                                <div className="about-button-inner">
+                                    <Button css={'gradient-border w-[261px] h-[49px] bg-[#000000]'} text={t.about.cta} onClick={() => {}} />
+                                </div>
                             </div>
                         </div>
                     </div>

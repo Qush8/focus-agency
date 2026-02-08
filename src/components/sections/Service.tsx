@@ -114,7 +114,7 @@ export const Service = () => {
                 scrollTrigger: {
                     trigger: serviceRef.current,
                     start: "top 75%",
-                    end: "bottom 99%",
+                    end: "bottom 75%",
                     scrub: true,
                     invalidateOnRefresh: true
                 },
@@ -124,8 +124,8 @@ export const Service = () => {
             // 1. Left and Right lines descend (using clipPath) — last in sequence
             tl.fromTo('.left-side-line, .right-side-line', 
                 { clipPath: 'inset(0 0 100% 0)' }, 
-                { clipPath: 'inset(0 0 0% 0)', duration: 1 }, 
-                2.1
+                { clipPath: 'inset(0 0 0% 0)', duration: 1.1 }, 
+                1.1
             );
 
             // 2. Main text "We offer full digital"
@@ -258,7 +258,7 @@ export const Service = () => {
                 scrollTrigger: {
                     trigger: serviceRef.current,
                     start: "top 100%",
-                    end: "bottom 99%",
+                    end: "bottom 40%",
                     scrub: true,
                     invalidateOnRefresh: true
                 },
@@ -266,7 +266,7 @@ export const Service = () => {
             });
 
             // Vertical lines grow last
-            tl.to('.left-side-line, .right-side-line', { scaleY: 1, duration: 0.5 }, 2.0);
+            tl.to('.left-side-line, .right-side-line', { scaleY: 1, duration: 0.9 }, 1.6);
 
             // h2 mask animation with stagger
             tl.to('.service-h2-line-1', { y: 0 }, 0);
