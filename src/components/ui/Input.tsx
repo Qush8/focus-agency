@@ -23,11 +23,11 @@ export const Input: React.FC<InputProps> = ({ value, onChange, icon, placeholder
                 id={name}
                 value={value}
                 onChange={onChange}
-                className="block py-2.5 pb-[12px] pl-[8px] max-w-[451px] w-full text-lg text-[white] bg-transparent border-0 border-b border-[#FFFFFF4D] appearance-none focus:outline-none focus:ring-0  peer relative z-10 placeholder-[#FFFFFF80]  "
+                className="footer-input-field block py-2.5 pb-[12px] pl-[8px] max-w-[451px] w-full text-lg text-[white] bg-transparent border-0 border-b border-[#FFFFFF4D] appearance-none focus:outline-none focus:ring-0 peer relative z-10 placeholder-[#FFFFFF80] transition-all duration-300 focus:border-[#F43E46]"
                 placeholder={placeholder}
             />
             {icon && (
-                <div className="absolute right-[18px] bottom-[10px] cursor-pointer z-20">
+                <div className="input-icon-wrapper absolute right-[18px] bottom-[10px] cursor-pointer z-20 transition-transform duration-300 peer-focus:scale-110">
                     <img
                         src={icon}
                         alt="icon"

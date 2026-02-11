@@ -2052,3 +2052,26 @@ html.lenis {
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
 }
+
+/* Footer Input Focus Icon Color */
+.input-icon-wrapper img {
+  transition: filter 0.3s ease;
+}
+
+/* Footer Input Focus Icon Color */
+.input-icon-wrapper img {
+  transition: filter 0.3s ease;
+}
+
+.peer:focus ~ .input-icon-wrapper img {
+  filter: brightness(0) saturate(100%) invert(36%) sepia(93%) saturate(4446%) hue-rotate(343deg) brightness(98%) contrast(95%);
+}
+
+/* Footer Input Placeholder Transition */
+.footer-input-field::placeholder {
+  transition: color 0.3s ease;
+}
+
+.footer-input-field:focus::placeholder {
+  color: #F43E46;
+}
