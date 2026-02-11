@@ -107,7 +107,7 @@ export const Entry: React.FC<EntryProps> = ({ onEnter }) => {
         </div>
       </div>
       <div className="bottom-text absolute bottom-[26px] left-1/2 -translate-x-1/2 flex flex-col items-center justify-center w-full px-4">
-        <h2 className="entry-footer-text font-['Satoshi'] font-normal tracking-[0.06em] text-center uppercase text-[#FFFFFF]">
+        <h3 className="entry-footer-text font-['Satoshi'] font-normal tracking-[0.06em] text-center uppercase text-[#FFFFFF]">
           <div className="overflow-hidden block h-fit py-1">
             <span className="entry-bottom-line block pb-1">
               {t.entry.slogan.line1}
@@ -123,7 +123,7 @@ export const Entry: React.FC<EntryProps> = ({ onEnter }) => {
               {t.entry.slogan.line3}
             </span>
           </div>
-        </h2>
+        </h3>
       </div>
     </section>
   );
