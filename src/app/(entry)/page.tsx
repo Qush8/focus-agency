@@ -71,19 +71,27 @@ export default function EntryPage() {
           <div className="entry-btn-wrapper entry-btn-1">
             <Button
               css={
-                "gradient-border w-[277px] h-[58px] bg-[#000000] cursor-[pointer]"
+                "gradient-border w-[277px] h-[58px] bg-[#000000] cursor-[pointer] !duration-200 hover:scale-95"
               }
               text={t.entry.enterSound}
               onClick={() => handleEnterWithSound(router)}
+              galaxyMode={true}
+              arrowIcon={true}
+              galaxyTopCircleCss={'!top-[25px] !w-[15px] !shadow-[0_0_10px_10px_rgba(255,255,255,0.5)]'}
+              galaxyBottomCircleCss={'!bottom-[35px] !w-[1px] !shadow-[0_0_10px_5px_rgba(255,255,255,0.5)]'}
             />
           </div>
           <div className="entry-btn-wrapper entry-btn-2">
             <Button
               css={
-                "gradient-border w-[277px] h-[58px] bg-[#000000] cursor-[pointer]"
+                "gradient-border w-[277px] h-[58px] bg-[#000000] cursor-[pointer] !duration-200 hover:scale-95"
               }
               text={t.entry.enterSilent}
               onClick={() => handleEnterWithoutSound(router)}
+              galaxyMode={true}
+              arrowIcon={true}
+              galaxyTopCircleCss={'!top-[24px] !w-[5px] !shadow-[0_0_5px_6px_rgba(255,255,255,0.5)]'}
+              galaxyBottomCircleCss={'!bottom-[45px] !w-[1px] !shadow-[0_0_10px_5px_rgba(255,255,255,0.5)]'}
             />
           </div>
         </div>
