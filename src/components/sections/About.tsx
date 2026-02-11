@@ -27,7 +27,7 @@ const AboutItem: React.FC<AboutItemProps> = ({ number, title, subtitle, descript
             <div className="">
                 <p className={`text-[32px] font-bold text-[#FFFFFFE5] about-number-${index}`}>{number}</p>
             </div>
-            <div className="w-[90%] mt-[20px] flex flex-col ">
+            <div className="w-[90%] mt-[10px] flex flex-col ">
                 <div 
                     className="cursor-pointer w-full group" 
                     onClick={() => setIsOpen(!isOpen)}
@@ -112,8 +112,8 @@ export const About = () => {
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: aboutRef.current,
-                    start: "top 72%",
-                    end: "bottom 50%",
+                    start: "top 80%",
+                    end: "bottom 60%",
                     scrub: true,
                     invalidateOnRefresh: true
                 },
