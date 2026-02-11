@@ -16,12 +16,21 @@ interface SocialIconProps {
 }
 
 const SocialIcon = ({ icon, size = 20, className = '' }: SocialIconProps) => (
-  <div className={`social-icon-wrapper w-[44px] h-[44px] border border-[#464646] rounded-[2px] flex items-center justify-center hover:border-[#F43E46] transition-[border-color] duration-300 group cursor-pointer bg-black ${className}`}>
-    <img 
-      src={icon} 
-      alt="" 
-      style={{ width: `${size}px`, height: `${size}px` }}
-      className="transition-[filter] duration-300 brightness-0 invert" 
+  <div className={`social-icon-wrapper w-[44px] h-[44px] border border-[#464646] rounded-[2px] flex items-center justify-center hover:border-[#F43E46] transition-all duration-300 ease-in-out group cursor-pointer bg-black ${className}`}>
+    <div 
+      style={{ 
+        width: `${size}px`, 
+        height: `${size}px`,
+        maskImage: `url(${icon})`,
+        maskRepeat: 'no-repeat',
+        maskPosition: 'center',
+        maskSize: 'contain',
+        WebkitMaskImage: `url(${icon})`,
+        WebkitMaskRepeat: 'no-repeat',
+        WebkitMaskPosition: 'center',
+        WebkitMaskSize: 'contain'
+      }}
+      className="bg-[#FFFFFF] block relative group-hover:bg-[#F43E46] transition-colors duration-300 ease-in-out" 
     />
   </div>
 );
