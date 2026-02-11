@@ -123,7 +123,7 @@ export const Hero = () => {
           <div className="hero-button-wrapper hero-button mt-[44px] z-[20] overflow-hidden ">
             <div className="hero-button-inner">
               <Button 
-                css={'gradient-border w-[261px] h-[49px] bg-[#000000] '} 
+                css={'gradient-border w-[261px] h-[49px] bg-[#000000] !transition-all !duration-300 !ease-in-out'} 
                 text={t.hero.cta} 
                 onClick={() => {console.log('clicked')}} 
                 galaxyMode={true} 

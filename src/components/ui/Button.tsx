@@ -23,11 +23,11 @@ export const Button : React.FC<ButtonProps> = ({ text, onClick, css = '', galaxy
                 <div className={twMerge('w-[15px] h-[15px] absolute left-[30%] min-[431px]:top-[25px] top-[22px] rounded-full shadow-[0_0_10px_5px_var(--tw-shadow-color,#ffffffe6)] min-[431px]:shadow-[0_0_15px_10px_rgba(255,255,255,0.9)] z-[-1] transition-all duration-300 ease-in-out group-hover:left-[80%]', galaxyTopCircleCss)}></div>
                 )}
 
-                <button className={twMerge('flex cursor-[pointer] tranistion-transform duration-300 items-center justify-center gap-[16px] text-[black] px-6 py-3 font-medium text-[white] transition-all duration-300 ease-in-out group-hover:text-[#F43E46]', css)} onClick={onClick}>
-                    <img src="/icons/star.svg" alt="" className={`w-[9px] h-[9px] transition-transform duration-500 ease-in-out ${galaxyMode ? 'group-hover:rotate-[-90deg] group-hover:[filter:brightness(0)_saturate(100%)_invert(32%)_sepia(89%)_saturate(2768%)_hue-rotate(338deg)_brightness(99%)_contrast(92%)]' : ''}`} />
+                <button className={twMerge('flex cursor-[pointer] items-center justify-center gap-[16px] text-[black] px-6 py-3 font-medium text-[white] transition-all duration-300 ease-in-out group-hover:text-[#F43E46]', css)} onClick={onClick}>
+                    <img src="/icons/star.svg" alt="" className={`w-[9px] h-[9px] transition-all duration-300 ease-in-out ${galaxyMode ? 'group-hover:rotate-[-90deg] group-hover:[filter:brightness(0)_saturate(100%)_invert(32%)_sepia(89%)_saturate(2768%)_hue-rotate(338deg)_brightness(99%)_contrast(92%)]' : ''}`} />
                     {text}
                     {arrowIcon && (
-                        <img src="/icons/arrow.svg" alt="" className={`w-[9px] h-[9px] transition-transform duration-500 ease-in-out group-hover:rotate-45 [filter:brightness(0)_invert(1)] group-hover:[filter:brightness(0)_saturate(100%)_invert(32%)_sepia(89%)_saturate(2768%)_hue-rotate(338deg)_brightness(99%)_contrast(92%)]`} />
+                        <img src="/icons/arrow.svg" alt="" className={`w-[9px] h-[9px] transition-all duration-300 ease-in-out group-hover:rotate-45 [filter:brightness(0)_invert(1)] group-hover:[filter:brightness(0)_saturate(100%)_invert(32%)_sepia(89%)_saturate(2768%)_hue-rotate(338deg)_brightness(99%)_contrast(92%)]`} />
                     )}
                 </button>
 
