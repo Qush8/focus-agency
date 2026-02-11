@@ -284,13 +284,13 @@ export const About = () => {
             createDesktopAnimation("top 98%", "bottom 98%");
         });
         // Tablet (768px - 1023px)
-        mm.add("(min-width: 768px) and (max-width: 1024px)", () => {
-            createMobileAnimation("top 50%", "bottom 15%");
+        mm.add("(min-width: 768px) and (max-width: 1023px)", () => {
+            createMobileAnimation("top 80%", "bottom 85%");
         });
 
         // Mobile (<767px)
         mm.add("(max-width: 767px)", () => {
-            createMobileAnimation("top 95%", "bottom 95%");
+            createMobileAnimation("top 85%", "bottom 80%");
         });
 
         return () => {

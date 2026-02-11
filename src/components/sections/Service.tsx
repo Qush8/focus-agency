@@ -342,13 +342,13 @@ export const Service = () => {
 
 
         // Tablet (768px - 1023px) - Vertical layout
-        mm.add("(min-width: 768px) and (max-width: 1024px)", () => {
-            createMobileAnimation("top 70%", "bottom 60%");
+        mm.add("(min-width: 768px) and (max-width: 1023px)", () => {
+            createMobileAnimation("top 75%", "bottom 85%");
         });
 
         // Mobile (<767px) - Vertical layout
         mm.add("(max-width: 767px)", () => {
-            createMobileAnimation("top 80%", "bottom 40%");
+            createMobileAnimation("top 85%", "bottom 70%");
         });
 
         return () => {

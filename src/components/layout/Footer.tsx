@@ -129,12 +129,12 @@ export const Footer = () => {
 
     // Laptop (1280px - 1700px)
     mm.add("(min-width: 1025px) and (max-width: 1700px)", () => {
-        createFooterAnimation("top 85%", "top 25%", 0.08);
+        createFooterAnimation("top 85%", "top 55%", 0.08);
     });
 
     // Tablet (768px - 1023px)
     mm.add("(min-width: 768px) and (max-width: 1024px)", () => {
-        createFooterAnimation("top 85%", "top 45%", 0.08);
+        createFooterAnimation("top 85%", "top 65%", 0.08);
     });
 
     // Mobile (<767px)
