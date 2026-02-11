@@ -16,7 +16,7 @@ interface SocialIconProps {
 }
 
 const SocialIcon = ({ icon, size = 20, className = '' }: SocialIconProps) => (
-  <div className={`social-icon-wrapper w-[44px] h-[44px] border border-[#464646] rounded-[2px] flex items-center justify-center hover:border-[#F43E46] transition-all duration-300 ease-in-out group cursor-pointer bg-black ${className}`}>
+  <div className={`social-icon-wrapper w-[44px] h-[44px] border border-[#464646] rounded-[2px] flex items-center justify-center hover:border-[#F43E46] transition-[border-color] duration-300 ease-in-out group cursor-pointer bg-black ${className}`}>
     <div 
       style={{ 
         width: `${size}px`, 
