@@ -105,6 +105,7 @@ export const Footer = () => {
         footerTl.to('.footer-link-blog', { y: 0 , duration: footerRighContentDuration }, rightContentDelay + 1000);
         footerTl.to('.footer-link-contact', { y: 0 , duration: footerRighContentDuration }, rightContentDelay + 1100);
 
+        // s
         // Copyright — separate timeline so its delay/duration does not affect main content speed
         const copyrightDuration = 1.2;
         const copyrightTl = gsap.timeline({
