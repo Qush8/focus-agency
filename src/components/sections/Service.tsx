@@ -335,9 +335,9 @@ export const Service = () => {
             createDesktopAnimation("top 75%", "bottom 75%");
         });
 
-        // Laptop (1280px - 1700px) - Tuned for standard laptops
-        mm.add("(min-width: 1025px) and (max-width: 1700px)", () => {
-            createDesktopAnimation("top 70%", "bottom 70%");
+        // Laptop (1024px - 1700px) - Tuned for standard laptops
+        mm.add("(min-width: 1024px) and (max-width: 1700px)", () => {
+            createDesktopAnimation("top 89%", "bottom 90%");
         });
 
 

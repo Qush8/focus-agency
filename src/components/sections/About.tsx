@@ -279,14 +279,13 @@ export const About = () => {
             createDesktopAnimation("top 80%", "bottom 60%");
         });
 
-        // Laptop (1280px - 1700px)
-        mm.add("(min-width: 1025px) and (max-width: 1700px)", () => {
-            createDesktopAnimation("top 99%", "bottom 99%");
+        // Laptop (1024px - 1700px)
+        mm.add("(min-width: 1024px) and (max-width: 1700px)", () => {
+            createDesktopAnimation("top 98%", "bottom 98%");
         });
-
         // Tablet (768px - 1023px)
         mm.add("(min-width: 768px) and (max-width: 1024px)", () => {
-            createMobileAnimation("top 70%", "bottom 45%");
+            createMobileAnimation("top 50%", "bottom 15%");
         });
 
         // Mobile (<767px)
