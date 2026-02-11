@@ -47,32 +47,59 @@ export const Navbar = () => {
     };
   }, []);
 
-  // Theme Logic: Scroll & Intersection
+  // Theme Logic & Active Link: Scroll & Intersection
   useEffect(() => {
     const handleScrollAndIntersection = () => {
       // 1. Check Scroll Position
       const isAtTop = window.scrollY <= 50;
       
-      // 2. Check Service Section Intersection
-      // We use a manual check here for simplicity inside the scroll handler, 
-      // or we could use IntersectionObserver. 
-      // Given the requirement "when reaching service section", let's use getBoundingClientRect for precise "navbar over section" detection.
+      // 2. Check if we're near the bottom of the page
+      const scrollPosition = window.scrollY + window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const bottomThreshold = 200; // pixels from bottom
+      const isNearBottom = documentHeight - scrollPosition < bottomThreshold;
       
-      const serviceSection = document.getElementById('services');
-      let isOverService = false;
+      // 3. Check all sections and determine which one is active
+      const navHeight = 125;
+      const sections = [
+        { id: 'hero', linkKey: 'blog' },
+        { id: 'services', linkKey: 'services' },
+        { id: 'about', linkKey: 'weAre' },
+        { id: 'footer', linkKey: 'contact' }
+      ];
 
-      if (serviceSection) {
-        const rect = serviceSection.getBoundingClientRect();
-        // Navbar height is approx 125px. We switch when the service section reaches the navbar area.
-        // We consider "over service" if the top of service is near the top of viewport (e.g. <= 125/2) 
-        // AND the bottom of service is still in viewport.
-        const navHeight = 125;
-        const offset = navHeight / 2; 
-        
-        // Switch to white when Service top is near navbar
-        if (rect.top <= offset && rect.bottom >= offset) {
-          isOverService = true;
-        }
+      let currentActiveLinkKey = '';
+      let isOverService = false;
+      let maxVisibleHeight = 0;
+
+      // If near bottom, make footer/contact active regardless of visible height
+      if (isNearBottom) {
+        currentActiveLinkKey = 'contact';
+      } else {
+        // Find which section has the most visible area in the viewport
+        sections.forEach((section) => {
+          const element = document.getElementById(section.id);
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
+            
+            // Calculate visible height of this section
+            const visibleTop = Math.max(0, rect.top);
+            const visibleBottom = Math.min(viewportHeight, rect.bottom);
+            const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+            
+            // Check if section top is near navbar (for theme switching)
+            if (section.id === 'services' && rect.top <= navHeight && rect.bottom >= navHeight / 2) {
+              isOverService = true;
+            }
+            
+            // Track section with most visible area
+            if (visibleHeight > maxVisibleHeight) {
+              maxVisibleHeight = visibleHeight;
+              currentActiveLinkKey = section.linkKey;
+            }
+          }
+        });
       }
 
       // Determine Theme
@@ -83,10 +110,19 @@ export const Navbar = () => {
         // Desktop
         if (isAtTop) {
           setNavTheme('transparent');
+          // When at top, clear active link
+          if (activeLink !== '') {
+            setActiveLink('');
+          }
         } else {
           // Scrolled
           setNavTheme(isOverService ? 'white' : 'black');
         }
+      }
+
+      // Update active link when we detect a section change (only if not at top)
+      if (!isAtTop && currentActiveLinkKey && currentActiveLinkKey !== activeLink) {
+        setActiveLink(currentActiveLinkKey);
       }
     };
 
@@ -101,7 +137,7 @@ export const Navbar = () => {
       window.removeEventListener('scroll', handleScrollAndIntersection);
       window.removeEventListener('resize', handleScrollAndIntersection);
     };
-  }, [isMobileViewport]);
+  }, [isMobileViewport, activeLink]);
 
 
   // Determine text color based on theme
@@ -313,38 +349,62 @@ export const Navbar = () => {
         <div className="nav-links hidden min-[1025px]:flex h-full items-center gap-6">
           <a
             href="#about"
-            className={`text-12 transition-colors duration-[0.4s] ${textColorClass} ${hoverColorClass} ${activeLink === 'weAre' ? 'active' : ''}`}
+            className={`text-12 transition-colors duration-[0.4s] ${textColorClass} ${hoverColorClass} ${
+              activeLink === 'weAre' ? 'active font-bold' : 'font-normal'
+            }`}
             onClick={() => handleLinkClick('weAre')}
+            aria-current={activeLink === 'weAre' ? 'page' : undefined}
           >
-            <div className="inline-block h-fit overflow-hidden py-1">
+            <div className="inline-block h-fit overflow-hidden py-1 relative">
               <span className="nav-item-inner block pb-1">{t.navbar.weAre}</span>
+              {activeLink === 'weAre' && (
+                <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#E85B5B]" aria-hidden />
+              )}
             </div>
           </a>
           <a
             href="#services"
-            className={`text-12 transition-colors duration-[0.4s] ${textColorClass} ${hoverColorClass} ${activeLink === 'services' ? 'active' : ''}`}
+            className={`text-12 transition-colors duration-[0.4s] ${textColorClass} ${hoverColorClass} ${
+              activeLink === 'services' ? 'active font-bold' : 'font-normal'
+            }`}
             onClick={() => handleLinkClick('services')}
+            aria-current={activeLink === 'services' ? 'page' : undefined}
           >
-            <div className="inline-block h-fit overflow-hidden py-1">
+            <div className="inline-block h-fit overflow-hidden py-1 relative">
               <span className="nav-item-inner block pb-1">{t.navbar.services}</span>
+              {activeLink === 'services' && (
+                <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#E85B5B]" aria-hidden />
+              )}
             </div>
           </a>
           <a
             href="#hero"
-            className={`text-12 transition-colors duration-[0.4s] ${textColorClass} ${hoverColorClass} ${activeLink === 'blog' ? 'active' : ''}`}
+            className={`text-12 transition-colors duration-[0.4s] ${textColorClass} ${hoverColorClass} ${
+              activeLink === 'blog' ? 'active font-bold' : 'font-normal'
+            }`}
             onClick={() => handleLinkClick('blog')}
+            aria-current={activeLink === 'blog' ? 'page' : undefined}
           >
-            <div className="inline-block h-fit overflow-hidden py-1">
+            <div className="inline-block h-fit overflow-hidden py-1 relative">
               <span className="nav-item-inner block pb-1">{t.navbar.blog}</span>
+              {activeLink === 'blog' && (
+                <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#E85B5B]" aria-hidden />
+              )}
             </div>
           </a>
           <a
             href="#footer"
-            className={`text-12 transition-colors duration-[0.4s] ${textColorClass} ${hoverColorClass} ${activeLink === 'contact' ? 'active' : ''}`}
+            className={`text-12 transition-colors duration-[0.4s] ${textColorClass} ${hoverColorClass} ${
+              activeLink === 'contact' ? 'active font-bold' : 'font-normal'
+            }`}
             onClick={() => handleLinkClick('contact')}
+            aria-current={activeLink === 'contact' ? 'page' : undefined}
           >
-            <div className="inline-block h-fit overflow-hidden py-1">
+            <div className="inline-block h-fit overflow-hidden py-1 relative">
               <span className="nav-item-inner block pb-1">{t.navbar.contact}</span>
+              {activeLink === 'contact' && (
+                <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#E85B5B]" aria-hidden />
+              )}
             </div>
           </a>
         </div>
@@ -473,38 +533,62 @@ export const Navbar = () => {
            
             <a
               href="#about"
-              className={`mobile-menu-link text-[14px] transition-colors duration-[0.4s] flex justify-center ${isLightText ? 'text-[#FFFFFF] hover:text-[#FFFFFF]' : 'text-[#000000] hover:text-[#000000]/70'}`}
+              className={`mobile-menu-link text-[14px] transition-colors duration-[0.4s] flex justify-center ${
+                isLightText ? 'text-[#FFFFFF] hover:text-[#FFFFFF]' : 'text-[#000000] hover:text-[#000000]/70'
+              } ${activeLink === 'weAre' ? 'font-bold' : 'font-normal'}`}
               onClick={() => handleLinkClick('weAre')}
+              aria-current={activeLink === 'weAre' ? 'page' : undefined}
             >
-              <div className="overflow-hidden block h-fit py-1">
+              <div className="overflow-hidden block h-fit py-1 relative">
                 <span className="mobile-menu-link-inner block pb-1 text-[18px]">{t.navbar.weAre}</span>
+                {activeLink === 'weAre' && (
+                  <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#E85B5B]" aria-hidden />
+                )}
               </div>
             </a>
             <a
               href="#services"
-              className={`mobile-menu-link text-[14px] transition-colors duration-[0.4s] flex justify-center ${isLightText ? 'text-[#FFFFFF] hover:text-[#FFFFFF]' : 'text-[#000000] hover:text-[#000000]/70'}`}
+              className={`mobile-menu-link text-[14px] transition-colors duration-[0.4s] flex justify-center ${
+                isLightText ? 'text-[#FFFFFF] hover:text-[#FFFFFF]' : 'text-[#000000] hover:text-[#000000]/70'
+              } ${activeLink === 'services' ? 'font-bold' : 'font-normal'}`}
               onClick={() => handleLinkClick('services')}
+              aria-current={activeLink === 'services' ? 'page' : undefined}
             >
-              <div className="overflow-hidden block h-fit py-1">
+              <div className="overflow-hidden block h-fit py-1 relative">
                 <span className="mobile-menu-link-inner block pb-1 text-[18px]">{t.navbar.services}</span>
+                {activeLink === 'services' && (
+                  <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#E85B5B]" aria-hidden />
+                )}
               </div>
             </a>
             <a
               href="#hero"
-              className={`mobile-menu-link text-[14px] transition-colors duration-[0.4s] flex justify-center ${isLightText ? 'text-[#FFFFFF] hover:text-[#FFFFFF]' : 'text-[#000000] hover:text-[#000000]/70'}`}
+              className={`mobile-menu-link text-[14px] transition-colors duration-[0.4s] flex justify-center ${
+                isLightText ? 'text-[#FFFFFF] hover:text-[#FFFFFF]' : 'text-[#000000] hover:text-[#000000]/70'
+              } ${activeLink === 'blog' ? 'font-bold' : 'font-normal'}`}
               onClick={() => handleLinkClick('blog')}
+              aria-current={activeLink === 'blog' ? 'page' : undefined}
             >
-              <div className="overflow-hidden block h-fit py-1">
+              <div className="overflow-hidden block h-fit py-1 relative">
                 <span className="mobile-menu-link-inner block pb-1 text-[18px]">{t.navbar.blog}</span>
+                {activeLink === 'blog' && (
+                  <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#E85B5B]" aria-hidden />
+                )}
               </div>
             </a>
             <a
               href="#footer"
-              className={`mobile-menu-link text-[14px] transition-colors duration-[0.4s] flex justify-center ${isLightText ? 'text-[#FFFFFF] hover:text-[#FFFFFF]' : 'text-[#000000] hover:text-[#000000]/70'}`}
+              className={`mobile-menu-link text-[14px] transition-colors duration-[0.4s] flex justify-center ${
+                isLightText ? 'text-[#FFFFFF] hover:text-[#FFFFFF]' : 'text-[#000000] hover:text-[#000000]/70'
+              } ${activeLink === 'contact' ? 'font-bold' : 'font-normal'}`}
               onClick={() => handleLinkClick('contact')}
+              aria-current={activeLink === 'contact' ? 'page' : undefined}
             >
-              <div className="overflow-hidden block h-fit py-1">
+              <div className="overflow-hidden block h-fit py-1 relative">
                 <span className="mobile-menu-link-inner block pb-1 text-[18px]">{t.navbar.contact}</span>
+                {activeLink === 'contact' && (
+                  <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#E85B5B]" aria-hidden />
+                )}
               </div>
             </a>
             </div>
