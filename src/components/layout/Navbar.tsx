@@ -362,7 +362,7 @@ export const Navbar = () => {
         <div className="navbar-bg-overlay navbar-bg-white" aria-hidden />
         <div className="for-logo relative w-[15%] flex justify-center h-full shrink-0 items-center">
           <div
-            className={`logo-left-line absolute left-[0] top-0 z-[100] h-[124px] w-[1px] transition-colors duration-[0.4s] ${borderColorClass}`}
+            className={`logo-left-line absolute left-[0] top-0 z-[100] h-[124px] w-[1px] transition-colors duration-[0.4s] ${borderColorClass} scale-y-0 origin-top`}
             aria-hidden
           />
           <div className={`logo flex shrink-0 items-center text-xl font-bold transition-colors duration-[0.4s] ${textColorClass} opacity-0 scale-[0.8]`}>
@@ -390,7 +390,7 @@ export const Navbar = () => {
             </svg>
           </div>
           <div
-            className={`logo-right-line absolute right-[0] top-0 z-[100] h-[124px] w-[1px] transition-colors duration-[0.4s] ${borderColorClass}`}
+            className={`logo-right-line absolute right-[0] top-0 z-[100] h-[124px] w-[1px] transition-colors duration-[0.4s] ${borderColorClass} scale-y-0 origin-top`}
             aria-hidden
           />
         </div>
@@ -463,7 +463,7 @@ export const Navbar = () => {
         <div className="relative w-[15%] mobile-right-side flex justify-center gap-[20px] shrink-0 items-center gap-6">
           <div className=" flex h-full shrink-0 items-center">
             <div
-              className={`languages-left-line absolute left-[0px] top-0 z-[100] h-[124px] w-[1px] transition-colors duration-[0.4s] ${borderColorClass}`}
+              className={`languages-left-line absolute left-[0px] top-0 z-[100] h-[124px] w-[1px] transition-colors duration-[0.4s] ${borderColorClass} scale-y-0 origin-top`}
               aria-hidden
             />
             <div className="language-links h-full flex items-center">
@@ -495,7 +495,7 @@ export const Navbar = () => {
               </a>
             </div>
             <div
-              className={`languages-right-line absolute right-[0px] top-0 z-[100] h-[124px] w-[1px] transition-colors duration-[0.4s] ${borderColorClass}`}
+              className={`languages-right-line absolute right-[0px] top-0 z-[100] h-[124px] w-[1px] transition-colors duration-[0.4s] ${borderColorClass} scale-y-0 origin-top`}
               aria-hidden
             />
           </div>

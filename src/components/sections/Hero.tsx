@@ -141,7 +141,7 @@ export const Hero: React.FC<HeroProps> = ({ animationsReady = false }) => {
 
   return (
     <section ref={heroRef} id="hero" className="section-hero relative w-full flex flex-col items-start bg-[black] h-[100vh] ">
-       <div className='left-side-line w-[1px] h-[100%] bg-[#FFFFFF33] absolute left-[31px] md:left-[31px] z-[100] top-[0px]'></div>
+       <div className='left-side-line w-[1px] h-[100%] bg-[#FFFFFF33] absolute left-[31px] md:left-[31px] z-[100] top-[0px] scale-y-0 origin-top'></div>
        
 
           <div className="text-[white] text-[48px] line-height-[100px] font-light tracking-normal z-[20] ">
@@ -191,7 +191,7 @@ export const Hero: React.FC<HeroProps> = ({ animationsReady = false }) => {
               <SocialIcon icon="/icons/pause.svg" size={15} className="right-icon opacity-0 scale-0" />
             </div>
           </div>
-      <div className='right-side-line w-[1px] h-[100%] bg-[#FFFFFF33] absolute right-[31px] md:right-[31px] z-[100] top-[0px]'></div>
+      <div className='right-side-line w-[1px] h-[100%] bg-[#FFFFFF33] absolute right-[31px] md:right-[31px] z-[100] top-[0px] scale-y-0 origin-top'></div>
 
       <GalaxyAnimation />
 
