@@ -408,7 +408,7 @@ nav .language-links a:hover::after {
 }
 
 .section-hero .icons {
-  width : 86%;
+  /* width : 88%; */
 }
 
 .gradient-border {
@@ -948,12 +948,13 @@ nav .language-links a:hover::after {
   }
 
   .section-hero > h1 {
-    font-size: 64px;
+    font-size: 52px;
     line-height: 75px;
   }
 
   .section-hero .icons {
     margin-top: 100px;
+    width: 88%!important;
   }
 
   .section-hero > h2 {
@@ -962,7 +963,7 @@ nav .language-links a:hover::after {
   }
 
   .mobile-right-side {
-    width: 30%;
+    width: 216px!important;
     padding-left: 40px;
   }
 
@@ -1001,6 +1002,12 @@ nav .language-links a:hover::after {
   .section-service .for-headline h2 {
     padding-left: 50px;
     padding-right: 50px;
+  }
+  .section-service h3 {
+    font-size: 27px!important
+  }
+  .section-service p {
+    font-size: 16px!important
   }
   .section-service .services-container .left-side-offers h3 {
     padding-left: 50px;
@@ -1074,6 +1081,7 @@ nav .language-links a:hover::after {
 
   .section-about .left-side-about h2 {
     /* font-size: 55px!important; */
+    font-size: 42px!important;
     line-height: 85px!important;
   }
 
@@ -1083,10 +1091,26 @@ nav .language-links a:hover::after {
 
   .section-about .right-side-about h3 {
     /* font-size: 30px!important; */
+    font-size: 15px!important
   }
 
   .section-about .right-side-about p {
-    /* font-size: 18px!important; */
+    font-size: 15px!important;
+  }
+  .section-about .right-side-about > div {
+    height : 226px!important;
+  }
+  .section-about .right-side-about .text-about-description{
+    font-size: 14px!important
+  }
+
+  .about-right-line-0 {
+    top: 44%!important;
+  }
+
+
+  .section-service .service-description-content p{
+    font-size: 14px!important
   }
 
   /* footer section <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
@@ -1152,6 +1176,13 @@ nav .language-links a:hover::after {
   }
 }
 
+@media screen and (max-width: 820px) and (min-width: 769px) {
+  .section-hero .icons {
+    width: 86.5%!important;
+  }
+}
+
+
 /* MOBILE VERSION ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ******  MOBILE VERSION */
 @media screen and (max-width: 767px) {
   /* header section <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
@@ -1168,7 +1199,8 @@ nav .language-links a:hover::after {
     /* height: 70px; */
   }
   nav .mobile-right-side {
-    width: 30%!important;
+    width: 216px!important;
+    padding-left: 70px!important;
   }
 
   nav .mobile-right-side .language-links {
@@ -1241,7 +1273,7 @@ nav .language-links a:hover::after {
   }
 
   .section-hero .icons {
-    width : 85%;
+    /* width : 85%; */
   }
 
   /* Service sections <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
@@ -1604,6 +1636,11 @@ nav .language-links a:hover::after {
     font-size: 12px!important;
   }
 }
+@media screen and (max-width :768px){
+  .section-hero .icons{
+    width: 85%!important; 
+  }
+}
 
 /* Mobile menu panel (Navbar) */
 
@@ -1807,7 +1844,7 @@ nav .language-links a:hover::after {
   }
   
   .section-hero icons {
-    width: 80%!important
+    /* width: 80%!important */
   }
   .section-hero .icons .left-side-icons {
     margin-left: 20px;

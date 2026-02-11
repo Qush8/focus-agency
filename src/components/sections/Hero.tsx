@@ -180,14 +180,14 @@ export const Hero: React.FC<HeroProps> = ({ animationsReady = false }) => {
               />
             </div>
           </div>
-          <div className='icons flex justify-between w-[88%]  z-[20]  absolute bottom-[131px]'>
-            <div className='left-side-icons  w-[40%] flex justify-start gap-[24px]'>
+          <div className='icons flex justify-between w-[89%]  z-[20]  absolute bottom-[131px]'>
+            <div className='left-side-icons  w-[250px] flex justify-start gap-[24px]'>
                 <SocialIcon icon="/icons/tweet.svg" className="left-icon opacity-0 scale-0" />
                 <SocialIcon icon="/icons/insta.svg" className="left-icon opacity-0 scale-0" />
                 <SocialIcon icon="/icons/face.svg" className="left-icon opacity-0 scale-0" />
                 <SocialIcon icon="/icons/gmail.svg" className="left-icon opacity-0 scale-0" />
             </div>
-            <div className='right-side-icons w-[40%] flex justify-end'>
+            <div className='right-side-icons w-[50px] flex justify-end'>
               <SocialIcon icon="/icons/pause.svg" size={15} className="right-icon opacity-0 scale-0" />
             </div>
           </div>
