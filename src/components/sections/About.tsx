@@ -19,6 +19,7 @@ interface AboutItemProps {
 
 const AboutItem: React.FC<AboutItemProps> = ({ number, title, subtitle, description, index }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
 
     return (
         <div className={`w-[100%] h-[300px] flex pl-[30px] pt-[30px] pb-[30px] gap-[5px] about-border-item-${index} relative`}>
@@ -27,7 +28,12 @@ const AboutItem: React.FC<AboutItemProps> = ({ number, title, subtitle, descript
                 <p className={`text-[32px] font-bold text-[#FFFFFFE5] about-number-${index}`}>{number}</p>
             </div>
             <div className="w-[90%] mt-[20px] flex flex-col ">
-                <div className="cursor-pointer w-full group" onClick={() => setIsOpen(!isOpen)}>
+                <div 
+                    className="cursor-pointer w-full group" 
+                    onClick={() => setIsOpen(!isOpen)}
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                >
                     <h3 className={`text-[44px] font-bold text-[#FFFFFFEB] mb-[20px] about-title-${index}`}>
                         <div>{title}</div>
                     </h3>
@@ -35,11 +41,19 @@ const AboutItem: React.FC<AboutItemProps> = ({ number, title, subtitle, descript
                         <p className={`text-[28px] font-light text-[#FFFFFFCF] about-subtitle-${index}`}>
                             {subtitle}
                         </p>
-                        <img 
-                            src="/icons/arrow.svg" 
-                            alt="Expand" 
-                            className={`w-[18px] h-[24px] about-arrow-${index} transition-all duration-300 ease-in-out ${isOpen ? 'filter-red rotate-45' : 'brightness-0 invert group-hover:rotate-45 group-hover:[filter:brightness(0)_saturate(100%)_invert(32%)_sepia(89%)_saturate(2768%)_hue-rotate(338deg)_brightness(99%)_contrast(92%)]'}`}
-                        />
+                        <div className={`about-arrow-${index}`}>
+                            <img 
+                                src="/icons/arrow.svg" 
+                                alt="Expand" 
+                                className={`w-[18px] h-[24px] transition-all duration-300 ease-in-out`}
+                                style={{
+                                    transform: isOpen || isHovered ? 'rotate(45deg)' : 'rotate(0deg)',
+                                    filter: isOpen || isHovered 
+                                        ? 'brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2768%) hue-rotate(338deg) brightness(99%) contrast(92%)' 
+                                        : 'brightness(0) invert(1)'
+                                }}
+                            />
+                        </div>
                     </div>
                 </div>
                 
