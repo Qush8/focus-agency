@@ -86,8 +86,7 @@ export const Service = () => {
     useGSAP(() => {
         const mm = gsap.matchMedia();
 
-        // Desktop / large screens: current behavior (side slide + arrows scale)
-        mm.add("(min-width: 1024px)", () => {
+        const createDesktopAnimation = (startTrigger: string, endTrigger: string) => {
             // Set initial hidden states
             gsap.set('.service-h2-line-1, .service-h2-line-2', { y: "100%" });
             // Add opacity: 0 to sliding text elements
@@ -96,13 +95,6 @@ export const Service = () => {
             gsap.set('.service-subtitle-text-right-0, .service-subtitle-text-right-1', { x: 100, opacity: 0 });
             gsap.set('.service-subtitle-text-left-0, .service-subtitle-text-left-1', { x: -100, opacity: 0 });
             gsap.set('.service-arrow-right-0, .service-arrow-right-1, .service-arrow-left-0, .service-arrow-left-1', { scale: 0, opacity: 0 });
-            
-            // New lines initial state (removed set, using fromTo in timeline)
-            // gsap.set('.left-side-line, .right-side-line', { scaleY: 0, transformOrigin: 'top' });
-            // gsap.set('.service-headline-line', { scaleX: 0, transformOrigin: 'left' });
-            // Mini lines initial state
-            // gsap.set('.left-side-mini-line', { scaleX: 0, transformOrigin: 'left' });
-            // gsap.set('.right-side-mini-line', { scaleX: 0, transformOrigin: 'right' });
             
             // Service Item Lines initial state (scaleX + opacity + visibility for first-paint hide)
             gsap.set('.service-line-left-0, .service-line-left-1', { scaleX: 0, transformOrigin: 'left', opacity: 0, visibility: 'hidden' });
@@ -113,8 +105,8 @@ export const Service = () => {
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: serviceRef.current,
-                    start: "top 75%",
-                    end: "bottom 75%",
+                    start: startTrigger,
+                    end: endTrigger,
                     scrub: true,
                     invalidateOnRefresh: true
                 },
@@ -237,10 +229,9 @@ export const Service = () => {
             scrollOutTl.to('.service-headline-line', { scaleX: 0 }, 0.95);
             scrollOutTl.to('.for-headline .background-line', { scaleX: 0 }, 0.96);
             scrollOutTl.to('.service-h2-line-1', { y: "-100%" }, 1.0);
-        });
+        };
 
-        // Mobile / tablet: mask animation, left side first then right side
-        mm.add("(max-width: 1023px)", () => {
+        const createMobileAnimation = (startTrigger: string, endTrigger: string) => {
             // Initial states: all text masked down, arrows scaled down
             gsap.set('.service-h2-line-1, .service-h2-line-2', { y: "100%" });
             gsap.set('.service-title-left-0, .service-title-left-1, .service-title-right-0, .service-title-right-1', { y: "100%" });
@@ -257,8 +248,8 @@ export const Service = () => {
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: serviceRef.current,
-                    start: "top 100%",
-                    end: "bottom 40%",
+                    start: startTrigger,
+                    end: endTrigger,
                     scrub: true,
                     invalidateOnRefresh: true
                 },
@@ -337,6 +328,27 @@ export const Service = () => {
             scrollOutTl.to('.for-headline .background-line', { scaleX: 0 }, 0.95);
             scrollOutTl.to('.service-h2-line-2', { y: "-100%" }, 0.9);
             scrollOutTl.to('.service-h2-line-1', { y: "-100%" }, 1.0);
+        };
+
+        // Large Desktop (>1700px)
+        mm.add("(min-width: 1701px)", () => {
+            createDesktopAnimation("top 75%", "bottom 75%");
+        });
+
+        // Laptop (1280px - 1700px) - Tuned for standard laptops
+        mm.add("(min-width: 1025px) and (max-width: 1700px)", () => {
+            createDesktopAnimation("top 70%", "bottom 70%");
+        });
+
+
+        // Tablet (768px - 1023px) - Vertical layout
+        mm.add("(min-width: 768px) and (max-width: 1024px)", () => {
+            createMobileAnimation("top 70%", "bottom 60%");
+        });
+
+        // Mobile (<767px) - Vertical layout
+        mm.add("(max-width: 767px)", () => {
+            createMobileAnimation("top 80%", "bottom 40%");
         });
 
         return () => {

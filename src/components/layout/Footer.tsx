@@ -48,84 +48,103 @@ export const Footer = () => {
 ]
 
   useGSAP(() => {
-    // Set initial hidden states
-    gsap.set('.footer-line-top', { scaleX: 0, transformOrigin: 'center' });
-    gsap.set('.footer-h2-text', { y: "100%" });
-    gsap.set('.footer-form-message-0, .footer-form-message-1, .footer-form-message-2', { x: -100, opacity: 0 });
-    gsap.set('.footer-form-input-0, .footer-form-input-1, .footer-form-input-2', { x: -100, opacity: 0 });
-    gsap.set('.footer-call-us-text, .footer-phone-number, .footer-visit-us-text, .footer-tbilisi-text, .footer-address-text, .footer-connect-text, .footer-email-text, .footer-home-text, .footer-link-we-are, .footer-link-service, .footer-link-blog, .footer-link-contact', { y: "100%" });
-    gsap.set('.copyright-up-line, .copyright-down-line', { scaleX: 0, transformOrigin: 'center' });
-    gsap.set('.copyright-text', { y: "100%" });
+    const mm = gsap.matchMedia();
 
-    // Scrub: progress = scroll position → scroll up and content starts disappearing immediately
-    const tweenDuration = 0.45;
-    const stagger = 0.08;
+    const createFooterAnimation = (startTrigger: string, endTrigger: string, staggerAmount: number) => {
+        // Set initial hidden states
+        gsap.set('.footer-line-top', { scaleX: 0, transformOrigin: 'center' });
+        gsap.set('.footer-h2-text', { y: "100%" });
+        gsap.set('.footer-form-message-0, .footer-form-message-1, .footer-form-message-2', { x: -100, opacity: 0 });
+        gsap.set('.footer-form-input-0, .footer-form-input-1, .footer-form-input-2', { x: -100, opacity: 0 });
+        gsap.set('.footer-call-us-text, .footer-phone-number, .footer-visit-us-text, .footer-tbilisi-text, .footer-address-text, .footer-connect-text, .footer-email-text, .footer-home-text, .footer-link-we-are, .footer-link-service, .footer-link-blog, .footer-link-contact', { y: "100%" });
+        gsap.set('.copyright-up-line, .copyright-down-line', { scaleX: 0, transformOrigin: 'center' });
+        gsap.set('.copyright-text', { y: "100%" });
 
-    const footerTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: footerRef.current,
-        start: "top 90%",
-        end: "top 60%",
-        scrub: true,
-        invalidateOnRefresh: true
-      },
-      defaults: { duration: tweenDuration, ease: "power2.out" }
+        // Scrub: progress = scroll position → scroll up and content starts disappearing immediately
+        const tweenDuration = 0.45;
+
+        const footerTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: footerRef.current,
+            start: startTrigger,
+            end: endTrigger,
+            scrub: true,
+            invalidateOnRefresh: true
+          },
+          defaults: { duration: tweenDuration, ease: "power2.out" }
+        });
+
+        // 1. Top line
+        const footerLineDuration = 200;
+        const footerContentDuration = 300;
+        const footerRighContentDuration = 600;
+
+        const formDelay = 1200;
+        const rightContentDelay = 1500;
+        footerTl.to('.footer-line-top', { scaleX: 1, ease: "power2.out", duration: footerLineDuration }, 0);
+        // 2. h2 "Have a question?"
+        footerTl.to('.footer-h2-text', { y: 0 , duration: 250}, 350);
+        // 3. Form — messages and inputs one after another
+        footerTl.to('.footer-form-message-0', { x: 0, opacity: 1, duration: footerContentDuration },formDelay);
+        footerTl.to('.footer-form-input-0', { x: 0, opacity: 1, duration: footerContentDuration }, formDelay + 100);
+        footerTl.to('.footer-form-message-1', { x: 0, opacity: 1, duration: footerContentDuration }, formDelay + 200);
+        footerTl.to('.footer-form-input-1', { x: 0, opacity: 1, duration: footerContentDuration }, formDelay + 300);
+        footerTl.to('.footer-form-message-2', { x: 0, opacity: 1, duration: footerContentDuration }, formDelay + 400);
+        footerTl.to('.footer-form-input-2', { x: 0, opacity: 1, duration: footerContentDuration }, formDelay + 500);
+        // 4. Contact block — one after another
+        footerTl.to('.footer-call-us-text', { y: 0 , duration: footerRighContentDuration }, rightContentDelay);
+        footerTl.to('.footer-phone-number', { y: 0 , duration : footerRighContentDuration }, rightContentDelay + 100);
+        footerTl.to('.footer-visit-us-text', { y: 0 , duration: footerRighContentDuration }, rightContentDelay + 200);
+        footerTl.to('.footer-tbilisi-text', { y: 0 , duration: footerRighContentDuration }, rightContentDelay + 300);
+        footerTl.to('.footer-address-text', { y: 0 , duration: footerRighContentDuration }, rightContentDelay + 400);
+        footerTl.to('.footer-connect-text', { y: 0 , duration: footerRighContentDuration }, rightContentDelay + 500);
+        footerTl.to('.footer-email-text', { y: 0 , duration: footerRighContentDuration }, rightContentDelay + 600);
+        footerTl.to('.footer-home-text', { y: 0 , duration: footerRighContentDuration }, rightContentDelay + 700);
+        footerTl.to('.footer-link-we-are', { y: 0 , duration: footerRighContentDuration }, rightContentDelay + 800);
+        footerTl.to('.footer-link-service', { y: 0 , duration: footerRighContentDuration }, rightContentDelay + 900);
+        footerTl.to('.footer-link-blog', { y: 0 , duration: footerRighContentDuration }, rightContentDelay + 1000);
+        footerTl.to('.footer-link-contact', { y: 0 , duration: footerRighContentDuration }, rightContentDelay + 1100);
+
+        // Copyright — separate timeline so its delay/duration does not affect main content speed
+        const copyrightDuration = 1.2;
+        const copyrightTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: footerRef.current,
+            start: "top 85%",
+            end: "bottom bottom",
+            scrub: true,
+            invalidateOnRefresh: true
+          },
+          defaults: { duration: copyrightDuration, ease: "power2.out" }
+        });
+        copyrightTl.to('.copyright-up-line', { scaleX: 1 }, 0);
+        copyrightTl.to('.copyright-text', { y: 0 }, staggerAmount);
+        copyrightTl.to('.copyright-down-line', { scaleX: 1 }, staggerAmount * 2);
+    };
+
+    // Large Desktop (>1700px)
+    mm.add("(min-width: 1701px)", () => {
+        createFooterAnimation("top 90%", "top 60%", 0.08);
     });
 
-
-
-
-
-    // 1. Top line
-
-    const footerLineDuration = 200;
-    const footerContentDuration = 300;
-    const footerRighContentDuration = 600;
-    const rightSideStagger = 10;
-
-    const formDelay = 1200;
-    const rightContentDelay = 1500;
-    footerTl.to('.footer-line-top', { scaleX: 1, ease: "power2.out", duration: footerLineDuration }, 0);
-    // 2. h2 "Have a question?"
-    footerTl.to('.footer-h2-text', { y: 0 , duration: 250}, 350);
-    // 3. Form — messages and inputs one after another
-    footerTl.to('.footer-form-message-0', { x: 0, opacity: 1, duration: footerContentDuration },formDelay);
-    footerTl.to('.footer-form-input-0', { x: 0, opacity: 1, duration: footerContentDuration }, formDelay + 100);
-    footerTl.to('.footer-form-message-1', { x: 0, opacity: 1, duration: footerContentDuration }, formDelay + 200);
-    footerTl.to('.footer-form-input-1', { x: 0, opacity: 1, duration: footerContentDuration }, formDelay + 300);
-    footerTl.to('.footer-form-message-2', { x: 0, opacity: 1, duration: footerContentDuration }, formDelay + 400);
-    footerTl.to('.footer-form-input-2', { x: 0, opacity: 1, duration: footerContentDuration }, formDelay + 500);
-    // 4. Contact block — one after another
-    footerTl.to('.footer-call-us-text', { y: 0 , duration: footerRighContentDuration }, rightContentDelay);
-    footerTl.to('.footer-phone-number', { y: 0 , duration : footerRighContentDuration }, rightContentDelay + 100);
-    footerTl.to('.footer-visit-us-text', { y: 0 , duration: footerRighContentDuration }, rightContentDelay + 200);
-    footerTl.to('.footer-tbilisi-text', { y: 0 , duration: footerRighContentDuration }, rightContentDelay + 300);
-    footerTl.to('.footer-address-text', { y: 0 , duration: footerRighContentDuration }, rightContentDelay + 400);
-    footerTl.to('.footer-connect-text', { y: 0 , duration: footerRighContentDuration }, rightContentDelay + 500);
-    footerTl.to('.footer-email-text', { y: 0 , duration: footerRighContentDuration }, rightContentDelay + 600);
-    footerTl.to('.footer-home-text', { y: 0 , duration: footerRighContentDuration }, rightContentDelay + 700);
-    footerTl.to('.footer-link-we-are', { y: 0 , duration: footerRighContentDuration }, rightContentDelay + 800);
-    footerTl.to('.footer-link-service', { y: 0 , duration: footerRighContentDuration }, rightContentDelay + 900);
-    footerTl.to('.footer-link-blog', { y: 0 , duration: footerRighContentDuration }, rightContentDelay + 1000);
-    footerTl.to('.footer-link-contact', { y: 0 , duration: footerRighContentDuration }, rightContentDelay + 1100);
-
-    // Copyright — separate timeline so its delay/duration does not affect main content speed
-    const copyrightStagger = 0.08;
-    const copyrightDuration = 1.2;
-    const copyrightTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: footerRef.current,
-        start: "top 85%",
-        end: "bottom bottom",
-        scrub: true,
-        invalidateOnRefresh: true
-      },
-      defaults: { duration: copyrightDuration, ease: "power2.out" }
+    // Laptop (1280px - 1700px)
+    mm.add("(min-width: 1025px) and (max-width: 1700px)", () => {
+        createFooterAnimation("top 85%", "top 55%", 0.08);
     });
-    copyrightTl.to('.copyright-up-line', { scaleX: 1 }, 0);
-    copyrightTl.to('.copyright-text', { y: 0 }, copyrightStagger);
-    copyrightTl.to('.copyright-down-line', { scaleX: 1 }, copyrightStagger * 2);
 
+    // Tablet (768px - 1023px)
+    mm.add("(min-width: 768px) and (max-width: 1024px)", () => {
+        createFooterAnimation("top 85%", "top 45%", 0.08);
+    });
+
+    // Mobile (<767px)
+    mm.add("(max-width: 767px)", () => {
+        createFooterAnimation("top 80%", "top 40%", 0.05);
+    });
+
+    return () => {
+        mm.revert();
+    };
   }, { scope: footerRef });
 
   return (

@@ -89,8 +89,7 @@ export const About = () => {
     useGSAP(() => {
         const mm = gsap.matchMedia();
 
-        // Desktop / large screens
-        mm.add("(min-width: 1024px)", () => {
+        const createDesktopAnimation = (startTrigger: string, endTrigger: string) => {
             // Set initial hidden states
             gsap.set('.about-left-content, .about-border-item-0, .about-border-item-1, .about-border-item-2', { opacity: 0 });
             gsap.set('.section-about .about-left-inner-line', { opacity: 1 });
@@ -112,8 +111,8 @@ export const About = () => {
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: aboutRef.current,
-                    start: "top 80%",
-                    end: "bottom 60%",
+                    start: startTrigger,
+                    end: endTrigger,
                     scrub: true,
                     invalidateOnRefresh: true
                 },
@@ -178,10 +177,9 @@ export const About = () => {
             scrollOutTl.to('.about-button-inner', { y: "-100%" }, 0.35);
             scrollOutTl.to('.section-about .left-side-line-inner, .section-about .right-side-line-inner', { scaleY: 0, duration: 0.5 }, 0.2);
             scrollOutTl.to('.section-about .about-left-inner-line', { scaleY: 0, duration: 0.6 }, 0.2);
-        });
+        };
 
-        // Mobile / Tablet
-        mm.add("(max-width: 1023px)", () => {
+        const createMobileAnimation = (startTrigger: string, endTrigger: string) => {
              // Initial states
             gsap.set('.about-h2-text', { y: "100%" });
             gsap.set('.about-button-inner', { y: "100%" });
@@ -200,8 +198,8 @@ export const About = () => {
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: aboutRef.current,
-                    start: "top 80%",
-                    end: "bottom 40%",
+                    start: startTrigger,
+                    end: endTrigger,
                     scrub: true,
                     invalidateOnRefresh: true
                 },
@@ -274,6 +272,26 @@ export const About = () => {
             scrollOutTl.to('.mobile-about-top-line', { scaleX: 0, duration: 0.2 }, 0.5);
             
             scrollOutTl.to('.section-about .left-side-line-inner, .section-about .right-side-line-inner', { scaleY: 0, duration: 0.5 }, 0.6);
+        };
+
+        // Large Desktop (>1700px)
+        mm.add("(min-width: 1701px)", () => {
+            createDesktopAnimation("top 80%", "bottom 60%");
+        });
+
+        // Laptop (1280px - 1700px)
+        mm.add("(min-width: 1025px) and (max-width: 1700px)", () => {
+            createDesktopAnimation("top 99%", "bottom 99%");
+        });
+
+        // Tablet (768px - 1023px)
+        mm.add("(min-width: 768px) and (max-width: 1024px)", () => {
+            createMobileAnimation("top 70%", "bottom 45%");
+        });
+
+        // Mobile (<767px)
+        mm.add("(max-width: 767px)", () => {
+            createMobileAnimation("top 95%", "bottom 95%");
         });
 
         return () => {
