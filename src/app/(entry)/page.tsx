@@ -9,18 +9,34 @@ import { useLanguage } from "@/context/LanguageContext";
 
 const SOUND_PREFERENCE_KEY = "soundPreference";
 
+const handleExit = (callback: () => void) => {
+  const tl = gsap.timeline({
+    defaults: { duration: 0.6, ease: "power2.in" },
+    onComplete: callback,
+  });
+
+  tl.to(".entry-title-inner", { y: "100%" }, 0);
+  tl.to(".entry-btn-1", { opacity: 0 }, 0);
+  tl.to(".entry-btn-2", { opacity: 0 }, 0.1);
+  tl.to(".entry-bottom-line", { y: "100%", stagger: 0.1 }, 0);
+};
+
 const handleEnterWithSound = (router: ReturnType<typeof useRouter>) => {
-  if (typeof window !== "undefined") {
-    sessionStorage.setItem(SOUND_PREFERENCE_KEY, "on");
-  }
-  router.push("/landing");
+  handleExit(() => {
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem(SOUND_PREFERENCE_KEY, "on");
+    }
+    router.push("/landing");
+  });
 };
 
 const handleEnterWithoutSound = (router: ReturnType<typeof useRouter>) => {
-  if (typeof window !== "undefined") {
-    sessionStorage.setItem(SOUND_PREFERENCE_KEY, "off");
-  }
-  router.push("/landing");
+  handleExit(() => {
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem(SOUND_PREFERENCE_KEY, "off");
+    }
+    router.push("/landing");
+  });
 };
 
 export default function EntryPage() {
