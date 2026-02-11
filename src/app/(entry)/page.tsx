@@ -56,48 +56,48 @@ export default function EntryPage() {
   return (
     <section
       ref={sectionRef}
-      className="entry-page flex flex-col items-center justify-center w-[100%] h-[100vh] bg-[black] relative"
+      className="entry-page flex flex-col items-center justify-center w-[100%] h-[100vh] bg-[black] relative px-4"
       aria-label="Choose how to enter the site"
     >
-      <div className="flex flex-col items-center justify-center gap-[32px] -translate-y-[100px]">
+      <div className="entry-content-wrapper flex flex-col items-center justify-center -translate-y-[50px] md:-translate-y-[100px]">
         <div className="choose-entry-title">
-          <h1 className="text-[#FFFFFF] text-[128px]">
+          <h1 className="entry-title text-[#FFFFFF]">
             <div className="overflow-hidden block h-fit py-1">
               <span className="entry-title-inner block pb-1">{t.entry.brand}</span>
             </div>
           </h1>
         </div>
-        <div className="flex gap-[32px]">
+        <div className="entry-buttons-container flex flex-col items-center md:flex-row">
           <div className="entry-btn-wrapper entry-btn-1">
             <Button
               css={
-                "gradient-border w-[277px] h-[58px] bg-[#000000] cursor-[pointer] !duration-200 hover:scale-95"
+                "entry-button gradient-border bg-[#000000] cursor-[pointer] !duration-200 hover:scale-95"
               }
               text={t.entry.enterSound}
               onClick={() => handleEnterWithSound(router)}
               galaxyMode={true}
               arrowIcon={true}
-              galaxyTopCircleCss={'!top-[25px] !w-[15px] !shadow-[0_0_10px_10px_rgba(255,255,255,0.5)]'}
-              galaxyBottomCircleCss={'!bottom-[35px] !w-[1px] !shadow-[0_0_10px_5px_rgba(255,255,255,0.5)]'}
+              galaxyTopCircleCss={'galaxy-circle-top !shadow-[0_0_10px_10px_rgba(255,255,255,0.5)]'}
+              galaxyBottomCircleCss={'galaxy-circle-bottom !shadow-[0_0_10px_5px_rgba(255,255,255,0.5)]'}
             />
           </div>
           <div className="entry-btn-wrapper entry-btn-2">
             <Button
               css={
-                "gradient-border w-[277px] h-[58px] bg-[#000000] cursor-[pointer] !duration-200 hover:scale-95"
+                "entry-button gradient-border bg-[#000000] cursor-[pointer] !duration-200 hover:scale-95"
               }
               text={t.entry.enterSilent}
               onClick={() => handleEnterWithoutSound(router)}
               galaxyMode={true}
               arrowIcon={true}
-              galaxyTopCircleCss={'!top-[24px] !w-[5px] !shadow-[0_0_5px_6px_rgba(255,255,255,0.5)]'}
-              galaxyBottomCircleCss={'!bottom-[45px] !w-[1px] !shadow-[0_0_10px_5px_rgba(255,255,255,0.5)]'}
+              galaxyTopCircleCss={'galaxy-circle-top-2 !shadow-[0_0_5px_6px_rgba(255,255,255,0.5)]'}
+              galaxyBottomCircleCss={'galaxy-circle-bottom-2 !shadow-[0_0_10px_5px_rgba(255,255,255,0.5)]'}
             />
           </div>
         </div>
       </div>
-      <div className="bottom-text absolute bottom-[26px] left-1/2 -translate-x-1/2 flex flex-col items-center justify-center">
-        <h2 className="font-['Satoshi'] font-normal text-[14px] leading-[94%] tracking-[0.06em] text-center uppercase text-[#FFFFFF]">
+      <div className="bottom-text absolute bottom-[26px] left-1/2 -translate-x-1/2 flex flex-col items-center justify-center w-full px-4">
+        <h2 className="entry-footer-text font-['Satoshi'] font-normal tracking-[0.06em] text-center uppercase text-[#FFFFFF]">
           <div className="overflow-hidden block h-fit py-1">
             <span className="entry-bottom-line block pb-1">
               {t.entry.slogan.line1}
