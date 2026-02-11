@@ -209,6 +209,7 @@ nav .mobile-right-side .languages-right-line{
 
 nav > .for-logo {
   flex: 0 0 auto;
+  width: 210px!important;
 }
 
 nav > .nav-links {
@@ -1620,7 +1621,7 @@ nav .language-links a:hover::after {
     padding-right: 0px!important;
   }
   nav .for-logo {
-    width: 30%!important;
+    width: 100px!important;
   }
   nav .logo {
     width: 40px!important;
