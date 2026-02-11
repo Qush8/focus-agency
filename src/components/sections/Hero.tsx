@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -35,9 +35,14 @@ const SocialIcon = ({ icon, size = 20, className = '' }: SocialIconProps) => (
   </div>
 );
 
-export const Hero = () => {
+interface HeroProps {
+  animationsReady?: boolean;
+}
+
+export const Hero: React.FC<HeroProps> = ({ animationsReady = false }) => {
   const heroRef = useRef<HTMLElement>(null);
   const { t } = useLanguage();
+  const hasAnimated = useRef(false);
 
   useGSAP(() => {
     const scrollOutTl = gsap.timeline({
@@ -87,16 +92,52 @@ export const Hero = () => {
       opacity: 0
     }, 1.5);
 
-    // Entrance animation for button
-    gsap.from(".hero-button-inner", {
-      y: "100%",
-      opacity: 0,
-      duration: 0.8,
-      ease: "power4.out",
-      delay: 0.6
-    });
-
   }, { scope: heroRef });
+
+  // Entrance animation - trigger only when Entry exits
+  useEffect(() => {
+    if (animationsReady && !hasAnimated.current) {
+      hasAnimated.current = true;
+      
+      const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+      
+      // Text entrance (from bottom)
+      tl.to(".hero-text-inner", {
+        y: "0%",
+        duration: 0.8,
+        delay: 0.2
+      });
+      
+      // Headings entrance (staggered)
+      tl.to(".hero-heading-inner", {
+        y: "0%",
+        duration: 0.8,
+        stagger: 0.15
+      }, "-=0.6");
+      
+      // Button entrance
+      tl.to(".hero-button-inner", {
+        y: "0%",
+        opacity: 1,
+        duration: 0.8
+      }, "-=0.4");
+      
+      // Left icons entrance (staggered)
+      tl.to(".left-icon", {
+        scale: 1,
+        opacity: 1,
+        duration: 0.6,
+        stagger: 0.1
+      }, "-=0.5");
+      
+      // Right icon entrance
+      tl.to(".right-icon", {
+        scale: 1,
+        opacity: 1,
+        duration: 0.6
+      }, "-=0.3");
+    }
+  }, [animationsReady]);
 
   return (
     <section ref={heroRef} id="hero" className="section-hero relative w-full flex flex-col items-start bg-[black] h-[100vh] ">
@@ -105,23 +146,23 @@ export const Hero = () => {
 
           <div className="text-[white] text-[48px] line-height-[100px] font-light tracking-normal z-[20] ">
             <div className="first-text overflow-hidden block h-fit py-1">
-              <span className="first-text-span hero-text-inner block pb-1">{t.hero.line1}</span>
+              <span className="first-text-span hero-text-inner block pb-1 translate-y-full">{t.hero.line1}</span>
             </div>
           </div>
           <h1 className="text-[white] z-[20] w-[80%]">
             <div>
               <div className="overflow-hidden block h-fit py-1">
-                <span className="hero-heading-inner block pb-1">{t.hero.line2}</span>
+                <span className="hero-heading-inner block pb-1 translate-y-full">{t.hero.line2}</span>
               </div>
             </div>
             <div>
               <div className="overflow-hidden block h-fit py-1">
-                <span className="hero-heading-inner block pb-1">{t.hero.line3}</span>
+                <span className="hero-heading-inner block pb-1 translate-y-full">{t.hero.line3}</span>
               </div>
             </div>
             <div>
               <div className="overflow-hidden block h-fit py-1">
-                <span className="hero-heading-inner block pb-1">
+                <span className="hero-heading-inner block pb-1 translate-y-full">
                   {t.hero.line4_prefix}
                   <span className="font-[700]">{t.hero.line4_brand}</span>
                   {t.hero.line4_suffix}
@@ -130,7 +171,7 @@ export const Hero = () => {
             </div>
           </h1>
           <div className="hero-button-wrapper hero-button mt-[44px] z-[20] overflow-hidden ">
-            <div className="hero-button-inner">
+            <div className="hero-button-inner translate-y-full opacity-0">
               <Button 
                 css={'gradient-border w-[261px] h-[49px] bg-[#000000] !transition-all !duration-300 !ease-in-out'} 
                 text={t.hero.cta} 
@@ -141,13 +182,13 @@ export const Hero = () => {
           </div>
           <div className='icons flex justify-between w-[88%]  z-[20]  absolute bottom-[131px]'>
             <div className='left-side-icons  w-[40%] flex justify-start gap-[24px]'>
-                <SocialIcon icon="/icons/tweet.svg" className="left-icon" />
-                <SocialIcon icon="/icons/insta.svg" className="left-icon" />
-                <SocialIcon icon="/icons/face.svg" className="left-icon" />
-                <SocialIcon icon="/icons/gmail.svg" className="left-icon" />
+                <SocialIcon icon="/icons/tweet.svg" className="left-icon opacity-0 scale-0" />
+                <SocialIcon icon="/icons/insta.svg" className="left-icon opacity-0 scale-0" />
+                <SocialIcon icon="/icons/face.svg" className="left-icon opacity-0 scale-0" />
+                <SocialIcon icon="/icons/gmail.svg" className="left-icon opacity-0 scale-0" />
             </div>
             <div className='right-side-icons w-[40%] flex justify-end'>
-              <SocialIcon icon="/icons/pause.svg" size={15} className="right-icon" />
+              <SocialIcon icon="/icons/pause.svg" size={15} className="right-icon opacity-0 scale-0" />
             </div>
           </div>
       <div className='right-side-line w-[1px] h-[100%] bg-[#FFFFFF33] absolute right-[31px] md:right-[31px] z-[100] top-[0px]'></div>

@@ -4,10 +4,11 @@ import React, { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { Button } from "@/components/ui/Button";
-import { useRouter } from "next/navigation";
 import { useLanguage } from "@/context/LanguageContext";
 
-const SOUND_PREFERENCE_KEY = "soundPreference";
+interface EntryProps {
+  onEnter: (soundPreference: 'on' | 'off') => void;
+}
 
 const handleExit = (callback: () => void) => {
   const tl = gsap.timeline({
@@ -21,26 +22,7 @@ const handleExit = (callback: () => void) => {
   tl.to(".entry-bottom-line", { y: "100%", stagger: 0.1 }, 0);
 };
 
-const handleEnterWithSound = (router: ReturnType<typeof useRouter>) => {
-  handleExit(() => {
-    if (typeof window !== "undefined") {
-      sessionStorage.setItem(SOUND_PREFERENCE_KEY, "on");
-    }
-    router.push("/landing");
-  });
-};
-
-const handleEnterWithoutSound = (router: ReturnType<typeof useRouter>) => {
-  handleExit(() => {
-    if (typeof window !== "undefined") {
-      sessionStorage.setItem(SOUND_PREFERENCE_KEY, "off");
-    }
-    router.push("/landing");
-  });
-};
-
-export default function EntryPage() {
-  const router = useRouter();
+export const Entry: React.FC<EntryProps> = ({ onEnter }) => {
   const sectionRef = useRef<HTMLElement>(null);
   const { t } = useLanguage();
 
@@ -69,19 +51,31 @@ export default function EntryPage() {
     { scope: sectionRef }
   );
 
+  const handleEnterWithSound = () => {
+    handleExit(() => {
+      onEnter('on');
+    });
+  };
+
+  const handleEnterWithoutSound = () => {
+    handleExit(() => {
+      onEnter('off');
+    });
+  };
+
   return (
     <section
       ref={sectionRef}
-      className="entry-page flex flex-col items-center justify-center w-[100%] h-[100vh] bg-[black] relative px-4"
+      className="entry-page fixed inset-0 left-[0] z-150 flex flex-col items-center justify-center w-full h-screen bg-[black] px-4"
       aria-label="Choose how to enter the site"
     >
       <div className="entry-content-wrapper flex flex-col items-center justify-center -translate-y-[50px] md:-translate-y-[100px]">
         <div className="choose-entry-title">
-          <h1 className="entry-title text-[#FFFFFF]">
+          <h2 className="entry-title text-[#FFFFFF]">
             <div className="overflow-hidden block h-fit py-1">
               <span className="entry-title-inner block pb-1">{t.entry.brand}</span>
             </div>
-          </h1>
+          </h2>
         </div>
         <div className="entry-buttons-container flex flex-col items-center md:flex-row">
           <div className="entry-btn-wrapper entry-btn-1">
@@ -90,7 +84,7 @@ export default function EntryPage() {
                 "entry-button gradient-border bg-[#000000] cursor-[pointer] !duration-200 hover:scale-95"
               }
               text={t.entry.enterSound}
-              onClick={() => handleEnterWithSound(router)}
+              onClick={handleEnterWithSound}
               galaxyMode={true}
               arrowIcon={true}
               galaxyTopCircleCss={'galaxy-circle-top !shadow-[0_0_10px_10px_rgba(255,255,255,0.5)]'}
@@ -103,7 +97,7 @@ export default function EntryPage() {
                 "entry-button gradient-border bg-[#000000] cursor-[pointer] !duration-200 hover:scale-95"
               }
               text={t.entry.enterSilent}
-              onClick={() => handleEnterWithoutSound(router)}
+              onClick={handleEnterWithoutSound}
               galaxyMode={true}
               arrowIcon={true}
               galaxyTopCircleCss={'galaxy-circle-top-2 !shadow-[0_0_5px_6px_rgba(255,255,255,0.5)]'}
@@ -133,4 +127,4 @@ export default function EntryPage() {
       </div>
     </section>
   );
-}
+};

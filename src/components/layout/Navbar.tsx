@@ -288,6 +288,56 @@ export const Navbar = () => {
     };
   }, [isMobileMenuOpen]);
 
+  // Entrance animations after Entry completes
+  useEffect(() => {
+    const handleEntryComplete = () => {
+      const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+      
+      // Logo entrance
+      const logo = navRef.current?.querySelector('.logo');
+      if (logo) {
+        tl.to(logo, {
+          opacity: 1,
+          scale: 1,
+          duration: 0.6
+        });
+      }
+      
+      // Nav links entrance (desktop)
+      tl.to('.nav-links a', {
+        y: 0,
+        opacity: 1,
+        duration: 0.5,
+        stagger: 0.1
+      }, "-=0.4");
+      
+      // Language links entrance
+      tl.to('.language-links a', {
+        y: 0,
+        opacity: 1,
+        duration: 0.5,
+        stagger: 0.1
+      }, "-=0.3");
+      
+      // Hamburger entrance (mobile)
+      tl.to('.hamburger-menu-wrapper', {
+        scale: 1,
+        opacity: 1,
+        duration: 0.5
+      }, "-=0.4");
+      
+      // Bottom line entrance
+      tl.to('.navbar-bottom-line', {
+        scaleX: 1,
+        transformOrigin: 'left',
+        duration: 0.8
+      }, "-=0.5");
+    };
+    
+    window.addEventListener('entryComplete', handleEntryComplete);
+    return () => window.removeEventListener('entryComplete', handleEntryComplete);
+  }, []);
+
   const handleToggleMobileMenu = () => {
     setIsMobileMenuOpen((prev) => !prev);
   };
@@ -315,7 +365,7 @@ export const Navbar = () => {
             className={`logo-left-line absolute left-[0] top-0 z-[100] h-[124px] w-[1px] transition-colors duration-[0.4s] ${borderColorClass}`}
             aria-hidden
           />
-          <div className={`logo flex shrink-0 items-center text-xl font-bold transition-colors duration-[0.4s] ${textColorClass}`}>
+          <div className={`logo flex shrink-0 items-center text-xl font-bold transition-colors duration-[0.4s] ${textColorClass} opacity-0 scale-[0.8]`}>
             <svg
               width="70px"
               height="100px"
@@ -349,7 +399,7 @@ export const Navbar = () => {
         <div className="nav-links hidden min-[1025px]:flex h-full items-center gap-6">
           <a
             href="#about"
-            className={`text-12 transition-colors duration-[0.4s] ${textColorClass} ${hoverColorClass} ${
+            className={`text-12 transition-colors duration-[0.4s] ${textColorClass} ${hoverColorClass} opacity-0 translate-y-[-20px] ${
               activeLink === 'weAre' ? 'active font-bold' : 'font-normal'
             }`}
             onClick={() => handleLinkClick('weAre')}
@@ -364,7 +414,7 @@ export const Navbar = () => {
           </a>
           <a
             href="#services"
-            className={`text-12 transition-colors duration-[0.4s] ${textColorClass} ${hoverColorClass} ${
+            className={`text-12 transition-colors duration-[0.4s] ${textColorClass} ${hoverColorClass} opacity-0 translate-y-[-20px] ${
               activeLink === 'services' ? 'active font-bold' : 'font-normal'
             }`}
             onClick={() => handleLinkClick('services')}
@@ -379,7 +429,7 @@ export const Navbar = () => {
           </a>
           <a
             href="#hero"
-            className={`text-12 transition-colors duration-[0.4s] ${textColorClass} ${hoverColorClass} ${
+            className={`text-12 transition-colors duration-[0.4s] ${textColorClass} ${hoverColorClass} opacity-0 translate-y-[-20px] ${
               activeLink === 'blog' ? 'active font-bold' : 'font-normal'
             }`}
             onClick={() => handleLinkClick('blog')}
@@ -394,7 +444,7 @@ export const Navbar = () => {
           </a>
           <a
             href="#footer"
-            className={`text-12 transition-colors duration-[0.4s] ${textColorClass} ${hoverColorClass} ${
+            className={`text-12 transition-colors duration-[0.4s] ${textColorClass} ${hoverColorClass} opacity-0 translate-y-[-20px] ${
               activeLink === 'contact' ? 'active font-bold' : 'font-normal'
             }`}
             onClick={() => handleLinkClick('contact')}
@@ -420,7 +470,7 @@ export const Navbar = () => {
               <a
                 href="#"
                 onClick={(e) => { e.preventDefault(); setLanguage('ka'); }}
-                className={`text-12 transition-colors duration-[0.4s] ${
+                className={`text-12 transition-colors duration-[0.4s] opacity-0 translate-y-[-20px] ${
                   language === 'ka' 
                     ? (isLightText ? '!text-[#FFFFFF8F] font-bold' : '!text-[#0000008F] font-bold')
                     : (isLightText ? '!text-[#FFFFFF]' : '!text-[#000000]/60')
@@ -433,7 +483,7 @@ export const Navbar = () => {
               <a
                 href="#"
                 onClick={(e) => { e.preventDefault(); setLanguage('en'); }}
-                className={`text-12 transition-colors duration-[0.4s] ${
+                className={`text-12 transition-colors duration-[0.4s] opacity-0 translate-y-[-20px] ${
                   language === 'en'
                     ? (isLightText ? '!text-[#FFFFFF8F] font-bold' : '!text-[#0000008F] font-bold')
                     : (isLightText ? '!text-[#FFFFFF]' : '!text-[#000000]/60')
@@ -488,7 +538,7 @@ export const Navbar = () => {
             </span>
           </button> */}
           
-          <div className="hidden max-[1025px]:block">
+          <div className="hidden max-[1025px]:block hamburger-menu-wrapper opacity-0 scale-0">
             <HamburgerMenu
               isOpen={isMobileMenuOpen}
               onToggle={handleToggleMobileMenu}
@@ -498,7 +548,7 @@ export const Navbar = () => {
       </nav>
 
      
-      <div className={`navbar-bottom-line w-[100%] h-[1px] absolute bottom-[0px] left-0 transition-colors duration-[0.4s] ${borderColorClass}`}></div>
+      <div className={`navbar-bottom-line w-[100%] h-[1px] absolute bottom-[0px] left-0 transition-colors duration-[0.4s] ${borderColorClass} scale-x-0 origin-left`}></div>
 
       {/* Mobile menu: overlay + side panel, always in DOM on mobile for exit animation */}
       <div
