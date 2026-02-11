@@ -249,7 +249,7 @@ nav .nav-links a > div {
 nav .nav-links a::after {
   content: '';
   position: absolute;
-  bottom: 2px;
+  bottom: 5px;
   left: 0;
   width: 100%;
   height: 8px;
@@ -661,9 +661,24 @@ nav .language-links a:hover::after {
     display: flex;
     margin-right: 50px!important;
   }
+  nav .nav-links a::after{
+    content: '';
+    position: absolute;
+    bottom: 3px;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: #F43E46;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    z-index: -1;
+  }
   nav .language-links a {
     font-size: 16px!important;
   }
+  
 
   nav .mobile-right-side a:first-child {
     margin-right: 40px!important;
