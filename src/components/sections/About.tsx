@@ -336,7 +336,7 @@ export const About = () => {
                             
                             <div className="about-button-wrapper about-button w-full flex justify-center mt-[46px] overflow-hidden">
                                 <div className="about-button-inner">
-                                    <Button css={'gradient-border w-[261px] h-[49px] bg-[#000000]'} text={t.about.cta} onClick={() => {}} />
+                                    <Button css={'gradient-border w-[261px] h-[49px] bg-[#000000]'} text={t.about.cta} onClick={() => {}}  galaxyMode={true}/>
                                 </div>
                             </div>
                         </div>
