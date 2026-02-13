@@ -108,8 +108,9 @@ body.lang-ka {
 body.lang-ka h1,
 body.lang-ka h2 {
   font-family: 'NinoMT', sans-serif!important;
-  line-height: 130px!important;
+  line-height: 130%!important;
 }
+
 
 body.lang-ka .section-hero .first-text {
   line-height: 80px !important;
@@ -384,12 +385,15 @@ nav .language-links a:hover::after {
 .section-hero > h1 {
   font-size: 96px;
   font-weight: 300;
-  line-height: 100px;
+  line-height: 130%;
   letter-spacing: 0%;
   margin-top: 0;
   color: rgba(255, 255, 255, 0.92);
 }
 
+.section-hero h1 .hero-heading-inner {
+  line-height: 130%;
+}
 /* Hero paragraph overflow-hidden line-height (48px font-size) */
 .section-hero > div > div.overflow-hidden {
   line-height: 1.15;

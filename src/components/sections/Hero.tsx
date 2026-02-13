@@ -35,16 +35,19 @@ const SocialIcon = ({ icon, size = 20, className = '' }: SocialIconProps) => (
   </div>
 );
 
-interface HeroProps {
-  animationsReady?: boolean;
-}
-
-export const Hero: React.FC<HeroProps> = ({ animationsReady = false }) => {
+export const Hero: React.FC = () => {
   const heroRef = useRef<HTMLElement>(null);
   const { t } = useLanguage();
   const hasAnimated = useRef(false);
 
   useGSAP(() => {
+    // Initial states for Hero elements (to avoid flash before animation)
+    gsap.set('.hero-text-inner, .hero-heading-inner', { y: '100%' });
+    gsap.set('.hero-button-inner', { y: '100%', opacity: 0 });
+    gsap.set('.left-icon', { scale: 0, opacity: 0 });
+    gsap.set('.right-icon', { scale: 0, opacity: 0 });
+    gsap.set('.left-side-line, .right-side-line', { scaleY: 0, transformOrigin: 'top' });
+
     const scrollOutTl = gsap.timeline({
       paused: false, // Allow ScrollTrigger to control it
       scrollTrigger: {
@@ -92,52 +95,72 @@ export const Hero: React.FC<HeroProps> = ({ animationsReady = false }) => {
       opacity: 0
     }, 1.5);
 
+    // Lines disappear
+    scrollOutTl.to('.left-side-line, .right-side-line', {
+      scaleY: 0,
+      duration: 0.5
+    }, 1.0);
+
   }, { scope: heroRef });
 
   // Entrance animation - trigger only when Entry exits
   useEffect(() => {
-    if (animationsReady && !hasAnimated.current) {
+    if (!hasAnimated.current) {
       hasAnimated.current = true;
       
-      const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+      const tl = gsap.timeline({ defaults: { ease: "power4.out" }, delay: 0.1 });
       
-      // Text entrance (from bottom)
+      // Lines entrance (start immediately)
+      tl.to('.left-side-line', {
+        scaleY: 1,
+        duration: 1.2
+      }, 0);
+
+      // Text entrance
       tl.to(".hero-text-inner", {
         y: "0%",
-        duration: 0.8,
-        delay: 0.2
-      });
+        duration: 1,
+      }, 0.1);
       
       // Headings entrance (staggered)
+      // Start 0.15s after Text starts (overlapping)
       tl.to(".hero-heading-inner", {
         y: "0%",
-        duration: 0.8,
-        stagger: 0.15
-      }, "-=0.6");
+        duration: 1,
+        stagger: 0.1
+      }, "<0.15");
       
       // Button entrance
+      // Start 0.3s after Headings start (overlapping)
       tl.to(".hero-button-inner", {
         y: "0%",
         opacity: 1,
-        duration: 0.8
-      }, "-=0.4");
+        duration: 1
+      }, "<0.3");
       
       // Left icons entrance (staggered)
+      // Start 0.3s after Button starts (overlapping)
       tl.to(".left-icon", {
         scale: 1,
         opacity: 1,
         duration: 0.6,
-        stagger: 0.1
-      }, "-=0.5");
+        stagger: 0.05
+      }, "<0.3"); 
       
       // Right icon entrance
       tl.to(".right-icon", {
         scale: 1,
         opacity: 1,
         duration: 0.6
-      }, "-=0.3");
+      }, "<"); // Starts with left icons
+
+      // Right side line
+      tl.to('.right-side-line', {
+        scaleY: 1,
+        duration: 1
+      }, 0.5);
     }
-  }, [animationsReady]);
+  }, []);
 
   return (
     <section ref={heroRef} id="hero" className="section-hero relative w-full flex flex-col items-start bg-[black] h-[100vh] ">

@@ -288,54 +288,49 @@ export const Navbar = () => {
     };
   }, [isMobileMenuOpen]);
 
-  // Entrance animations after Entry completes
+  // Entrance animations on mount
   useEffect(() => {
-    const handleEntryComplete = () => {
-      const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
-      
-      // Logo entrance
-      const logo = navRef.current?.querySelector('.logo');
-      if (logo) {
-        tl.to(logo, {
-          opacity: 1,
-          scale: 1,
-          duration: 0.6
-        });
-      }
-      
-      // Nav links entrance (desktop)
-      tl.to('.nav-links a', {
-        y: 0,
-        opacity: 1,
-        duration: 0.5,
-        stagger: 0.1
-      }, "-=0.4");
-      
-      // Language links entrance
-      tl.to('.language-links a', {
-        y: 0,
-        opacity: 1,
-        duration: 0.5,
-        stagger: 0.1
-      }, "-=0.3");
-      
-      // Hamburger entrance (mobile)
-      tl.to('.hamburger-menu-wrapper', {
-        scale: 1,
-        opacity: 1,
-        duration: 0.5
-      }, "-=0.4");
-      
-      // Bottom line entrance
-      tl.to('.navbar-bottom-line', {
-        scaleX: 1,
-        transformOrigin: 'left',
-        duration: 0.8
-      }, "-=0.5");
-    };
+    const tl = gsap.timeline({ defaults: { ease: "power4.out" }, delay: 0.1 });
     
-    window.addEventListener('entryComplete', handleEntryComplete);
-    return () => window.removeEventListener('entryComplete', handleEntryComplete);
+    // Logo entrance
+    const logo = navRef.current?.querySelector('.logo');
+    if (logo) {
+      tl.to(logo, {
+        opacity: 1,
+        scale: 1,
+        duration: 0.6
+      });
+    }
+    
+    // Nav links entrance (desktop)
+    tl.to('.nav-links a', {
+      y: 0,
+      opacity: 1,
+      duration: 0.5,
+      stagger: 0.1
+    }, "-=0.4");
+    
+    // Language links entrance
+    tl.to('.language-links a', {
+      y: 0,
+      opacity: 1,
+      duration: 0.5,
+      stagger: 0.1
+    }, "-=0.3");
+    
+    // Hamburger entrance (mobile)
+    tl.to('.hamburger-menu-wrapper', {
+      scale: 1,
+      opacity: 1,
+      duration: 0.5
+    }, "-=0.4");
+    
+    // Bottom line entrance
+    tl.to('.navbar-bottom-line', {
+      scaleX: 1,
+      transformOrigin: 'left',
+      duration: 0.8
+    }, "-=0.5");
   }, []);
 
   const handleToggleMobileMenu = () => {
