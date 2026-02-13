@@ -23,7 +23,7 @@ export const Input: React.FC<InputProps> = ({ value, onChange, icon, placeholder
                 id={name}
                 value={value}
                 onChange={onChange}
-                className="footer-input-field block py-2.5 pb-[12px] pl-[8px] max-w-[451px] w-full text-lg text-[white] bg-transparent border-0 border-b border-[#FFFFFF4D] appearance-none focus:outline-none focus:ring-0 peer relative z-10 placeholder-[#FFFFFF80] transition-all duration-300 focus:border-[#F43E46]"
+                className="footer-input-field block py-2.5 pb-[12px] pl-[8px] max-w-[451px] w-full text-lg text-[white] bg-transparent border-0 border-b border-[#FFFFFF4D] appearance-none focus:outline-none focus:ring-0 peer relative z-10 placeholder-[#FFFFFF80] transition-colors duration-700 focus:border-[#F43E46]"
                 placeholder={placeholder}
             />
             {icon && (
@@ -31,7 +31,7 @@ export const Input: React.FC<InputProps> = ({ value, onChange, icon, placeholder
                     <img
                         src={icon}
                         alt="icon"
-                        className={`w-[14px] h-[14px] brightness-0 invert rotate-[45deg] ${
+                        className={`w-[14px] h-[14px] rotate-[45deg] ${
                             icon.includes('face') ? 'rotate-[-360deg]' : ''
                         }`}
                     />

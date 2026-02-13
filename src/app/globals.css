@@ -819,7 +819,7 @@ nav .language-links a:hover::after {
     max-width: 80%!important;
   }
   .section-service .service-description-content p{
-    font-size: 18px!important;
+    font-size: 16px!important;
   }
   /*  */
 
@@ -2059,23 +2059,15 @@ html.lenis {
 
 /* Footer Input Focus Icon Color */
 .input-icon-wrapper img {
+  filter: brightness(0) invert(1);
   transition: filter 0.3s ease;
 }
 
-/* Footer Input Focus Icon Color */
-.input-icon-wrapper img {
-  transition: filter 0.3s ease;
-}
-
-.peer:focus ~ .input-icon-wrapper img {
-  filter: brightness(0) saturate(100%) invert(36%) sepia(93%) saturate(4446%) hue-rotate(343deg) brightness(98%) contrast(95%);
+.input-icon-wrapper:hover img {
+  filter: brightness(0) saturate(100%) invert(36%) sepia(93%) saturate(4446%) hue-rotate(343deg) brightness(98%) contrast(95%) !important;
 }
 
 /* Footer Input Placeholder Transition */
 .footer-input-field::placeholder {
   transition: color 0.3s ease;
-}
-
-.footer-input-field:focus::placeholder {
-  color: #F43E46;
 }
